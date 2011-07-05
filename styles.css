@@ -1,6 +1,5 @@
-.oumultiresponse .answer span.r0,
-.oumultiresponse .answer span.r1 {
-    display: block;
+.oumultiresponse .answer div.r0,
+.oumultiresponse .answer div.r1 {
     padding: 0.3em;
 }
 .que.oumultiresponse .answer .specificfeedback {
