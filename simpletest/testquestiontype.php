@@ -198,10 +198,10 @@ class qtype_oumultiresponse_test extends UnitTestCase {
                 'format' => FORMAT_MOODLE, 'files' => array());
 
         $expectedq->answer = array(
-            array('text' => 'One', 'format' => FORMAT_MOODLE, 'files' => array()),
-            array('text' => 'Two', 'format' => FORMAT_MOODLE, 'files' => array()),
-            array('text' => 'Three', 'format' => FORMAT_MOODLE, 'files' => array()),
-            array('text' => 'Four', 'format' => FORMAT_MOODLE, 'files' => array())
+            array('text' => 'One', 'format' => FORMAT_MOODLE),
+            array('text' => 'Two', 'format' => FORMAT_MOODLE),
+            array('text' => 'Three', 'format' => FORMAT_MOODLE),
+            array('text' => 'Four', 'format' => FORMAT_MOODLE)
         );
         $expectedq->correctanswer = array(1, 0, 1, 0);
         $expectedq->feedback = array(
@@ -331,10 +331,10 @@ class qtype_oumultiresponse_test extends UnitTestCase {
                 'format' => FORMAT_MOODLE, 'files' => array());
 
         $expectedq->answer = array(
-            array('text' => 'eighta', 'format' => FORMAT_MOODLE, 'files' => array()),
-            array('text' => 'eightb', 'format' => FORMAT_MOODLE, 'files' => array()),
-            array('text' => 'one', 'format' => FORMAT_MOODLE, 'files' => array()),
-            array('text' => 'two', 'format' => FORMAT_MOODLE, 'files' => array()));
+            array('text' => 'eighta', 'format' => FORMAT_MOODLE),
+            array('text' => 'eightb', 'format' => FORMAT_MOODLE),
+            array('text' => 'one', 'format' => FORMAT_MOODLE),
+            array('text' => 'two', 'format' => FORMAT_MOODLE));
         $expectedq->correctanswer = array(1, 1, 0, 0);
         $expectedq->feedback = array(
             array('text' => '<p>Specific feedback to correct answer.</p>',
