@@ -78,7 +78,7 @@ class qtype_oumultiresponse extends question_type {
         // Insert all the new answers
         $answers = array();
         foreach ($question->answer as $key => $answerdata) {
-            if ($answerdata == '') {
+            if (trim($answerdata['text']) == '') {
                 continue;
             }
 
@@ -92,16 +92,9 @@ class qtype_oumultiresponse extends question_type {
                 $answer->id = $DB->insert_record('question_answers', $answer);
             }
 
-            if (is_array($answerdata)) {
-                // Doing an import
-                $answer->answer = $this->import_or_save_files($answerdata,
-                        $context, 'question', 'answer', $answer->id);
-                $answer->answerformat = $answerdata['format'];
-            } else {
-                // Saving the form
-                $answer->answer = $answerdata;
-                $answer->answerformat = FORMAT_HTML;
-            }
+            $answer->answer = $this->import_or_save_files($answerdata,
+                    $context, 'question', 'answer', $answer->id);
+            $answer->answerformat = $answerdata['format'];
             $answer->fraction = !empty($question->correctanswer[$key]);
             $answer->feedback = $this->import_or_save_files($question->feedback[$key],
                     $context, 'question', 'answerfeedback', $answer->id);
@@ -217,7 +210,7 @@ class qtype_oumultiresponse extends question_type {
         $question->shuffleanswers = $questiondata->options->shuffleanswers;
         $question->answernumbering = $questiondata->options->answernumbering;
         $this->initialise_combined_feedback($question, $questiondata, true);
-        $this->initialise_question_answers($question, $questiondata);
+        $this->initialise_question_answers($question, $questiondata, false);
     }
 
     public function delete_question($questionid, $contextid) {

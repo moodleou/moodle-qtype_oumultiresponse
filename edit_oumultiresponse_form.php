@@ -59,12 +59,12 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         $repeated = array();
         $repeated[] = $mform->createElement('header', 'choicehdr',
                 get_string('choiceno', 'qtype_multichoice', '{no}'));
-        $repeated[] = $mform->createElement('text', 'answer',
-                get_string('answer', 'question'), array('size' => 50));
+        $repeated[] = $mform->createElement('editor', 'answer',
+                get_string('answer', 'question'), array('rows' => 1), $this->editoroptions);
         $repeated[] = $mform->createElement('checkbox', 'correctanswer',
                 get_string('correctanswer', 'qtype_oumultiresponse'));
         $repeated[] = $mform->createElement('editor', 'feedback',
-                get_string('feedback', 'question'), array('rows' => 5), $this->editoroptions);
+                get_string('feedback', 'question'), array('rows' => 1), $this->editoroptions);
 
         // These are returned by arguments passed by reference.
         $repeatedoptions['answer']['type'] = PARAM_RAW;
@@ -118,7 +118,7 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         $answercount = 0;
         $numberofcorrectanswers = 0;
         foreach ($answers as $key => $answer) {
-            $trimmedanswer = trim($answer);
+            $trimmedanswer = trim($answer['text']);
             if (empty($trimmedanswer)) {
                 continue;
             }
