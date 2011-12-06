@@ -134,7 +134,8 @@ class qtype_oumultiresponse extends question_type {
         global $DB;
         $context = $formdata->context;
 
-        $oldhints = $DB->get_records('question_hints', array('questionid' => $formdata->id));
+        $oldhints = $DB->get_records('question_hints',
+                array('questionid' => $formdata->id), 'id ASC');
 
         if (!empty($formdata->hint)) {
             $numhints = max(array_keys($formdata->hint)) + 1;
@@ -175,12 +176,12 @@ class qtype_oumultiresponse extends question_type {
 
             $showchoicefeedback = !empty($formdata->hintshowchoicefeedback[$i]);
 
-            if (empty($hint) && empty($clearwrong) &&
+            if (empty($formdata->hint[$i]['text']) && empty($clearwrong) &&
                     empty($shownumcorrect) && empty($showchoicefeedback)) {
                 continue;
             }
 
-            // Update an existing answer if possible.
+            // Update an existing hint if possible.
             $hint = array_shift($oldhints);
             if (!$hint) {
                 $hint = new stdClass();
@@ -198,6 +199,13 @@ class qtype_oumultiresponse extends question_type {
             }
             $hint->options = $showchoicefeedback;
             $DB->update_record('question_hints', $hint);
+        }
+
+        // Delete any remaining old hints.
+        $fs = get_file_storage();
+        foreach ($oldhints as $oldhint) {
+            $fs->delete_area_files($context->id, 'question', 'hint', $oldhint->id);
+            $DB->delete_records('question_hints', array('id' => $oldhint->id));
         }
     }
 
@@ -269,7 +277,8 @@ class qtype_oumultiresponse extends question_type {
         // Run through the answers
         $answers = $data['#']['answer'];
         foreach ($answers as $answer) {
-            $ans = $format->import_answer($answer);
+            $ans = $format->import_answer($answer, true,
+                    $format->get_format($question->questiontextformat));
             $question->answer[] = $ans->answer;
             $question->correctanswer[] = !empty($ans->fraction);
             $question->feedback[] = $ans->feedback;
@@ -282,7 +291,8 @@ class qtype_oumultiresponse extends question_type {
             }
         }
 
-        $format->import_hints($question, $data, true, true);
+        $format->import_hints($question, $data, true, true,
+                $format->get_format($question->questiontextformat));
 
         // Get extra choicefeedback setting from each hint.
         if (!empty($question->hintoptions)) {
@@ -301,7 +311,9 @@ class qtype_oumultiresponse extends question_type {
                 $question->options->shuffleanswers) . "</shuffleanswers>\n";
         $output .= "    <answernumbering>{$question->options->answernumbering}</answernumbering>\n";
 
-        $output .= $format->write_combined_feedback($question->options);
+        $output .= $format->write_combined_feedback($question->options,
+                                                    $question->id,
+                                                    $question->contextid);
         $output .= $format->write_answers($question->options->answers);
 
         return $output;

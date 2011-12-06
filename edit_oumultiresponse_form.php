@@ -76,7 +76,7 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
     protected function get_hint_fields($withclearwrong = false, $withshownumpartscorrect = false) {
         list($repeated, $repeatedoptions) =
                 parent::get_hint_fields($withclearwrong, $withshownumpartscorrect);
-        $repeated[] = $this->_form->createElement('checkbox', 'hintshowchoicefeedback', '',
+        $repeated[] = $this->_form->createElement('advcheckbox', 'hintshowchoicefeedback', '',
                 get_string('showeachanswerfeedback', 'qtype_oumultiresponse'));
         return array($repeated, $repeatedoptions);
     }

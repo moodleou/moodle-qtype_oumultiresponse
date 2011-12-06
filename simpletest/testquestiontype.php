@@ -183,46 +183,47 @@ class qtype_oumultiresponse_test extends UnitTestCase {
         $expectedq->questiontext = 'Which are the odd numbers?';
         $expectedq->questiontextformat = FORMAT_HTML;
         $expectedq->generalfeedback = 'General feedback.';
-        $expectedq->generalfeedbackformat = FORMAT_MOODLE;
+        $expectedq->generalfeedbackformat = FORMAT_HTML;
         $expectedq->defaultmark = 6;
         $expectedq->length = 1;
         $expectedq->penalty = 0.3333333;
 
         $expectedq->shuffleanswers = 1;
         $expectedq->correctfeedback = array('text' => 'Well done.',
-                'format' => FORMAT_MOODLE, 'files' => array());
+                'format' => FORMAT_HTML, 'files' => array());
         $expectedq->partiallycorrectfeedback = array('text' => 'Not entirely.',
-                'format' => FORMAT_MOODLE, 'files' => array());
+                'format' => FORMAT_HTML, 'files' => array());
         $expectedq->shownumcorrect = false;
         $expectedq->incorrectfeedback = array('text' => 'Completely wrong!',
-                'format' => FORMAT_MOODLE, 'files' => array());
+                'format' => FORMAT_HTML, 'files' => array());
 
         $expectedq->answer = array(
-            array('text' => 'One', 'format' => FORMAT_MOODLE),
-            array('text' => 'Two', 'format' => FORMAT_MOODLE),
-            array('text' => 'Three', 'format' => FORMAT_MOODLE),
-            array('text' => 'Four', 'format' => FORMAT_MOODLE)
+            array('text' => 'One', 'format' => FORMAT_HTML, 'files' => array()),
+            array('text' => 'Two', 'format' => FORMAT_HTML, 'files' => array()),
+            array('text' => 'Three', 'format' => FORMAT_HTML, 'files' => array()),
+            array('text' => 'Four', 'format' => FORMAT_HTML, 'files' => array())
         );
         $expectedq->correctanswer = array(1, 0, 1, 0);
         $expectedq->feedback = array(
             array('text' => 'Specific feedback to correct answer.',
-                    'format' => FORMAT_MOODLE, 'files' => array()),
+                    'format' => FORMAT_HTML, 'files' => array()),
             array('text' => 'Specific feedback to wrong answer.',
-                    'format' => FORMAT_MOODLE, 'files' => array()),
+                    'format' => FORMAT_HTML, 'files' => array()),
             array('text' => 'Specific feedback to correct answer.',
-                    'format' => FORMAT_MOODLE, 'files' => array()),
+                    'format' => FORMAT_HTML, 'files' => array()),
             array('text' => 'Specific feedback to wrong answer.',
-                    'format' => FORMAT_MOODLE, 'files' => array()),
+                    'format' => FORMAT_HTML, 'files' => array()),
         );
 
         $expectedq->hint = array(
-                array('text' => 'Try again.', 'format' => FORMAT_MOODLE, 'files' => array()),
-                array('text' => 'Hint 2.', 'format' => FORMAT_MOODLE, 'files' => array()));
+                array('text' => 'Try again.', 'format' => FORMAT_HTML, 'files' => array()),
+                array('text' => 'Hint 2.', 'format' => FORMAT_HTML, 'files' => array()));
         $expectedq->hintshownumcorrect = array(true, true);
         $expectedq->hintclearwrong = array(false, true);
         $expectedq->hintshowchoicefeedback = array(false, true);
 
         $this->assert(new CheckSpecifiedFieldsExpectation($expectedq), $q);
+        $this->assertEqual($expectedq->answer, $q->answer);
     }
 
     public function test_xml_import_legacy() {
@@ -314,7 +315,7 @@ class qtype_oumultiresponse_test extends UnitTestCase {
                 'eighta and eightb.</p>';
         $expectedq->questiontextformat = FORMAT_HTML;
         $expectedq->generalfeedback = 'General feedback.';
-        $expectedq->generalfeedbackformat = FORMAT_MOODLE;
+        $expectedq->generalfeedbackformat = FORMAT_HTML;
         $expectedq->defaultmark = 1;
         $expectedq->length = 1;
         $expectedq->penalty = 0.3333333;
@@ -322,29 +323,29 @@ class qtype_oumultiresponse_test extends UnitTestCase {
         $expectedq->shuffleanswers = 1;
         $expectedq->answernumbering = 'abc';
         $expectedq->correctfeedback = array('text' => 'Correct overall feedback',
-                'format' => FORMAT_MOODLE, 'files' => array());
+                'format' => FORMAT_HTML, 'files' => array());
         $expectedq->partiallycorrectfeedback = array(
                 'text' => 'Partially correct overall feedback.',
-                'format' => FORMAT_MOODLE, 'files' => array());
+                'format' => FORMAT_HTML, 'files' => array());
         $expectedq->shownumcorrect = false;
         $expectedq->incorrectfeedback = array('text' => 'Incorrect overall feedback.',
-                'format' => FORMAT_MOODLE, 'files' => array());
+                'format' => FORMAT_HTML, 'files' => array());
 
         $expectedq->answer = array(
-            array('text' => 'eighta', 'format' => FORMAT_MOODLE),
-            array('text' => 'eightb', 'format' => FORMAT_MOODLE),
-            array('text' => 'one', 'format' => FORMAT_MOODLE),
-            array('text' => 'two', 'format' => FORMAT_MOODLE));
+            array('text' => 'eighta', 'format' => FORMAT_HTML, 'files' => array()),
+            array('text' => 'eightb', 'format' => FORMAT_HTML, 'files' => array()),
+            array('text' => 'one', 'format' => FORMAT_HTML, 'files' => array()),
+            array('text' => 'two', 'format' => FORMAT_HTML, 'files' => array()));
         $expectedq->correctanswer = array(1, 1, 0, 0);
         $expectedq->feedback = array(
             array('text' => '<p>Specific feedback to correct answer.</p>',
-                    'format' => FORMAT_MOODLE, 'files' => array()),
+                    'format' => FORMAT_HTML, 'files' => array()),
             array('text' => '<p>Specific feedback to correct answer.</p>',
-                    'format' => FORMAT_MOODLE, 'files' => array()),
+                    'format' => FORMAT_HTML, 'files' => array()),
             array('text' => '<p>Specific feedback to wrong answer.</p>',
-                    'format' => FORMAT_MOODLE, 'files' => array()),
+                    'format' => FORMAT_HTML, 'files' => array()),
             array('text' => '<p>Specific feedback to wrong answer.</p>',
-                    'format' => FORMAT_MOODLE, 'files' => array()),
+                    'format' => FORMAT_HTML, 'files' => array()),
         );
 
         $expectedq->hint = array(
@@ -355,6 +356,7 @@ class qtype_oumultiresponse_test extends UnitTestCase {
         $expectedq->hintshowchoicefeedback = array(true, true);
 
         $this->assert(new CheckSpecifiedFieldsExpectation($expectedq), $q);
+        $this->assertEqual($expectedq->answer, $q->answer);
     }
 
     public function test_xml_export() {
