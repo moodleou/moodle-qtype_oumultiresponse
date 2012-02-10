@@ -17,8 +17,7 @@
 /**
  * OU multiple response question type class.
  *
- * @package    qtype
- * @subpackage oumultiresponse
+ * @package    qtype_oumultiresponse
  * @copyright  2008 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -46,6 +45,10 @@ require_once($CFG->dirroot . '/question/format/xml/format.php');
 class qtype_oumultiresponse extends question_type {
     public function has_html_answers() {
         return true;
+    }
+
+    public function requires_qtypes() {
+        return array('multichoice');
     }
 
     public function get_question_options($question) {

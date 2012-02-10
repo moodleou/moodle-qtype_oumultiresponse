@@ -17,8 +17,7 @@
 /**
  * OU multiple response question type language strings.
  *
- * @package    qtype
- * @subpackage oumultiresponse
+ * @package    qtype_oumultiresponse
  * @copyright  2008 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -30,6 +29,13 @@ $string['editingoumultiresponse'] = 'Editing an OU multiple response question';
 $string['notenoughcorrectanswers'] = 'You must select at least one correct choice';
 $string['oumultiresponse'] = 'OU multiple response';
 $string['oumultiresponse_help'] = 'A multiple-choice, multiple-response question type with particular scoring rules.';
+$string['oumultiresponse_link'] = 'question/type/oumultiresponse';
 $string['oumultiresponsesummary'] = 'A multiple-choice, multiple-response question type with particular scoring rules.';
+$string['pluginname'] = 'OU multiple response';
+$string['pluginname_help'] = 'A multiple-choice, multiple-response question type with particular scoring rules.';
+$string['pluginname_link'] = 'question/type/oumultiresponse';
+$string['pluginnameadding'] = 'Adding an OU multiple response question';
+$string['pluginnameediting'] = 'Editing an OU multiple response question';
+$string['pluginnamesummary'] = 'A multiple-choice, multiple-response question type with particular scoring rules.';
 $string['toomanyoptions'] ='You have selected too many options.';
 $string['showeachanswerfeedback'] = 'Show the feedback for the selected responses.';

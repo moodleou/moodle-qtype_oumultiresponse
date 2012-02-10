@@ -17,8 +17,7 @@
 /**
  * Editing form for the OU multiple response question type class.
  *
- * @package    qtype
- * @subpackage oumultiresponse
+ * @package    qtypeoumultiresponse
  * @copyright  2008 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

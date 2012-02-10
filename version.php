@@ -17,13 +17,21 @@
 /**
  * OU multiple response question type version file.
  *
- * @package    qtype
- * @subpackage oumultiresponse
+ * @package    qtype_oumultiresponse
  * @copyright  2008 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version  = 2011051200;
-$plugin->requires = 2011051212;
+
+$plugin->version   = 2011051200;
+$plugin->requires  = 2011070100;
+$plugin->cron      = 0;
+$plugin->component = 'qtype_oumultiresponse';
+$plugin->maturity  = MATURITY_STABLE;
+$plugin->release   = '1.0';
+
+$plugin->dependencies = array(
+    'qtype_multichoice' => ANY_VERSION,
+);

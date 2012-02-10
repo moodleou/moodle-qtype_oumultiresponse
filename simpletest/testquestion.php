@@ -17,10 +17,9 @@
 /**
  * Unit tests for the OU multiple response question class.
  *
- * @package    qtype
- * @subpackage oumultiresponse
+ * @package   qtype_oumultiresponse
  * @copyright 2008 The Open University
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 

@@ -18,8 +18,7 @@
  * This file contains tests that walks a OU multiple response question through
  * various interaction models.
  *
- * @package    qtype
- * @subpackage oumultiresponse
+ * @package    qtype_oumultiresponse
  * @copyright  2010 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
