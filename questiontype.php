@@ -262,7 +262,7 @@ class qtype_oumultiresponse extends question_type {
         return $parts;
     }
 
-    public function import_from_xml($data, $question, $format, $extra=null) {
+    public function import_from_xml($data, $question, qformat_xml $format, $extra=null) {
         if (!isset($data['@']['type']) || $data['@']['type'] != 'oumultiresponse') {
             return false;
         }
@@ -307,7 +307,7 @@ class qtype_oumultiresponse extends question_type {
         return $question;
     }
 
-    public function export_to_xml($question, $format, $extra = null) {
+    public function export_to_xml($question, qformat_xml $format, $extra = null) {
         $output = '';
 
         $output .= "    <shuffleanswers>" . $format->get_single(
