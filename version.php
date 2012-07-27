@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 
 $plugin->version   = 2011051200;
-$plugin->requires  = 2011070100;
+$plugin->requires  = 2012062500;
 $plugin->cron      = 0;
 $plugin->component = 'qtype_oumultiresponse';
 $plugin->maturity  = MATURITY_STABLE;
