@@ -53,7 +53,7 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         $this->add_interactive_settings(true, true);
     }
 
-    protected function get_per_answer_fields(&$mform, $label, $gradeoptions,
+    protected function get_per_answer_fields($mform, $label, $gradeoptions,
             &$repeatedoptions, &$answersoption) {
         $repeated = array();
         $repeated[] = $mform->createElement('header', 'choicehdr',

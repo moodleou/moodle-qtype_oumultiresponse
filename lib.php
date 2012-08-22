@@ -15,23 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * OU multiple response question type version file.
+ * Serve question type files.
  *
  * @package   qtype_oumultiresponse
- * @copyright 2008 The Open University
+ * @copyright 2012 The Open University
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
 defined('MOODLE_INTERNAL') || die();
 
-
-$plugin->version   = 2012082200;
-$plugin->requires  = 2012062500;
-$plugin->cron      = 0;
-$plugin->component = 'qtype_oumultiresponse';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '1.1 for Moodle 2.3+';
-
-$plugin->dependencies = array(
-    'qtype_multichoice' => ANY_VERSION,
-);
+/**
+ * Checks file access for oumultiresponse questions.
+ */
+function qtype_oumultiresponse_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+    global $CFG;
+    require_once($CFG->libdir . '/questionlib.php');
+    question_pluginfile($course, $context, 'qtype_oumultiresponse', $filearea, $args, $forcedownload, $options);
+}
