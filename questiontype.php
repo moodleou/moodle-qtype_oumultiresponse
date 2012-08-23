@@ -288,8 +288,8 @@ class qtype_oumultiresponse extends question_type {
 
             // Backwards compatibility.
             if (array_key_exists('correctanswer', $answer['#'])) {
-                $key = end(array_keys($question->correctanswer));
-                $question->correctanswer[$key] = $format->getpath($answer,
+                $keys = array_keys($question->correctanswer);
+                $question->correctanswer[end($keys)] = $format->getpath($answer,
                         array('#', 'correctanswer', 0, '#'), 0);
             }
         }
