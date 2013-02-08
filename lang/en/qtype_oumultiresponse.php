@@ -22,15 +22,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['addingoumultiresponse'] = 'Adding an OU multiple response question';
 $string['choices'] = 'Available choices';
 $string['correctanswer'] = 'Correct';
-$string['editingoumultiresponse'] = 'Editing an OU multiple response question';
 $string['notenoughcorrectanswers'] = 'You must select at least one correct choice';
-$string['oumultiresponse'] = 'OU multiple response';
-$string['oumultiresponse_help'] = 'A multiple-choice, multiple-response question type with particular scoring rules.';
-$string['oumultiresponse_link'] = 'question/type/oumultiresponse';
-$string['oumultiresponsesummary'] = 'A multiple-choice, multiple-response question type with particular scoring rules.';
 $string['pluginname'] = 'OU multiple response';
 $string['pluginname_help'] = 'A multiple-choice, multiple-response question type with particular scoring rules.';
 $string['pluginname_link'] = 'question/type/oumultiresponse';
