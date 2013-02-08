@@ -11,3 +11,6 @@
     display: inline;
     background: #FFF3BF;
 }
+.que.oumultiresponse .answer .specificfeedback script {
+    display: none;
+}
