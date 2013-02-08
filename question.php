@@ -164,7 +164,7 @@ class qtype_oumultiresponse_question extends qtype_multichoice_multi_question
             }
         }
 
-        // Finally, sum the scores
+        // Finally, sum the scores.
         return array_sum($scores);
     }
 

@@ -128,12 +128,12 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
             }
         }
 
-        // Perform sanity checks on number of correct answers
+        // Perform sanity checks on number of correct answers.
         if ($numberofcorrectanswers == 0) {
             $errors['answer[0]'] = get_string('notenoughcorrectanswers', 'qtype_oumultiresponse');
         }
 
-        // Perform sanity checks on number of answers
+        // Perform sanity checks on number of answers.
         if ($answercount == 0) {
             $errors['answer[0]'] = get_string('notenoughanswers', 'qtype_multichoice', 2);
             $errors['answer[1]'] = get_string('notenoughanswers', 'qtype_multichoice', 2);

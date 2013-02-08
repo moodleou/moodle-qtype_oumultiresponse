@@ -66,19 +66,19 @@ class qtype_oumultiresponse extends question_type {
         $oldanswers = $DB->get_records('question_answers',
                 array('question' => $question->id), 'id ASC');
 
-        // following hack to check at least two answers exist
+        // The following hack to checks that at least two answers exist.
         $answercount = 0;
         foreach ($question->answer as $key => $answer) {
             if ($answer != '') {
                 $answercount++;
             }
         }
-        if ($answercount < 2) { // check there are at lest 2 answers for multiple choice
+        if ($answercount < 2) { // Check there are at lest 2 answers for multiple choice.
             $result->notice = get_string('notenoughanswers', 'qtype_multichoice', '2');
             return $result;
         }
 
-        // Insert all the new answers
+        // Insert all the new answers.
         $answers = array();
         foreach ($question->answer as $key => $answerdata) {
             if (trim($answerdata['text']) == '') {
@@ -277,7 +277,7 @@ class qtype_oumultiresponse extends question_type {
 
         $format->import_combined_feedback($question, $data, true);
 
-        // Run through the answers
+        // Run through the answers.
         $answers = $data['#']['answer'];
         foreach ($answers as $answer) {
             $ans = $format->import_answer($answer, true,
