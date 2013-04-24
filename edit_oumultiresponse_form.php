@@ -56,10 +56,8 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
     protected function get_per_answer_fields($mform, $label, $gradeoptions,
             &$repeatedoptions, &$answersoption) {
         $repeated = array();
-        $repeated[] = $mform->createElement('header', 'choicehdr',
-                get_string('choiceno', 'qtype_multichoice', '{no}'));
         $repeated[] = $mform->createElement('editor', 'answer',
-                get_string('answer', 'question'), array('rows' => 1), $this->editoroptions);
+                $label, array('rows' => 1), $this->editoroptions);
         $repeated[] = $mform->createElement('checkbox', 'correctanswer',
                 get_string('correctanswer', 'qtype_oumultiresponse'));
         $repeated[] = $mform->createElement('editor', 'feedback',
