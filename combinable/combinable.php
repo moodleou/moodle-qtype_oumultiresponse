@@ -121,14 +121,15 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
             if ('' !== trim($answer)) {
                 $nonemptyanswerblanks[] = $anskey;
             } else if ($this->formdata->correctanswer[$anskey]) {
-                $errors[$this->form_field_name("answergroup[{$anskey}]")] = get_string('err_correctanswerblank', 'qtype_combined');
+                $errors[$this->form_field_name("answergroup[{$anskey}]")] = get_string('err_correctanswerblank',
+                                                                                       'qtype_oumultiresponse');
             }
         }
         if (count($nonemptyanswerblanks) < 2) {
-            $errors[$this->form_field_name("answergroup[0]")] = get_string('err_youneedmorechoices', 'qtype_combined');
+            $errors[$this->form_field_name("answergroup[0]")] = get_string('err_youneedmorechoices', 'qtype_oumultiresponse');
         }
         if (count(array_filter($this->formdata->correctanswer)) === 0) {
-            $errors[$this->form_field_name("answergroup[0]")] = get_string('err_nonecorrect', 'qtype_combined');
+            $errors[$this->form_field_name("answergroup[0]")] = get_string('err_nonecorrect', 'qtype_oumultiresponse');
         }
         return $errors;
     }
