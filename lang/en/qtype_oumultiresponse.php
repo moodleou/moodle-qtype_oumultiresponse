@@ -23,7 +23,11 @@
  */
 
 $string['choices'] = 'Available choices';
+$string['combinedcontrolnameoumultiresponse'] = 'check box group';
 $string['correctanswer'] = 'Correct';
+$string['err_correctanswerblank'] = 'You have marked this choice as correct but it is blank!';
+$string['err_nonecorrect'] = 'You have not marked any choices as correct.';
+$string['err_youneedmorechoices'] = 'You need to enter two or more choices.';
 $string['notenoughcorrectanswers'] = 'You must select at least one correct choice';
 $string['pluginname'] = 'OU multiple response';
 $string['pluginname_help'] = 'A multiple-choice, multiple-response question type with particular scoring rules.';
