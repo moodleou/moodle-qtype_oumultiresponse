@@ -190,34 +190,34 @@ class qtype_oumultiresponse_test extends question_testcase {
 
         $expectedq->shuffleanswers = 1;
         $expectedq->correctfeedback = array('text' => 'Well done.',
-                'format' => FORMAT_HTML, 'files' => array());
+                'format' => FORMAT_HTML);
         $expectedq->partiallycorrectfeedback = array('text' => 'Not entirely.',
-                'format' => FORMAT_HTML, 'files' => array());
+                'format' => FORMAT_HTML);
         $expectedq->shownumcorrect = false;
         $expectedq->incorrectfeedback = array('text' => 'Completely wrong!',
-                'format' => FORMAT_HTML, 'files' => array());
+                'format' => FORMAT_HTML);
 
         $expectedq->answer = array(
-            array('text' => 'One', 'format' => FORMAT_HTML, 'files' => array()),
-            array('text' => 'Two', 'format' => FORMAT_HTML, 'files' => array()),
-            array('text' => 'Three', 'format' => FORMAT_HTML, 'files' => array()),
-            array('text' => 'Four', 'format' => FORMAT_HTML, 'files' => array())
+            array('text' => 'One', 'format' => FORMAT_HTML),
+            array('text' => 'Two', 'format' => FORMAT_HTML),
+            array('text' => 'Three', 'format' => FORMAT_HTML),
+            array('text' => 'Four', 'format' => FORMAT_HTML),
         );
         $expectedq->correctanswer = array(1, 0, 1, 0);
         $expectedq->feedback = array(
             array('text' => 'Specific feedback to correct answer.',
-                    'format' => FORMAT_HTML, 'files' => array()),
+                    'format' => FORMAT_HTML),
             array('text' => 'Specific feedback to wrong answer.',
-                    'format' => FORMAT_HTML, 'files' => array()),
+                    'format' => FORMAT_HTML),
             array('text' => 'Specific feedback to correct answer.',
-                    'format' => FORMAT_HTML, 'files' => array()),
+                    'format' => FORMAT_HTML),
             array('text' => 'Specific feedback to wrong answer.',
-                    'format' => FORMAT_HTML, 'files' => array()),
+                    'format' => FORMAT_HTML),
         );
 
         $expectedq->hint = array(
-                array('text' => 'Try again.', 'format' => FORMAT_HTML, 'files' => array()),
-                array('text' => 'Hint 2.', 'format' => FORMAT_HTML, 'files' => array()));
+                array('text' => 'Try again.', 'format' => FORMAT_HTML),
+                array('text' => 'Hint 2.', 'format' => FORMAT_HTML));
         $expectedq->hintshownumcorrect = array(true, true);
         $expectedq->hintclearwrong = array(false, true);
         $expectedq->hintshowchoicefeedback = array(false, true);
@@ -323,40 +323,40 @@ class qtype_oumultiresponse_test extends question_testcase {
         $expectedq->shuffleanswers = 1;
         $expectedq->answernumbering = 'abc';
         $expectedq->correctfeedback = array('text' => 'Correct overall feedback',
-                'format' => FORMAT_HTML, 'files' => array());
+                'format' => FORMAT_HTML);
         $expectedq->partiallycorrectfeedback = array(
                 'text' => 'Partially correct overall feedback.',
-                'format' => FORMAT_HTML, 'files' => array());
+                'format' => FORMAT_HTML);
         $expectedq->shownumcorrect = false;
         $expectedq->incorrectfeedback = array('text' => 'Incorrect overall feedback.',
-                'format' => FORMAT_HTML, 'files' => array());
+                'format' => FORMAT_HTML);
 
         $expectedq->answer = array(
-            array('text' => 'eighta', 'format' => FORMAT_HTML, 'files' => array()),
-            array('text' => 'eightb', 'format' => FORMAT_HTML, 'files' => array()),
-            array('text' => 'one', 'format' => FORMAT_HTML, 'files' => array()),
-            array('text' => 'two', 'format' => FORMAT_HTML, 'files' => array()));
+            array('text' => 'eighta', 'format' => FORMAT_HTML),
+            array('text' => 'eightb', 'format' => FORMAT_HTML),
+            array('text' => 'one', 'format' => FORMAT_HTML),
+            array('text' => 'two', 'format' => FORMAT_HTML));
         $expectedq->correctanswer = array(1, 1, 0, 0);
         $expectedq->feedback = array(
             array('text' => '<p>Specific feedback to correct answer.</p>',
-                    'format' => FORMAT_HTML, 'files' => array()),
+                    'format' => FORMAT_HTML),
             array('text' => '<p>Specific feedback to correct answer.</p>',
-                    'format' => FORMAT_HTML, 'files' => array()),
+                    'format' => FORMAT_HTML),
             array('text' => '<p>Specific feedback to wrong answer.</p>',
-                    'format' => FORMAT_HTML, 'files' => array()),
+                    'format' => FORMAT_HTML),
             array('text' => '<p>Specific feedback to wrong answer.</p>',
-                    'format' => FORMAT_HTML, 'files' => array()),
+                    'format' => FORMAT_HTML),
         );
 
         $expectedq->hint = array(
-                array('text' => 'Hint 1.', 'format' => FORMAT_HTML, 'files' => array()),
-                array('text' => 'Hint 2.', 'format' => FORMAT_HTML, 'files' => array()));
+                array('text' => 'Hint 1.', 'format' => FORMAT_HTML),
+                array('text' => 'Hint 2.', 'format' => FORMAT_HTML));
         $expectedq->hintshownumcorrect = array(false, false);
         $expectedq->hintclearwrong = array(false, false);
         $expectedq->hintshowchoicefeedback = array(true, true);
 
-        $this->assert(new question_check_specified_fields_expectation($expectedq), $q);
         $this->assertEquals($expectedq->answer, $q->answer);
+        $this->assert(new question_check_specified_fields_expectation($expectedq), $q);
     }
 
     public function test_xml_export() {
