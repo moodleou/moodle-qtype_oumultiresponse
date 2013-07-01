@@ -3,21 +3,17 @@ The OU Multi-response question type
 This is a multiple-choice, multiple-response question type that was created by
 Mahmound Kassaei and Tim Hunt at the Open University (http://www.open.ac.uk/).
 
-
-This question type is compatible with Moodle 2.1+.
+This version of this question type is compatible with Moodle 2.5+. There are
+other versions available for Moodle 2.1+.
 
 To install using git, type these commands in the root of your Moodle install
-For Moodle 2.4.x or earlier
-    git clone -b MOODLE_24_STABLE git://github.com/moodleou/moodle-qtype_oumultiresponse.git question/type/oumultiresponse
-    echo '/question/type/oumultiresponse/' >> .git/info/exclude
 For Moodle 2.5 or later
     git clone git://github.com/moodleou/moodle-qtype_oumultiresponse.git question/type/oumultiresponse
     echo '/question/type/oumultiresponse/' >> .git/info/exclude
 
 
 Alternatively, download the zip from
-* https://github.com/moodleou/moodle-qtype_oumultiresponse/zipball/MOODLE_24_STABLE (Moodle 2.4.x or earlier)
-* https://github.com/moodleou/moodle-qtype_oumultiresponse/zipball/master (Moodle 2.5 or later)
+    https://github.com/moodleou/moodle-qtype_oumultiresponse/zipball/master (Moodle 2.5 or later)
 unzip it into the question/type folder, and then rename the new folder to
 oumultiresponse.
 
