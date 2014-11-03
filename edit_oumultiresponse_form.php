@@ -73,8 +73,24 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
     protected function get_hint_fields($withclearwrong = false, $withshownumpartscorrect = false) {
         list($repeated, $repeatedoptions) =
                 parent::get_hint_fields($withclearwrong, $withshownumpartscorrect);
-        $repeated[] = $this->_form->createElement('advcheckbox', 'hintshowchoicefeedback', '',
+
+        // Add the new option the the last group in repeat if there is one, otherwise
+        // as a new element.
+        $lastgroup = null;
+        foreach ($repeated as $element) {
+            if ($element->getType() == 'group') {
+                $lastgroup = $element;
+            }
+        }
+
+        $showchoicefeedback = $this->_form->createElement('advcheckbox', 'hintshowchoicefeedback', '',
                 get_string('showeachanswerfeedback', 'qtype_oumultiresponse'));
+        if ($lastgroup) {
+            $lastgroup->_elements[] = $showchoicefeedback;
+        } else {
+            $repeated[] = $showchoicefeedback;
+        }
+
         return array($repeated, $repeatedoptions);
     }
 

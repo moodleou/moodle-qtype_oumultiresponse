@@ -41,8 +41,7 @@ body#page-question-type-oumultiresponse div[id^=fitem_id_][id*=hint_] .fitemtitl
     font-weight: bold;
 }
 /* Middle */
-body#page-question-type-oumultiresponse div[id^=fitem_id_][id*=correctanswer_],
-body#page-question-type-oumultiresponse div[id^=fgroup_id_][id*=hintoptions_] {
+body#page-question-type-oumultiresponse div[id^=fitem_id_][id*=correctanswer_] {
     background: #EEE;
     margin-bottom: 0;
     margin-top: 0;
@@ -53,8 +52,9 @@ body#page-question-type-oumultiresponse div[id^=fgroup_id_][id*=hintoptions_] {
     border-bottom: 0;
 }
 /* Bottom */
-body#page-question-type-oumultiresponse div[id^=fitem_id_][id*=feedback_] {
-    background: #EEE;
+body#page-question-type-oumultiresponse div[id^=fitem_id_][id*=feedback_],
+body#page-question-type-oumultiresponse div[id^=fgroup_id_][id*=hintoptions_] {
+	background: #EEE;
     margin-bottom: 2em;
     margin-top: 0;
     padding-bottom: 5px;
