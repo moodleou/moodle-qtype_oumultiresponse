@@ -63,12 +63,6 @@ body#page-question-type-oumultiresponse div[id^=fgroup_id_][id*=hintoptions_] {
     border-top: 0;
 }
 
-body#page-question-type-oumultiresponse .fitem .felement.fstatic {
-    position: absolute;
-    left: -10000px;
-    font-weight: normal;
-    font-size: 1em;
-}
 body#page-question-type-oumultiresponse div[id^=fitem_id_][id*=penalty] {
     margin-bottom: 2em;
 }
