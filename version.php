@@ -35,3 +35,5 @@ $plugin->release   = '1.5 for Moodle 2.6+';
 $plugin->dependencies = array(
     'qtype_multichoice' => 2013110500,
 );
+
+$plugin->outestssufficient = true;

@@ -207,4 +207,41 @@ class qtype_oumultiresponse_test_helper {
 
         return $mc;
     }
+
+    /**
+     * @return stdClass date to create an oumultiresponse question.
+     */
+    public function get_oumultiresponse_question_form_data_two_of_four() {
+        $fromform = new stdClass();
+
+        $fromform->name = 'OU multiple response question';
+        $fromform->questiontext = array('text' => 'Which are the odd numbers?', 'format' => FORMAT_HTML);
+        $fromform->defaultmark = 1.0;
+        $fromform->generalfeedback = array('text' => 'The odd numbers are One and Three.', 'format' => FORMAT_HTML);
+        $fromform->shuffleanswers = 0;
+        $fromform->answernumbering = 'abc';
+        $fromform->answer = array(
+                0 => array('text' => 'One', 'format' => FORMAT_PLAIN),
+                1 => array('text' => 'Two', 'format' => FORMAT_PLAIN),
+                2 => array('text' => 'Three', 'format' => FORMAT_PLAIN),
+                3 => array('text' => 'Four', 'format' => FORMAT_PLAIN)
+        );
+        $fromform->correctanswer = array(
+                0 => 1,
+                1 => 0,
+                2 => 1,
+                3 => 0
+        );
+        $fromform->feedback = array(
+                0 => array('text' => 'One is odd.', 'format' => FORMAT_HTML),
+                1 => array('text' => 'Two is even.', 'format' => FORMAT_HTML),
+                2 => array('text' => 'Three is odd.', 'format' => FORMAT_HTML),
+                3 => array('text' => 'Four is odd.', 'format' => FORMAT_HTML)
+        );
+        test_question_maker::set_standard_combined_feedback_form_data($fromform);
+        $fromform->shownumcorrect = 0;
+        $fromform->penalty = 0.3333333;
+
+        return $fromform;
+    }
 }
