@@ -37,6 +37,7 @@ Feature: Preview an OU multiple response question
     And I should see "Two is even"
     And I should see "Mark 0.50 out of 1.00"
     And I should see "Parts, but only parts, of your response are correct."
+    And I switch to the main window
 
   @javascript
   Scenario: Preview a question and submit a correct response.
@@ -53,3 +54,4 @@ Feature: Preview an OU multiple response question
     And I should see "Well done!"
     And I should see "The odd numbers are One and Three."
     And I should see "The correct answer is: One, Three"
+    And I switch to the main window
