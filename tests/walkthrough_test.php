@@ -98,8 +98,6 @@ class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test
                 $this->get_contains_submit_button_expectation(false),
                 $this->get_contains_try_again_button_expectation(true),
                 $this->get_does_not_contain_correctness_expectation(),
-                new question_pattern_expectation('/' .
-                        preg_quote(get_string('notcomplete', 'qbehaviour_interactive'), '/') . '/'),
                 $this->get_contains_hint_expectation('Hint 1'),
                 $this->get_contains_num_parts_correct(0),
                 $this->get_contains_standard_incorrect_combined_feedback_expectation(),
@@ -146,8 +144,6 @@ class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test
                 $this->get_contains_submit_button_expectation(false),
                 $this->get_contains_try_again_button_expectation(true),
                 $this->get_does_not_contain_correctness_expectation(),
-                new question_pattern_expectation('/' .
-                        preg_quote(get_string('notcomplete', 'qbehaviour_interactive'), '/') . '/'),
                 $this->get_contains_hint_expectation('Hint 2'),
                 $this->get_contains_num_parts_correct(1),
                 $this->get_contains_standard_partiallycorrect_combined_feedback_expectation(),
@@ -240,8 +236,6 @@ class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test
                 $this->get_contains_submit_button_expectation(false),
                 $this->get_contains_try_again_button_expectation(true),
                 $this->get_does_not_contain_correctness_expectation(),
-                new question_pattern_expectation('/' .
-                        preg_quote(get_string('notcomplete', 'qbehaviour_interactive'), '/') . '/'),
                 $this->get_contains_hint_expectation('Hint 1'),
                 new question_pattern_expectation('/' .
                         preg_quote(get_string('toomanyselected', 'qtype_multichoice'), '/') . '/'),
@@ -302,8 +296,6 @@ class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test
                 $this->get_contains_try_again_button_expectation(true),
                 $this->get_does_not_contain_correctness_expectation(),
                 $this->get_contains_num_parts_correct(0),
-                new question_pattern_expectation('/' .
-                        preg_quote(get_string('notcomplete', 'qbehaviour_interactive'), '/') . '/'),
                 $this->get_contains_hint_expectation('Hint 1'),
                 $this->get_contains_standard_incorrect_combined_feedback_expectation(),
                 $this->get_contains_hidden_expectation(
@@ -348,8 +340,6 @@ class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test
                 $this->get_contains_try_again_button_expectation(true),
                 $this->get_does_not_contain_correctness_expectation(),
                 $this->get_contains_num_parts_correct(1),
-                new question_pattern_expectation('/' .
-                        preg_quote(get_string('notcomplete', 'qbehaviour_interactive'), '/') . '/'),
                 $this->get_contains_hint_expectation('Hint 2'),
                 $this->get_contains_standard_partiallycorrect_combined_feedback_expectation(),
                 $this->get_contains_hidden_expectation(
