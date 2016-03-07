@@ -216,6 +216,11 @@ class qtype_oumultiresponse extends question_type {
         return qtype_oumultiresponse_hint::load_from_record($hint);
     }
 
+    public function make_answer($answer) {
+        // Overridden just so we can make it public for use by question.php.
+        return parent::make_answer($answer);
+    }
+
     protected function initialise_question_instance(question_definition $question, $questiondata) {
         parent::initialise_question_instance($question, $questiondata);
         $question->shuffleanswers = $questiondata->options->shuffleanswers;
