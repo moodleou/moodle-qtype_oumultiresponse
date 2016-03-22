@@ -66,19 +66,15 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
 
         $answerels = array();
         $answerels[] = $mform->createElement('text', $this->form_field_name('answer'),
-                                             get_string('choiceno', 'qtype_multichoice', '{no}'), array('size'=>55));
+                get_string('choiceno', 'qtype_multichoice', '{no}'), array('size' => 55));
         $mform->setType($this->form_field_name('answer'), PARAM_TEXT);
-        $answerels[] = $mform->createElement('advcheckbox',
-                                             $this->form_field_name('correctanswer'),
-                                             get_string('correct', 'question'),
-                                             get_string('correct', 'question'));
+        $answerels[] = $mform->createElement('advcheckbox', $this->form_field_name('correctanswer'),
+                get_string('correct', 'question'), get_string('correct', 'question'));
 
         $answergroupel = $mform->createElement('group',
-                                               $this->form_field_name('answergroup'),
-                                               get_string('choiceno', 'qtype_multichoice', '{no}'),
-                                               $answerels,
-                                               null,
-                                               false);
+                $this->form_field_name('answergroup'),
+                get_string('choiceno', 'qtype_multichoice', '{no}'),
+                $answerels, null, false);
         if ($this->questionrec !== null) {
             $countanswers = count($this->questionrec->options->answers);
         } else {
@@ -107,7 +103,7 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
         $mroptions = array('answer' => array(), 'correctanswer' => array());
         if ($this->questionrec !== null) {
             foreach ($this->questionrec->options->answers as $questionrecanswer) {
-                $mroptions['answer'][]= $questionrecanswer->answer;
+                $mroptions['answer'][] = $questionrecanswer->answer;
                 $mroptions['correctanswer'][] = $questionrecanswer->fraction > 0;
             }
         }

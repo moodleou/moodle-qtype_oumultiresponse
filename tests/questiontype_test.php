@@ -99,15 +99,15 @@ class qtype_oumultiresponse_test extends question_testcase {
             2 => new question_answer(2, 'B', 0, '', FORMAT_HTML),
             3 => new question_answer(3, 'C', 0, '', FORMAT_HTML),
         );
-        $this->assertEquals(1/3,
+        $this->assertEquals(1 / 3,
                 $this->qtype->get_random_guess_score($questiondata), '', 0.000001);
 
         $questiondata->options->answers[2]->fraction = 1;
-        $this->assertEquals(2/3,
+        $this->assertEquals(2 / 3,
                 $this->qtype->get_random_guess_score($questiondata), '', 0.000001);
 
         $questiondata->options->answers[4] = new question_answer(4, 'D', 0, '', FORMAT_HTML);
-        $this->assertEquals(1/2,
+        $this->assertEquals(1 / 2,
                 $this->qtype->get_random_guess_score($questiondata), '', 0.000001);
     }
 

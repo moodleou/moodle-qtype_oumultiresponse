@@ -126,117 +126,117 @@ class qtype_oumultiresponse_question_test extends basic_testcase {
         $penalty = 0.3333333;
         $answers = array($right, $right, $right, $wrong, $wrong, $wrong);
 
-        $response_history = array('111', '000', '000', '000', '000', '000');
+        $responsehistory = array('111', '000', '000', '000', '000', '000');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.3333333, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.3333333, '', $this->tolerance);
 
-        $response_history = array('111', '111', '000', '000', '000', '000');
+        $responsehistory = array('111', '111', '000', '000', '000', '000');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.6666667, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.6666667, '', $this->tolerance);
 
-        $response_history = array('1', '1', '1', '0', '0', '0');
+        $responsehistory = array('1', '1', '1', '0', '0', '0');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 1.0, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 1.0, '', $this->tolerance);
 
-        $response_history = array('111', '111', '111', '111', '000', '000');
+        $responsehistory = array('111', '111', '111', '111', '000', '000');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.6666667, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.6666667, '', $this->tolerance);
 
-        $response_history = array('111', '111', '111', '111', '111', '000');
+        $responsehistory = array('111', '111', '111', '111', '111', '000');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.3333333, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.3333333, '', $this->tolerance);
 
-        $response_history = array('111', '111', '111', '111', '111', '111');
+        $responsehistory = array('111', '111', '111', '111', '111', '111');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.0, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.0, '', $this->tolerance);
 
-        $response_history = array('011', '000', '000', '100', '111', '111');
+        $responsehistory = array('011', '000', '000', '100', '111', '111');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
 
-        $response_history = array('001', '000', '000', '110', '111', '111');
+        $responsehistory = array('001', '000', '000', '110', '111', '111');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.1111111, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.1111111, '', $this->tolerance);
 
-        $response_history = array('111', '111', '001', '100', '010', '000');
+        $responsehistory = array('111', '111', '001', '100', '010', '000');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.7777778, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.7777778, '', $this->tolerance);
 
-        $response_history = array('100', '100', '001', '100', '011', '001');
+        $responsehistory = array('100', '100', '001', '100', '011', '001');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.1111111, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.1111111, '', $this->tolerance);
 
-        $response_history = array('101', '101', '001', '110', '011', '111');
+        $responsehistory = array('101', '101', '001', '110', '011', '111');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.1111111, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.1111111, '', $this->tolerance);
 
-        $response_history = array('011', '001', '001', '100', '110', '111');
+        $responsehistory = array('011', '001', '001', '100', '110', '111');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.3333333, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.3333333, '', $this->tolerance);
 
-        $response_history = array('111', '111', '111', '110', '110', '100');
+        $responsehistory = array('111', '111', '111', '110', '110', '100');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.4444444, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.4444444, '', $this->tolerance);
 
-        $response_history = array('111', '111', '111', '110', '100', '100');
+        $responsehistory = array('111', '111', '111', '110', '100', '100');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.5555556, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.5555556, '', $this->tolerance);
 
-        $response_history = array('110', '101', '101', '111', '110', '100');
+        $responsehistory = array('110', '101', '101', '111', '110', '100');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
 
-        $response_history = array('111', '110', '110', '111', '111', '100');
+        $responsehistory = array('111', '110', '110', '111', '111', '100');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
 
-        $response_history = array('011', '111', '110', '111', '111', '100');
+        $responsehistory = array('011', '111', '110', '111', '111', '100');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
 
-        $response_history = array('110', '111', '110', '111', '111', '100');
+        $responsehistory = array('110', '111', '110', '111', '111', '100');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
 
-        $response_history = array('111', '111', '111', '110', '110', '100');
+        $responsehistory = array('111', '111', '111', '110', '110', '100');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.4444444, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.4444444, '', $this->tolerance);
 
-        $response_history = array('110', '111', '110', '111', '111', '100');
+        $responsehistory = array('110', '111', '110', '111', '111', '100');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
 
-        $response_history = array('011', '111', '110', '111', '111', '100');
+        $responsehistory = array('011', '111', '110', '111', '111', '100');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.2222222, '', $this->tolerance);
 
-        $response_history = array('011', '111', '110', '110', '111', '001');
+        $responsehistory = array('011', '111', '110', '110', '111', '001');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.3333333, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.3333333, '', $this->tolerance);
 
-        $response_history = array('11', '01', '01', '10', '10', '00');
+        $responsehistory = array('11', '01', '01', '10', '10', '00');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 3), 0.7777778, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 3), 0.7777778, '', $this->tolerance);
 
         $penalty = 0.2;
         $answers = array($right, $right, $right, $right, $wrong, $wrong, $wrong, $wrong);
-        $response_history = array(
+        $responsehistory = array(
                 '11111', '10111', '11100', '11011', '10011', '01010', '01000', '00100');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 5), 0.45, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 5), 0.45, '', $this->tolerance);
 
         $penalty = 0.33334;
         $answers = array($right, $right, $wrong, $wrong, $wrong);
-        $response_history = array('0', '0', '1', '1', '0');
+        $responsehistory = array('0', '0', '1', '1', '0');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 1), 0.0, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 1), 0.0, '', $this->tolerance);
 
-        $response_history = array('0', '1', '1', '0', '0');
+        $responsehistory = array('0', '1', '1', '0', '0');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 1), 0.5, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 1), 0.5, '', $this->tolerance);
 
-        $response_history = array('1', '1', '0', '0', '0');
+        $responsehistory = array('1', '1', '0', '0', '0');
         $this->assertEquals(qtype_oumultiresponse_question::grade_computation(
-                $response_history, $answers, $penalty, 1), 1.0, '', $this->tolerance);
+                $responsehistory, $answers, $penalty, 1), 1.0, '', $this->tolerance);
     }
 }
