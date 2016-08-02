@@ -1,4 +1,4 @@
-@ou @ou_vle @qtype @qtype_oumultiresponse
+@ou @ou_vle @qtype @qtype_oumultiresponse @_switch_window @javascript
 Feature: Preview an OU multiple response question
   As a teacher
   In order to check my OU multiple response questions will work for students
@@ -24,7 +24,6 @@ Feature: Preview an OU multiple response question
     And I follow "Course 1"
     And I navigate to "Question bank" node in "Course administration"
 
-  @javascript
   Scenario: Preview a question and submit a partially correct response.
     When I click on "Preview" "link" in the "oumultiresponse 001" "table_row"
     And I switch to "questionpreview" window
@@ -39,7 +38,6 @@ Feature: Preview an OU multiple response question
     And I should see "Parts, but only parts, of your response are correct."
     And I switch to the main window
 
-  @javascript
   Scenario: Preview a question and submit a correct response.
     When I click on "Preview" "link" in the "oumultiresponse 001" "table_row"
     And I switch to "questionpreview" window
