@@ -21,7 +21,7 @@ Feature: Preview an OU multiple response question
       | questioncategory | qtype           | name                | template    |
       | Test questions   | oumultiresponse | oumultiresponse 001 | two_of_four |
     Given I log in as "teacher1"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
     And I navigate to "Question bank" node in "Course administration"
 
   Scenario: Preview a question and submit a partially correct response.

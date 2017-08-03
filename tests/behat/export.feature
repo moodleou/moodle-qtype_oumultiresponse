@@ -21,7 +21,7 @@ Feature: Test exporting OU multiple response questions
       | questioncategory | qtype           | name         | template    |
       | Test questions   | oumultiresponse | OUM response | two_of_four |
     And I log in as "teacher1"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
 
   @javascript
   Scenario: Export an OU multiple response question
