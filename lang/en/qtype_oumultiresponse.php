@@ -34,6 +34,7 @@ $string['pluginname_help'] = 'A multiple-choice, multiple-response question type
 $string['pluginname_link'] = 'question/type/oumultiresponse';
 $string['pluginnameadding'] = 'Adding an OU multiple response question';
 $string['pluginnameediting'] = 'Editing an OU multiple response question';
-$string['pluginnamesummary'] = 'A multiple-choice, multiple-response question type with particular scoring rules.';
+$string['pluginnamesummary'] = '<p>A multiple-choice, multiple-response question type with particular scoring rules.</p>
+<p>Recommended if your question has more than one correct answer.</p>';
 $string['toomanyoptions'] = 'You have selected too many options.';
 $string['showeachanswerfeedback'] = 'Show the feedback for the selected responses.';
