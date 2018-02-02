@@ -520,4 +520,17 @@ class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test
         $this->check_current_state(question_state::$gradedpartial);
         $this->check_current_mark(2);
     }
+
+    protected function get_contains_num_parts_correct($num) {
+        $a = new stdClass();
+        if ($num == 1) {
+            return new question_pattern_expectation('/<div class="numpartscorrect">' .
+                preg_quote(get_string('yougot1right', 'qtype_oumultiresponse', $a), '/') . '/');
+        } else {
+            $f = new NumberFormatter(current_language(), NumberFormatter::SPELLOUT);
+            $a->num = $f->format($num);
+            return new question_pattern_expectation('/<div class="numpartscorrect">' .
+                preg_quote(get_string('yougotnright', 'qtype_oumultiresponse', $a), '/') . '/');
+        }
+    }
 }

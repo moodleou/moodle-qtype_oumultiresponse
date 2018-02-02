@@ -51,5 +51,26 @@ Feature: Preview an OU multiple response question
     And I should see "Mark 1.00 out of 1.00"
     And I should see "Well done!"
     And I should see "The odd numbers are One and Three."
-    And I should see "The correct answer is: One, Three"
+    And I should see "The correct answers are: One, Three"
+    And I switch to the main window
+
+  Scenario: Preview a question and submit a partially correct response and has partially correct feedback number.
+    When I click on "Edit" "link" in the "oumultiresponse 001" "table_row"
+    And I set the following fields to these values:
+      | For any partially correct response                                  | Parts, but only parts, of your response are correct. |
+      | For any incorrect response                                          | That is not right at all.                            |
+      | Show the number of correct responses once the question has finished | 1                                                    |
+    And I click on "#id_submitbutton" "css_element"
+    When I click on "Preview" "link" in the "oumultiresponse 001" "table_row"
+    And I switch to "questionpreview" window
+    And I set the field "How questions behave" to "Immediate feedback"
+    And I press "Start again with these options"
+    And I click on "One" "checkbox"
+    And I click on "Two" "checkbox"
+    And I press "Check"
+    Then I should see "One is odd"
+    And I should see "Two is even"
+    And I should see "Mark 0.50 out of 1.00"
+    And I should see "Parts, but only parts, of your response are correct."
+    And I should see "You have correctly selected one option."
     And I switch to the main window
