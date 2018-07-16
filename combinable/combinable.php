@@ -44,7 +44,7 @@ class qtype_combined_combinable_type_oumultiresponse extends qtype_combined_comb
     protected function transform_subq_form_data_to_full($subqdata) {
         $data = parent::transform_subq_form_data_to_full($subqdata);
         foreach ($data->answer as $anskey => $answer) {
-            $data->answer[$anskey] = array('text' => $answer, 'format' => FORMAT_PLAIN);
+            $data->answer[$anskey] = array('text' => $answer['text'], 'format' => $answer['format']);
         }
         return $this->add_per_answer_properties($data);
     }
@@ -65,9 +65,9 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
         $mform->addElement('advcheckbox', $this->form_field_name('shuffleanswers'), get_string('shuffle', 'qtype_gapselect'));
 
         $answerels = array();
-        $answerels[] = $mform->createElement('text', $this->form_field_name('answer'),
-                get_string('choiceno', 'qtype_multichoice', '{no}'), array('size' => 55));
-        $mform->setType($this->form_field_name('answer'), PARAM_TEXT);
+        $answerels[] = $mform->createElement('editor', $this->form_field_name('answer'),
+                get_string('choiceno', 'qtype_multichoice', '{no}'), ['rows' => 1]);
+        $mform->setType($this->form_field_name('answer'), PARAM_RAW);
         $answerels[] = $mform->createElement('advcheckbox', $this->form_field_name('correctanswer'),
                 get_string('correct', 'question'), get_string('correct', 'question'));
 
@@ -103,7 +103,7 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
         $mroptions = array('answer' => array(), 'correctanswer' => array());
         if ($this->questionrec !== null) {
             foreach ($this->questionrec->options->answers as $questionrecanswer) {
-                $mroptions['answer'][] = $questionrecanswer->answer;
+                $mroptions['answer'][]['text'] = $questionrecanswer->answer;
                 $mroptions['correctanswer'][] = $questionrecanswer->fraction > 0;
             }
         }
@@ -114,6 +114,7 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
         $errors = array();
         $nonemptyanswerblanks = array();
         foreach ($this->formdata->answer as $anskey => $answer) {
+            $answer = $answer['text'];
             if ('' !== trim($answer)) {
                 $nonemptyanswerblanks[] = $anskey;
             } else if ($this->formdata->correctanswer[$anskey]) {
@@ -132,8 +133,7 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
 
     public function has_submitted_data() {
         return $this->submitted_data_array_not_empty('correctanswer') ||
-                $this->submitted_data_array_not_empty('answer') ||
+                $this->html_field_has_submitted_data($this->form_field_name('answer')) ||
                 parent::has_submitted_data();
     }
-
 }
