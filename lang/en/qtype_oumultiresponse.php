@@ -40,3 +40,4 @@ $string['toomanyoptions'] = 'You have selected too many options.';
 $string['showeachanswerfeedback'] = 'Show the feedback for the selected responses.';
 $string['yougotnright'] = 'You have correctly selected {$a->num} options.';
 $string['yougot1right'] = 'You have correctly selected one option.';
+$string['privacy:metadata'] = 'The OU multiple response plugin does not store any personal data.';
