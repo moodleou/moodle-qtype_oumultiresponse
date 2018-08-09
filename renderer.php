@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/question/type/multichoice/renderer.php');
-require_once ($CFG->dirroot . '/question/type/oumultiresponse/lib.php');
+require_once($CFG->dirroot . '/question/type/oumultiresponse/lib.php');
 
 class qtype_oumultiresponse_renderer extends qtype_multichoice_multi_renderer {
 
