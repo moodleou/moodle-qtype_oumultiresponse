@@ -380,6 +380,7 @@ class qtype_oumultiresponse_test extends question_testcase {
     <defaultgrade>6</defaultgrade>
     <penalty>0.3333333</penalty>
     <hidden>0</hidden>
+    <idnumber></idnumber>
     <shuffleanswers>true</shuffleanswers>
     <answernumbering>123</answernumbering>
     <correctfeedback format="html">
@@ -428,6 +429,11 @@ class qtype_oumultiresponse_test extends question_testcase {
     </hint>
   </question>
 ';
+
+        // Hack so the test passes in both 3.5 and 3.6.
+        if (strpos($xml, 'idnumber') === false) {
+            $expectedxml = str_replace("    <idnumber></idnumber>\n", '', $expectedxml);
+        }
 
         $this->assert_same_xml($expectedxml, $xml);
     }

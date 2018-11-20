@@ -19,7 +19,7 @@ Feature: Test importing OU multiple response questions
 
   @javascript @_file_upload
   Scenario: import OU multiple response question.
-    When I navigate to "Import" node in "Course administration > Question bank"
+    When I navigate to "Question bank > Import" in current page administration
     And I set the field "id_format_xml" to "1"
     And I upload "question/type/oumultiresponse/tests/fixtures/testquestion.moodle.xml" file to "Import" filemanager
     And I press "id_submitbutton"

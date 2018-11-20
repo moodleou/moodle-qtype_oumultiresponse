@@ -25,10 +25,10 @@ Feature: Test exporting OU multiple response questions
 
   @javascript
   Scenario: Export an OU multiple response question
-    When I navigate to "Export" node in "Course administration > Question bank"
+    When I navigate to "Question bank > Export" in current page administration
     And I set the field "id_format_xml" to "1"
     And I press "Export questions to file"
-    Then following "click here" should download between "1700" and "1800" bytes
+    Then following "click here" should download between "1700" and "2000" bytes
     # If the download step is the last in the scenario then we can sometimes run
     # into the situation where the download page causes a http redirect but behat
     # has already conducted its reset (generating an error). By putting a logout

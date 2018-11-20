@@ -22,7 +22,7 @@ Feature: Test editing  an OU multiple response question
       | Test questions   | oumultiresponse | OU multiple response for editing | two_of_four |
     And I log in as "teacher1"
     And I am on "Course 1" course homepage
-    And I navigate to "Question bank" node in "Course administration"
+    And I navigate to "Question bank" in current page administration
 
   @javascript
   Scenario: Edit an OU multiple response question

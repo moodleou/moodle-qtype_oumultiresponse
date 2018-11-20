@@ -101,6 +101,7 @@ class qtype_oumultiresponse_test_helper {
         $qdata->length = 1;
         $qdata->penalty = 0.3333333;
         $qdata->hidden = 0;
+        $qdata->idnumber = '';
 
         $qdata->options = new stdClass();
         $qdata->options->shuffleanswers = 1;
