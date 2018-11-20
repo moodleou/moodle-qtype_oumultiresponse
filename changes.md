@@ -1,6 +1,12 @@
 # Change log for the OU Multi-response question type
 
 
+## Changes in 2.0
+
+* Fix positioning of the right/wrong icons in Moodle 3.5+.
+* Fix automated tests to pass with Moodle 3.6.
+
+
 ## Changes in 1.9
 
 * Travis-CI automated testing integration.
