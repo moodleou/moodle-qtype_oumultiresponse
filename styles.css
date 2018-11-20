@@ -23,6 +23,14 @@
     width: 15px;
 }
 
+/* Fix positioning of icons in Moodle 3.5+. */
+.que.oumultiresponse .answer div.r0 .icon.fa-check,
+.que.oumultiresponse .answer div.r1 .icon.fa-check,
+.que.oumultiresponse .answer div.r0 .icon.fa-remove,
+.que.oumultiresponse .answer div.r1 .icon.fa-remove {
+    text-indent: 0;
+}
+
 /* Editing form. */
 /* Top */
 body#page-question-type-oumultiresponse div[id^=fitem_id_][id*=answer_],
