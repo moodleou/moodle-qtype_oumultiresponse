@@ -25,7 +25,7 @@ Feature: Preview an OU multiple response question
     And I navigate to "Question bank" in current page administration
 
   Scenario: Preview a question and submit a partially correct response.
-    When I click on "Preview" "link" in the "oumultiresponse 001" "table_row"
+    When I choose "Preview" action for "oumultiresponse 001" in the question bank
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
@@ -39,7 +39,7 @@ Feature: Preview an OU multiple response question
     And I switch to the main window
 
   Scenario: Preview a question and submit a correct response.
-    When I click on "Preview" "link" in the "oumultiresponse 001" "table_row"
+    When I choose "Preview" action for "oumultiresponse 001" in the question bank
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
@@ -55,13 +55,13 @@ Feature: Preview an OU multiple response question
     And I switch to the main window
 
   Scenario: Preview a question and submit a partially correct response and has partially correct feedback number.
-    When I click on "Edit" "link" in the "oumultiresponse 001" "table_row"
+    When I choose "Edit question" action for "oumultiresponse 001" in the question bank
     And I set the following fields to these values:
       | For any partially correct response                                  | Parts, but only parts, of your response are correct. |
       | For any incorrect response                                          | That is not right at all.                            |
       | Show the number of correct responses once the question has finished | 1                                                    |
     And I click on "#id_submitbutton" "css_element"
-    When I click on "Preview" "link" in the "oumultiresponse 001" "table_row"
+    When I choose "Preview" action for "oumultiresponse 001" in the question bank
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"

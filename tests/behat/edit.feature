@@ -26,7 +26,7 @@ Feature: Test editing  an OU multiple response question
 
   @javascript
   Scenario: Edit an OU multiple response question
-    When I click on "Edit" "link" in the "OU multiple response for editing" "table_row"
+    When I choose "Edit question" action for "OU multiple response for editing" in the question bank
     And I set the following fields to these values:
       | Question name | Edited question name |
     And I press "id_submitbutton"
