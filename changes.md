@@ -1,5 +1,10 @@
 # Change log for the OU Multi-response question type
 
+## Changes in 2.1
+
+* Support for the Moodle mobile app.
+* Update Behat tests to work with Moodle 3.8.
+
 
 ## Changes in 2.0
 

@@ -35,8 +35,6 @@ Mahmound Kassaei and Tim Hunt at the Open University (http://www.open.ac.uk/).
 
 ## Installation and set-up
 
-This plugin should be compatible with Moodle 3.4+.
-
 ### Install from the plugins database
 
 Install from the Moodle plugins database
