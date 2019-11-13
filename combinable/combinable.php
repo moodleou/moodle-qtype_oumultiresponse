@@ -75,17 +75,11 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
                 $this->form_field_name('answergroup'),
                 get_string('choiceno', 'qtype_multichoice', '{no}'),
                 $answerels, null, false);
-        if ($this->questionrec !== null) {
-            $countanswers = count($this->questionrec->options->answers);
-        } else {
-            $countanswers = 0;
-        }
 
-        if ($repeatenabled) {
-            $defaultstartnumbers = QUESTION_NUMANS_START * 2;
-            $repeatsatstart = max($defaultstartnumbers, $countanswers + QUESTION_NUMANS_ADD);
+        if (isset($this->questionrec->options)) {
+            $repeatsatstart = count($this->questionrec->options->answers);
         } else {
-            $repeatsatstart = $countanswers;
+            $repeatsatstart = max(5, QUESTION_NUMANS_START);
         }
 
         $combinedform->repeat_elements(array($answergroupel),
@@ -96,14 +90,16 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
             QUESTION_NUMANS_ADD,
             get_string('addmorechoiceblanks', 'qtype_gapselect'),
             true);
-
     }
 
     public function data_to_form($context, $fileoptions) {
         $mroptions = array('answer' => array(), 'correctanswer' => array());
         if ($this->questionrec !== null) {
             foreach ($this->questionrec->options->answers as $questionrecanswer) {
-                $mroptions['answer'][]['text'] = $questionrecanswer->answer;
+                $mroptions['answer'][] = [
+                    'text' => $questionrecanswer->answer,
+                    'format' => $questionrecanswer->answerformat,
+                ];
                 $mroptions['correctanswer'][] = $questionrecanswer->fraction > 0;
             }
         }
