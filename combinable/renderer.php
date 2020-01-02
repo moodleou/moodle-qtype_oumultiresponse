@@ -68,13 +68,12 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
                     'value' => 0,
                 ));
             }
-            $cblabel = $question->make_html_inline($question->format_text(
-                                                       $ans->answer, $ans->answerformat,
-                                                       $qa, 'question', 'answer', $ansid));
 
-            $cblabeltag = html_writer::tag('label', $cblabel, array('for' => $inputattributes['id']));
-
-            $checkboxes[] = $hidden . html_writer::empty_tag('input', $inputattributes + $commonattributes) . $cblabeltag;
+            $checkboxes[] = html_writer::empty_tag('input', $inputattributes + $commonattributes) .
+                html_writer::tag('label',
+                    html_writer::span(\qtype_combined\utils::number_in_style($value, $question->answernumbering), 'answernumber') .
+                    $question->make_html_inline($question->format_text(
+                        $ans->answer, $ans->answerformat, $qa, 'question', 'answer', $ansid)));
 
             $class = 'r' . ($value % 2);
             if ($options->correctness && $isselected) {
