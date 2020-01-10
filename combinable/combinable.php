@@ -38,11 +38,10 @@ class qtype_combined_combinable_type_oumultiresponse extends qtype_combined_comb
     }
 
     public function subq_form_fragment_question_option_fields() {
-        return array(
-            'shuffleanswers' => false,
-            'answernumbering' => 'abc'
-        );
-
+        return [
+            'shuffleanswers' => (bool) get_config('qtype_combined', 'shuffleanswers_multiresponse'),
+            'answernumbering' => null,
+        ];
     }
 
     protected function transform_subq_form_data_to_full($subqdata) {
@@ -66,12 +65,15 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
      * @param                 $repeatenabled
      */
     public function add_form_fragment(moodleform $combinedform, MoodleQuickForm $mform, $repeatenabled) {
-        $mform->addElement('advcheckbox', $this->form_field_name('shuffleanswers'), get_string('shuffle', 'qtype_gapselect'));
+        $mform->addElement('advcheckbox', $this->form_field_name('shuffleanswers'),
+            get_string('shuffle', 'qtype_combined'));
+            $mform->setDefault($this->form_field_name('shuffleanswers'),
+                get_config('qtype_combined', 'shuffleanswers_multiresponse'));
 
         $mform->addElement('select', $this->form_field_name('answernumbering'),
-            get_string('answernumbering', 'qtype_multichoice'),
-            qtype_multichoice::get_numbering_styles());
-        $mform->setDefault('answernumbering', get_config('qtype_multichoice', 'answernumbering'));
+                get_string('answernumbering', 'qtype_multichoice'), qtype_multichoice::get_numbering_styles());
+        $mform->setDefault($this->form_field_name('answernumbering'),
+                get_config('qtype_combined', 'answernumbering_multiresponse'));
 
         $answerels = array();
         $answerels[] = $mform->createElement('editor', $this->form_field_name('answer'),
