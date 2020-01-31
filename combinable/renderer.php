@@ -73,7 +73,8 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
                 html_writer::tag('label',
                     html_writer::span(\qtype_combined\utils::number_in_style($value, $question->answernumbering), 'answernumber') .
                     $question->make_html_inline($question->format_text(
-                        $ans->answer, $ans->answerformat, $qa, 'question', 'answer', $ansid)));
+                        $ans->answer, $ans->answerformat, $qa, 'question', 'answer', $ansid)),
+                    ['for' => $inputattributes['id']]);
 
             $class = 'r' . ($value % 2);
             if ($options->correctness && $isselected) {
