@@ -40,11 +40,40 @@ require_once($CFG->dirroot . '/question/type/oumultiresponse/questiontype.php');
  */
 class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test_base {
 
+    public function test_shows_standrd_instruction_yes() {
+
+        // Create a multichoice single question.
+        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc->shuffleanswers = false;
+        $mc->showstandardinstruction = true;
+        $this->start_attempt_at_question($mc, 'interactive', 3);
+        $this->render();
+
+        // Check for 'Show standard instruction'.
+        $standardinstruction = get_string('selectmulti', 'qtype_multichoice');
+        $this->assertStringContainsString($standardinstruction, $this->currentoutput);
+    }
+
+    public function test_shows_standrd_instruction_no() {
+
+        // Create a multichoice single question.
+        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc->shuffleanswers = false;
+        $mc->showstandardinstruction = false;
+        $this->start_attempt_at_question($mc, 'interactive', 3);
+        $this->render();
+
+        // Check for 'Show standard instruction'.
+        $standardinstruction = get_string('selectmulti', 'qtype_multichoice');
+        $this->assertStringNotContainsString($standardinstruction, $this->currentoutput);
+    }
+
     public function test_interactive_behaviour() {
 
         // Create a multichoice single question.
         $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
         $mc->shuffleanswers = false;
+        $mc->showstandardinstruction = true;
         $this->start_attempt_at_question($mc, 'interactive', 3);
 
         // Check the initial state.
@@ -192,6 +221,7 @@ class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test
             new qtype_oumultiresponse_hint(2, 'Hint 2', FORMAT_HTML, true, true, true),
         );
         $mc->shuffleanswers = false;
+        $mc->showstandardinstruction = true;
         $this->start_attempt_at_question($mc, 'interactive', 3);
 
         // Check the initial state.
@@ -251,6 +281,7 @@ class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test
             new qtype_oumultiresponse_hint(2, 'Hint 2', FORMAT_HTML, true, true, true),
         );
         $mc->shuffleanswers = false;
+        $mc->showstandardinstruction = true;
         $this->start_attempt_at_question($mc, 'interactive', 3);
 
         // Check the initial state.

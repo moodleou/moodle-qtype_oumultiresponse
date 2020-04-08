@@ -44,6 +44,11 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
                 qtype_multichoice::get_numbering_styles());
         $mform->setDefault('answernumbering', 'abc');
 
+        $mform->addElement('selectyesno', 'showstandardinstruction',
+            get_string('showstandardinstruction', 'qtype_oumultiresponse'), null, null, [0, 1]);
+        $mform->addHelpButton('showstandardinstruction', 'showstandardinstruction', 'qtype_oumultiresponse');
+        $mform->setDefault('showstandardinstruction', 0);
+
         $this->add_per_answer_fields($mform, get_string('choiceno', 'qtype_multichoice', '{no}'),
                 null, max(5, QUESTION_NUMANS_START));
 
@@ -118,6 +123,7 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         if (!empty($question->options)) {
             $question->shuffleanswers = $question->options->shuffleanswers;
             $question->answernumbering = $question->options->answernumbering;
+            $question->showstandardinstruction = $question->options->showstandardinstruction;
         }
 
         return $question;

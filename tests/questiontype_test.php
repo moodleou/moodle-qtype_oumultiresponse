@@ -127,6 +127,7 @@ class qtype_oumultiresponse_test extends question_testcase {
     <hidden>0</hidden>
     <answernumbering>abc</answernumbering>
     <shuffleanswers>true</shuffleanswers>
+    <showstandardinstruction>0</showstandardinstruction>
     <correctfeedback>
       <text>Well done.</text>
     </correctfeedback>
@@ -244,7 +245,6 @@ class qtype_oumultiresponse_test extends question_testcase {
     <hidden>0</hidden>
     <shuffleanswers>1</shuffleanswers>
     <answernumbering>abc</answernumbering>
-    <shuffleanswers>true</shuffleanswers>
     <answer>
       <correctanswer>1</correctanswer>
       <text>eighta</text>
@@ -383,6 +383,7 @@ class qtype_oumultiresponse_test extends question_testcase {
     <idnumber></idnumber>
     <shuffleanswers>true</shuffleanswers>
     <answernumbering>123</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
     <correctfeedback format="html">
       <text>Well done!</text>
     </correctfeedback>

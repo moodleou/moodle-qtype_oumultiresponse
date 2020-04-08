@@ -38,6 +38,11 @@ class qtype_oumultiresponse_question extends qtype_multichoice_multi_question
         implements question_automatically_gradable_with_countback {
 
     /**
+     * @var int standard instruction to be displayed if enabled.
+     */
+    public $showstandardinstruction = 0;
+
+    /**
      *  Set renderer for ou multiple response
      *
      * @param moodle_page $page

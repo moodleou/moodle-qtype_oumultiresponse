@@ -54,7 +54,8 @@ class backup_qtype_oumultiresponse_plugin extends backup_qtype_plugin {
         $oumultiresponse = new backup_nested_element('oumultiresponse', array('id'), array(
             'shuffleanswers', 'correctfeedback', 'correctfeedbackformat',
             'partiallycorrectfeedback', 'partiallycorrectfeedbackformat',
-            'incorrectfeedback', 'incorrectfeedbackformat', 'answernumbering', 'shownumcorrect'));
+            'incorrectfeedback', 'incorrectfeedbackformat', 'answernumbering',
+            'shownumcorrect', 'showstandardinstruction'));
 
         // Now the own qtype tree.
         $pluginwrapper->add_child($oumultiresponse);

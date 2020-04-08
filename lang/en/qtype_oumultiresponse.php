@@ -41,3 +41,5 @@ $string['showeachanswerfeedback'] = 'Show the feedback for the selected response
 $string['yougotnright'] = 'You have correctly selected {$a->num} options.';
 $string['yougot1right'] = 'You have correctly selected one option.';
 $string['privacy:metadata'] = 'The OU multiple response plugin does not store any personal data.';
+$string['showstandardinstruction'] = 'Show standard instruction';
+$string['showstandardinstruction_help'] = 'With this setting enabled, standard instruction will be supplied as part of the selection area (e.g. "Select one or more:"). If disabled, question authors can instead included instructions in the question content, if required.';

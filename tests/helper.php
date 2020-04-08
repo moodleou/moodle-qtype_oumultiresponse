@@ -52,8 +52,9 @@ class qtype_oumultiresponse_test_helper {
         $mc->generalfeedback = 'The odd numbers are One and Three.';
         $mc->qtype = question_bank::get_qtype('oumultiresponse');
 
-        $mc->shuffleanswers = true;
+        $mc->shuffleanswers = 1;
         $mc->answernumbering = '123';
+        $mc->showstandardinstruction = 0;
 
         test_question_maker::set_standard_combined_feedback_fields($mc);
 
@@ -106,6 +107,7 @@ class qtype_oumultiresponse_test_helper {
         $qdata->options = new stdClass();
         $qdata->options->shuffleanswers = 1;
         $qdata->options->answernumbering = '123';
+        $qdata->options->showstandardinstruction = 0;
         $qdata->options->correctfeedback =
                 test_question_maker::STANDARD_OVERALL_CORRECT_FEEDBACK;
         $qdata->options->correctfeedbackformat = FORMAT_HTML;
@@ -190,6 +192,7 @@ class qtype_oumultiresponse_test_helper {
 
         $mc->shuffleanswers = false;
         $mc->answernumbering = 'none';
+        $mc->showstandardinstruction = 0;
 
         test_question_maker::set_standard_combined_feedback_fields($mc);
 
@@ -221,6 +224,7 @@ class qtype_oumultiresponse_test_helper {
         $fromform->generalfeedback = array('text' => 'The odd numbers are One and Three.', 'format' => FORMAT_HTML);
         $fromform->shuffleanswers = 0;
         $fromform->answernumbering = 'abc';
+        $fromform->showstandardinstruction = 0;
         $fromform->answer = array(
                 0 => array('text' => 'One', 'format' => FORMAT_PLAIN),
                 1 => array('text' => 'Two', 'format' => FORMAT_PLAIN),

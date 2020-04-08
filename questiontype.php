@@ -122,11 +122,13 @@ class qtype_oumultiresponse extends question_type {
             $options->correctfeedback = '';
             $options->partiallycorrectfeedback = '';
             $options->incorrectfeedback = '';
+            $options->showstandardinstruction = 0;
             $options->id = $DB->insert_record('question_oumultiresponse', $options);
         }
 
         $options->answernumbering = $question->answernumbering;
         $options->shuffleanswers = $question->shuffleanswers;
+        $options->showstandardinstruction = !empty($question->showstandardinstruction);
         $options = $this->save_combined_feedback_helper($options, $question, $context, true);
         $DB->update_record('question_oumultiresponse', $options);
 
@@ -225,6 +227,7 @@ class qtype_oumultiresponse extends question_type {
         parent::initialise_question_instance($question, $questiondata);
         $question->shuffleanswers = $questiondata->options->shuffleanswers;
         $question->answernumbering = $questiondata->options->answernumbering;
+        $question->showstandardinstruction = $questiondata->options->showstandardinstruction;
         $this->initialise_combined_feedback($question, $questiondata, true);
         $this->initialise_question_answers($question, $questiondata, false);
     }
@@ -279,6 +282,8 @@ class qtype_oumultiresponse extends question_type {
                 $format->getpath($data, array('#', 'shuffleanswers', 0, '#'), 1));
         $question->answernumbering = $format->getpath($data,
                 array('#', 'answernumbering', 0, '#'), 'abc');
+        $question->showstandardinstruction = $format->getpath($data,
+            array('#', 'showstandardinstruction', 0, '#'), 1);
 
         $format->import_combined_feedback($question, $data, true);
 
@@ -318,6 +323,7 @@ class qtype_oumultiresponse extends question_type {
         $output .= "    <shuffleanswers>" . $format->get_single(
                 $question->options->shuffleanswers) . "</shuffleanswers>\n";
         $output .= "    <answernumbering>{$question->options->answernumbering}</answernumbering>\n";
+        $output .= "    <showstandardinstruction>{$question->options->showstandardinstruction}</showstandardinstruction>\n";
 
         $output .= $format->write_combined_feedback($question->options,
                                                     $question->id,

@@ -17,6 +17,7 @@
         <FIELD NAME="incorrectfeedback" TYPE="text" LENGTH="small" NOTNULL="true" SEQUENCE="false" COMMENT="Feedback shown for any incorrect response." PREVIOUS="partiallycorrectfeedbackformat" NEXT="incorrectfeedbackformat"/>
         <FIELD NAME="incorrectfeedbackformat" TYPE="int" LENGTH="2" NOTNULL="true" UNSIGNED="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="incorrectfeedback" NEXT="shownumcorrect"/>
         <FIELD NAME="shownumcorrect" TYPE="int" LENGTH="2" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="incorrectfeedbackformat"/>
+        <FIELD NAME="showstandardinstruction" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether standard instruction ('Select one or more:') is displayed"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id" NEXT="questionid"/>

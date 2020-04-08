@@ -66,5 +66,23 @@ function xmldb_qtype_oumultiresponse_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2020031600, 'qtype', 'oumultiresponse');
     }
 
+    // Add a new checkbox for the question author to decide
+    // whether the Standard instruction ('Select one or more:') is displayed.
+    $newversion = 2020041600;
+    if ($oldversion < $newversion) {
+
+        // Define field id to be added to question_oumultiresponse.
+        $table = new xmldb_table('question_oumultiresponse');
+        $field = new xmldb_field('showstandardinstruction', XMLDB_TYPE_INTEGER, '2',
+            null, XMLDB_NOTNULL, null, '1', 'shownumcorrect');
+
+        // Conditionally launch add field id.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Oumultiresponse savepoint reached.
+        upgrade_plugin_savepoint(true, $newversion, 'qtype', 'oumultiresponse');
+    }
     return true;
 }
