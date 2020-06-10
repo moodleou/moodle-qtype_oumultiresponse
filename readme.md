@@ -1,4 +1,4 @@
-# The OU Multi-response question type [![Build Status](https://travis-ci.org/moodleou/moodle-qtype_oumultiresponse.svg?branch=master)](https://travis-ci.org/moodleou/moodle-qtype_oumultiresponse)
+# The OU Multi-response question type [![Build Status](https://travis-ci.com/moodleou/moodle-qtype_oumultiresponse.svg?branch=master)](https://travis-ci.com/moodleou/moodle-qtype_oumultiresponse)
 
 The main difference from the standard Moodle multiple choice question type is
 in the way that grading works. When creating the question, the teacher just

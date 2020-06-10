@@ -1,5 +1,12 @@
 # Change log for the OU Multi-response question type
 
+## Changes in 2.2
+
+* Change for when OU Multi-response question subquestions
+  are used inside combined questions, so that the question
+  authoring can control 'Number the choices' setting.
+
+
 ## Changes in 2.1
 
 * Support for the Moodle mobile app.
