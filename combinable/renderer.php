@@ -94,6 +94,7 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
             $classname = 'horizontal';
         } else {
             $inputwraptag = 'div';
+            $classname = 'vertical';
         }
 
         foreach ($checkboxes as $key => $checkbox) {
