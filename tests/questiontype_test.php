@@ -42,12 +42,8 @@ class qtype_oumultiresponse_test extends question_testcase {
      */
     private $qtype;
 
-    public function setUp() {
+    public function setUp(): void {
         $this->qtype = new qtype_oumultiresponse();
-    }
-
-    public function tearDown() {
-        $this->qtype = null;
     }
 
     public function assert_same_xml($expectedxml, $xml) {

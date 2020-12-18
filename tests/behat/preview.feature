@@ -29,8 +29,8 @@ Feature: Preview an OU multiple response question
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
-    And I click on "One" "checkbox"
-    And I click on "Two" "checkbox"
+    And I click on "One" "qtype_multichoice > Answer"
+    And I click on "Two" "qtype_multichoice > Answer"
     And I press "Check"
     Then I should see "One is odd"
     And I should see "Two is even"
@@ -43,8 +43,8 @@ Feature: Preview an OU multiple response question
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
-    And I click on "One" "checkbox"
-    And I click on "Three" "checkbox"
+    And I click on "One" "qtype_multichoice > Answer"
+    And I click on "Three" "qtype_multichoice > Answer"
     And I press "Check"
     Then I should see "One is odd"
     And I should see "Three is odd"
@@ -65,8 +65,8 @@ Feature: Preview an OU multiple response question
     And I switch to "questionpreview" window
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
-    And I click on "One" "checkbox"
-    And I click on "Two" "checkbox"
+    And I click on "One" "qtype_multichoice > Answer"
+    And I click on "Two" "qtype_multichoice > Answer"
     And I press "Check"
     Then I should see "One is odd"
     And I should see "Two is even"
