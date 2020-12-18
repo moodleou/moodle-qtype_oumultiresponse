@@ -75,9 +75,12 @@ class qtype_oumultiresponse_test extends question_testcase {
     public function test_get_possible_responses() {
         $q = new stdClass();
         $q->id = 1;
-        $q->options->answers[1] = (object) array('answer' => 'frog', 'fraction' => 1);
-        $q->options->answers[2] = (object) array('answer' => 'toad', 'fraction' => 1);
-        $q->options->answers[3] = (object) array('answer' => 'newt', 'fraction' => 0);
+        $q->options = new stdClass();
+        $q->options->answers = [
+            1 => (object) array('answer' => 'frog', 'fraction' => 1),
+            2 => (object) array('answer' => 'toad', 'fraction' => 1),
+            3 => (object) array('answer' => 'newt', 'fraction' => 0),
+        ];
         $responses = $this->qtype->get_possible_responses($q);
 
         $this->assertEquals(array(
