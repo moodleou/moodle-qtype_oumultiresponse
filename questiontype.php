@@ -58,6 +58,13 @@ class qtype_oumultiresponse extends question_type {
         parent::get_question_options($question);
     }
 
+    public function save_defaults_for_new_questions(stdClass $fromform): void {
+        parent::save_defaults_for_new_questions($fromform);
+        $this->set_default_value('shuffleanswers', $fromform->shuffleanswers);
+        $this->set_default_value('answernumbering', $fromform->answernumbering);
+        $this->set_default_value('showstandardinstruction', $fromform->showstandardinstruction);
+    }
+
     public function save_question_options($question) {
         global $DB;
         $context = $question->context;
