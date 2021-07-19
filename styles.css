@@ -6,8 +6,8 @@
 .que.oumultiresponse .answer div.r0,
 .que.oumultiresponse .answer div.r1 {
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
+    margin: .25rem 0;
+    align-items: flex-start;
 }
 .que.oumultiresponse .answer div.r0 label,
 .que.oumultiresponse .answer div.r1 label,
@@ -38,7 +38,7 @@
 
 .que.oumultiresponse .answer div.r0 span.answernumber,
 .que.oumultiresponse .answer div.r1 span.answernumber {
-    white-space: nowrap;
+    min-width: 1.5em;
 }
 
 /* Fix positioning of icons in Moodle 3.5+. */
