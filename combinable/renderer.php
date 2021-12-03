@@ -56,6 +56,7 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
             $inputattributes['name'] = $inputname;
             $inputattributes['value'] = 1;
             $inputattributes['id'] = $inputname;
+            $inputattributes['aria-labelledby'] = $inputattributes['id'] . '_label';
             $isselected = $question->is_choice_selected($response, $value);
             if ($isselected) {
                 $inputattributes['checked'] = 'checked';
@@ -69,13 +70,12 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
                 ));
             }
 
+            $choice = html_writer::div($question->format_text($ans->answer, $ans->answerformat, $qa,
+                'question', 'answer', $ansid), 'flex-fill ml-1');
             $checkboxes[] = html_writer::empty_tag('input', $inputattributes + $commonattributes) .
-                    html_writer::tag('label',
-                            html_writer::span(\qtype_combined\utils::number_in_style($value, $question->answernumbering),
-                                    'answernumber') .
-                            $question->format_text($ans->answer, $ans->answerformat, $qa, 'question', 'answer', $ansid),
-                            ['for' => $inputattributes['id']]);
-
+                html_writer::div(html_writer::span(\qtype_combined\utils::number_in_style($value, $question->answernumbering),
+                'answernumber') . $choice, 'd-flex w-auto',
+                ['data-region' => 'answer-label', 'id' => $inputattributes['id'] . '_label']);
             $class = 'r' . ($value % 2);
             if ($options->correctness && $isselected) {
                 $iscbcorrect = ($ans->fraction > 0) ? 1 : 0;
@@ -104,6 +104,13 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
 
         $result = html_writer::tag($inputwraptag, $cbhtml, array('class' => 'answer'));
         $result = html_writer::div($result, $classname);
+
+        // Load JS module for the question answers.
+        if ($this->page->requires->should_create_one_time_item_now(
+                'qtype_combined_choices_' . $qa->get_outer_question_div_unique_id())) {
+            $this->page->requires->js_call_amd('qtype_multichoice/answers', 'init',
+                [$qa->get_outer_question_div_unique_id()]);
+        }
 
         return $result;
     }
