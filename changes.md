@@ -1,5 +1,10 @@
 # Change log for the OU Multi-response question type
 
+## Changes in 2.4
+
+* This version works with Moodle 4.0.
+
+
 ## Changes in 2.3
 
 * Option added to hide the 'Select one or more:' message.

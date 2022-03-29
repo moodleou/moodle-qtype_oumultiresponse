@@ -27,7 +27,6 @@ use \core_privacy\local\request\transform;
 use \core_privacy\local\request\user_preference_provider;
 use \core_privacy\local\request\writer;
 
-defined('MOODLE_INTERNAL') || die();
 /**
  * Privacy Subsystem for qtype_oumultiresponse implementing user_preference_provider.
  *
