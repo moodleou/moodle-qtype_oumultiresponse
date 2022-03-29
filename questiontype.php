@@ -225,6 +225,7 @@ class qtype_oumultiresponse extends question_type {
         return qtype_oumultiresponse_hint::load_from_record($hint);
     }
 
+    // phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
     public function make_answer($answer) {
         // Overridden just so we can make it public for use by question.php.
         return parent::make_answer($answer);

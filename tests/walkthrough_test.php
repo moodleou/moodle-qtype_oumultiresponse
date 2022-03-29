@@ -23,6 +23,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_oumultiresponse;
+
+use test_question_maker;
+use question_state;
+use qtype_oumultiresponse_hint;
+use question_pattern_expectation;
+use question_no_pattern_expectation;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -38,7 +45,7 @@ require_once($CFG->dirroot . '/question/type/oumultiresponse/questiontype.php');
  * @copyright  2010 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test_base {
+class walkthrough_test extends \qbehaviour_walkthrough_test_base {
 
     public function test_shows_standrd_instruction_yes() {
 
@@ -542,12 +549,12 @@ class qtype_oumultiresponse_walkthrough_test extends qbehaviour_walkthrough_test
     }
 
     protected function get_contains_num_parts_correct($num) {
-        $a = new stdClass();
+        $a = new \stdClass();
         if ($num == 1) {
             return new question_pattern_expectation('/<div class="numpartscorrect">' .
                 preg_quote(get_string('yougot1right', 'qtype_oumultiresponse', $a), '/') . '/');
         } else {
-            $f = new NumberFormatter(current_language(), NumberFormatter::SPELLOUT);
+            $f = new \NumberFormatter(current_language(), \NumberFormatter::SPELLOUT);
             $a->num = $f->format($num);
             return new question_pattern_expectation('/<div class="numpartscorrect">' .
                 preg_quote(get_string('yougotnright', 'qtype_oumultiresponse', $a), '/') . '/');

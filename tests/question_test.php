@@ -22,6 +22,12 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_oumultiresponse;
+
+use qtype_oumultiresponse_question;
+use test_question_maker;
+use question_attempt_step;
+use question_state;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -37,7 +43,7 @@ require_once($CFG->dirroot . '/question/type/oumultiresponse/question.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-class qtype_oumultiresponse_question_test extends basic_testcase {
+class question_test extends \basic_testcase {
     private $tolerance = 0.000001;
 
     public function test_replace_char_at() {
@@ -118,9 +124,9 @@ class qtype_oumultiresponse_question_test extends basic_testcase {
     }
 
     public function test_grade_computation() {
-        $right = new stdClass();
+        $right = new \stdClass();
         $right->fraction = 1.0;
-        $wrong = new stdClass();
+        $wrong = new \stdClass();
         $wrong->fraction = 0.0;
 
         $penalty = 0.3333333;

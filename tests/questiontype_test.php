@@ -22,6 +22,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qtype_oumultiresponse;
+
+use qtype_oumultiresponse;
+use test_question_maker;
+use question_possible_response;
+use question_answer;
+use question_check_specified_fields_expectation;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -36,7 +43,7 @@ require_once($CFG->dirroot . '/question/type/oumultiresponse/questiontype.php');
  * @copyright  2008 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_oumultiresponse_test extends question_testcase {
+class questiontype_test extends \question_testcase {
     /**
      * @var qtype_oumultiresponse
      */
@@ -73,9 +80,9 @@ class qtype_oumultiresponse_test extends question_testcase {
     }
 
     public function test_get_possible_responses() {
-        $q = new stdClass();
+        $q = new \stdClass();
         $q->id = 1;
-        $q->options = new stdClass();
+        $q->options = new \stdClass();
         $q->options->answers = [
             1 => (object) array('answer' => 'frog', 'fraction' => 1),
             2 => (object) array('answer' => 'toad', 'fraction' => 1),
@@ -91,8 +98,8 @@ class qtype_oumultiresponse_test extends question_testcase {
     }
 
     public function test_get_random_guess_score() {
-        $questiondata = new stdClass();
-        $questiondata->options = new stdClass();
+        $questiondata = new \stdClass();
+        $questiondata->options = new \stdClass();
         $questiondata->options->answers = array(
             1 => new question_answer(1, 'A', 1, '', FORMAT_HTML),
             2 => new question_answer(2, 'B', 0, '', FORMAT_HTML),
@@ -173,11 +180,11 @@ class qtype_oumultiresponse_test extends question_testcase {
   </question>';
         $xmldata = xmlize($xml);
 
-        $importer = new qformat_xml();
+        $importer = new \qformat_xml();
         $q = $importer->try_importing_using_qtypes(
                 $xmldata['question'], null, null, 'oumultiresponse');
 
-        $expectedq = new stdClass();
+        $expectedq = new \stdClass();
         $expectedq->qtype = 'oumultiresponse';
         $expectedq->name = 'OU multiple response question';
         $expectedq->questiontext = 'Which are the odd numbers?';
@@ -303,11 +310,11 @@ class qtype_oumultiresponse_test extends question_testcase {
   </question>';
         $xmldata = xmlize($xml);
 
-        $importer = new qformat_xml();
+        $importer = new \qformat_xml();
         $q = $importer->try_importing_using_qtypes(
                 $xmldata['question'], null, null, 'oumultiresponse');
 
-        $expectedq = new stdClass();
+        $expectedq = new \stdClass();
         $expectedq->qtype = 'oumultiresponse';
         $expectedq->name = '008 OUMR feedback test';
         $expectedq->questiontext = '<p>OUMR question.</p><p>Right answers are ' .
@@ -362,7 +369,7 @@ class qtype_oumultiresponse_test extends question_testcase {
         $qdata = test_question_maker::get_question_data('oumultiresponse', 'two_of_four');
         $qdata->defaultmark = 6;
 
-        $exporter = new qformat_xml();
+        $exporter = new \qformat_xml();
         $xml = $exporter->writequestion($qdata);
 
         $expectedxml = '<!-- question: 0  -->

@@ -16,8 +16,6 @@
 
 namespace qtype_oumultiresponse\output;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Mobile output class for question type oumultiresponse.
  *
