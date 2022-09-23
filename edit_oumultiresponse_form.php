@@ -34,17 +34,20 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         $mform->addElement('advcheckbox', 'shuffleanswers',
                 get_string('shuffleanswers', 'qtype_multichoice'), null, null, [0, 1]);
         $mform->addHelpButton('shuffleanswers', 'shuffleanswers', 'qtype_multichoice');
-        $mform->setDefault('shuffleanswers', $this->get_default_value('shuffleanswers', 1));
+        $mform->setDefault('shuffleanswers', $this->get_default_value('shuffleanswers',
+                get_config('qtype_multichoice', 'shuffleanswers')));
 
         $mform->addElement('select', 'answernumbering',
                 get_string('answernumbering', 'qtype_multichoice'),
                 qtype_multichoice::get_numbering_styles());
-        $mform->setDefault('answernumbering', $this->get_default_value('answernumbering', 'abc'));
+        $mform->setDefault('answernumbering', $this->get_default_value('answernumbering',
+                get_config('qtype_multichoice', 'answernumbering')));
 
         $mform->addElement('selectyesno', 'showstandardinstruction',
             get_string('showstandardinstruction', 'qtype_oumultiresponse'), null, null, [0, 1]);
         $mform->addHelpButton('showstandardinstruction', 'showstandardinstruction', 'qtype_oumultiresponse');
-        $mform->setDefault('showstandardinstruction', $this->get_default_value('showstandardinstruction', 0));
+        $mform->setDefault('showstandardinstruction', $this->get_default_value('showstandardinstruction',
+                get_config('qtype_multichoice', 'showstandardinstruction')));
 
         $this->add_per_answer_fields($mform, get_string('choiceno', 'qtype_multichoice', '{no}'),
                 null, max(5, QUESTION_NUMANS_START));
