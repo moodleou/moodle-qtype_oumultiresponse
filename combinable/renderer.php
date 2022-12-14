@@ -75,7 +75,7 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
             $class = 'r' . ($value % 2);
             if ($options->correctness && $isselected) {
                 $iscbcorrect = ($ans->fraction > 0) ? 1 : 0;
-                $feedbackimg[] = $this->feedback_image($iscbcorrect);
+                $feedbackimg[] = html_writer::span($this->feedback_image($iscbcorrect), 'ml-1');
                 $class .= ' ' . $this->feedback_class($iscbcorrect);
             } else {
                 $feedbackimg[] = '';
