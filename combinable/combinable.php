@@ -77,7 +77,7 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
 
         $answerels = array();
         $answerels[] = $mform->createElement('editor', $this->form_field_name('answer'),
-                get_string('choiceno', 'qtype_multichoice', '{no}'), ['rows' => 1]);
+                get_string('choiceno', 'qtype_multichoice', '{no}'), ['rows' => 2]);
         $mform->setType($this->form_field_name('answer'), PARAM_RAW);
         $answerels[] = $mform->createElement('advcheckbox', $this->form_field_name('correctanswer'),
                 get_string('correct', 'question'), get_string('correct', 'question'));
