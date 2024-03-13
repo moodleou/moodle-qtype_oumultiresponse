@@ -25,7 +25,7 @@ Feature: Preview an OU multiple response question
     When I am on the "oumultiresponse 001" "core_question > preview" page logged in as teacher
     And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
-    And I press "Start again with these options"
+    And I press "id_saverestart"
     And I click on "One" "qtype_multichoice > Answer"
     And I click on "Two" "qtype_multichoice > Answer"
     And I press "Check"
@@ -38,7 +38,7 @@ Feature: Preview an OU multiple response question
     When I am on the "oumultiresponse 001" "core_question > preview" page logged in as teacher
     And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
-    And I press "Start again with these options"
+    And I press "id_saverestart"
     And I click on "One" "qtype_multichoice > Answer"
     And I click on "Three" "qtype_multichoice > Answer"
     And I press "Check"
@@ -60,7 +60,7 @@ Feature: Preview an OU multiple response question
     And I am on the "oumultiresponse 002" "core_question > preview" page
     And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
-    And I press "Start again with these options"
+    And I press "id_saverestart"
     And I click on "One" "qtype_multichoice > Answer"
     And I click on "Two" "qtype_multichoice > Answer"
     And I press "Check"
