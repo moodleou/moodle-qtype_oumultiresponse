@@ -47,7 +47,7 @@ var result = {
             var name = d.querySelector('input[type=checkbox]').getAttribute('name');
             var checked = (d.querySelector('input[type=checkbox]').getAttribute('checked') ? true : false);
             var disabled = (d.querySelector('input').getAttribute('disabled') === 'disabled' ? true : false);
-            var feedback = (d.querySelector('div') ? d.querySelector('div').innerHTML : '');
+            var feedback = d.querySelector('.core-question-feedback-inline')?.innerHTML ?? '';
             var qclass = d.getAttribute('class');
             options.push({text: label, name: name, checked: checked, disabled: disabled, feedback: feedback, qclass: qclass});
         });
