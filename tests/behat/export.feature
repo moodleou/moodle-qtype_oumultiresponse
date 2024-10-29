@@ -1,4 +1,4 @@
-@ou @ou_vle @qtype @qtype_oumultiresponse
+@ou @ou_vle @qtype @qtype_vdsmultiplechoice
 Feature: Test exporting OU multiple response questions
   As a teacher
   In order to be able to reuse my OU multiple response questions
@@ -19,7 +19,7 @@ Feature: Test exporting OU multiple response questions
       | Course       | C1        | Test questions |
     And the following "questions" exist:
       | questioncategory | qtype           | name         | template    |
-      | Test questions   | oumultiresponse | OUM response | two_of_four |
+      | Test questions   | vdsmultiplechoice | OUM response | two_of_four |
 
   @javascript
   Scenario: Export an OU multiple response question

@@ -1,4 +1,4 @@
-@ou @ou_vle @qtype @qtype_oumultiresponse
+@ou @ou_vle @qtype @qtype_vdsmultiplechoice
 Feature: Test duplicating a quiz containing an OU multiple response question
   As a teacher
   In order re-use my courses containing OU multiple response questions
@@ -13,12 +13,12 @@ Feature: Test duplicating a quiz containing an OU multiple response question
       | Course       | C1        | Test questions |
     And the following "questions" exist:
       | questioncategory | qtype           | name                | template    |
-      | Test questions   | oumultiresponse | oumultiresponse 001 | two_of_four |
+      | Test questions   | vdsmultiplechoice | vdsmultiplechoice 001 | two_of_four |
     And the following "activities" exist:
       | activity   | name      | course | idnumber |
       | quiz       | Test quiz | C1     | quiz1    |
     And quiz "Test quiz" contains the following questions:
-      | oumultiresponse 001 | 1 |
+      | vdsmultiplechoice 001 | 1 |
 
   @javascript
   Scenario: Backup and restore a course containing an OU multiple response question
@@ -29,9 +29,9 @@ Feature: Test duplicating a quiz containing an OU multiple response question
       | Schema | Course name       | Course 2 |
       | Schema | Course short name | C2       |
     And I am on the "Course 2" "core_question > course question bank" page
-    And I choose "Edit question" action for "oumultiresponse 001" in the question bank
+    And I choose "Edit question" action for "vdsmultiplechoice 001" in the question bank
     Then the following fields match these values:
-      | Question name                      | oumultiresponse 001                |
+      | Question name                      | vdsmultiplechoice 001                |
       | Question text                      | Which are the odd numbers?         |
       | General feedback                   | The odd numbers are One and Three. |
       | Default mark                       | 1                                  |

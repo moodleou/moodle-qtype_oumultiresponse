@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="question/type/oumultiresponse/db" VERSION="20080121" COMMENT="XMLDB file for Moodle question/type/oumultiresponse"
+<XMLDB PATH="question/type/vdsmultiplechoice/db" VERSION="20080121" COMMENT="XMLDB file for Moodle question/type/vdsmultiplechoice"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd"
 >
   <TABLES>
-    <TABLE NAME="question_oumultiresponse" COMMENT="Options for ou multiple response questions">
+    <TABLE NAME="question_vdsmultiplechoice" COMMENT="Options for ou multiple response questions">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="questionid"/>
         <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="id" NEXT="answernumbering"/>

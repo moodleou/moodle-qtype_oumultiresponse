@@ -1,4 +1,4 @@
-@ou @ou_vle @qtype @qtype_oumultiresponse @_switch_window @javascript
+@ou @ou_vle @qtype @qtype_vdsmultiplechoice @_switch_window @javascript
 Feature: Preview an OU multiple response question
   As a teacher
   In order to check my OU multiple response questions will work for students
@@ -19,10 +19,10 @@ Feature: Preview an OU multiple response question
       | Course       | C1        | Test questions |
     And the following "questions" exist:
       | questioncategory | qtype           | name                | template    |
-      | Test questions   | oumultiresponse | oumultiresponse 001 | two_of_four |
+      | Test questions   | vdsmultiplechoice | vdsmultiplechoice 001 | two_of_four |
 
   Scenario: Preview a question and submit a partially correct response.
-    When I am on the "oumultiresponse 001" "core_question > preview" page logged in as teacher
+    When I am on the "vdsmultiplechoice 001" "core_question > preview" page logged in as teacher
     And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
@@ -35,7 +35,7 @@ Feature: Preview an OU multiple response question
     And I should see "Parts, but only parts, of your response are correct."
 
   Scenario: Preview a question and submit a correct response.
-    When I am on the "oumultiresponse 001" "core_question > preview" page logged in as teacher
+    When I am on the "vdsmultiplechoice 001" "core_question > preview" page logged in as teacher
     And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"
@@ -50,14 +50,14 @@ Feature: Preview an OU multiple response question
     And I should see "The correct answers are: One, Three"
 
   Scenario: Preview a question and submit a partially correct response and has partially correct feedback number.
-    When I am on the "oumultiresponse 001" "core_question > edit" page logged in as teacher
+    When I am on the "vdsmultiplechoice 001" "core_question > edit" page logged in as teacher
     And I set the following fields to these values:
-      | name                                                                | oumultiresponse 002                                  |
+      | name                                                                | vdsmultiplechoice 002                                  |
       | For any partially correct response                                  | Parts, but only parts, of your response are correct. |
       | For any incorrect response                                          | That is not right at all.                            |
       | id_shownumcorrect                                                   | 1                                                    |
     And I click on "#id_submitbutton" "css_element"
-    And I am on the "oumultiresponse 002" "core_question > preview" page
+    And I am on the "vdsmultiplechoice 002" "core_question > preview" page
     And I expand all fieldsets
     And I set the field "How questions behave" to "Immediate feedback"
     And I press "Start again with these options"

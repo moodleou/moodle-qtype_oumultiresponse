@@ -15,20 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * OU multi response question renderer class.
+ * OU multiple response question renderer class.
  *
- * @package   qtype_oumultiresponse
- * @copyright 2018 The Open University
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/question/type/multichoice/renderer.php');
-require_once($CFG->dirroot . '/question/type/oumultiresponse/lib.php');
+require_once($CFG->dirroot . '/question/type/vdsmultiplechoice/lib.php');
 
-class qtype_oumultiresponse_renderer extends qtype_multichoice_multi_renderer {
+class qtype_vdsmultiplechoice_renderer extends qtype_multichoice_multi_renderer {
 
     /**
      * Generate a brief statement of how many sub-parts of this question the
@@ -47,10 +47,10 @@ class qtype_oumultiresponse_renderer extends qtype_multichoice_multi_renderer {
             return '';
         }
         if ($a->num == 1) {
-            return get_string('yougot1right', 'qtype_oumultiresponse');
+            return get_string('yougot1right', 'qtype_vdsmultiplechoice');
         }
         $f = new NumberFormatter(current_language(), NumberFormatter::SPELLOUT);
         $a->num = $f->format($a->num);
-        return get_string('yougotnright', 'qtype_oumultiresponse', $a);
+        return get_string('yougotnright', 'qtype_vdsmultiplechoice', $a);
     }
 }

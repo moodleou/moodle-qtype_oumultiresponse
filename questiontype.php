@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * OU multiple response question type class.
+ * VdS multiple choice question definition class.
  *
- * @package    qtype_oumultiresponse
- * @copyright  2008 The Open University
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -39,10 +39,10 @@ require_once($CFG->dirroot . '/question/format/xml/format.php');
  * 2. The correct answer is just indicated on the editing form by a indicating
  * which choices are correct. There is no complex but flexible scoring system.
  *
- * @copyright  2008 The Open University
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_oumultiresponse extends question_type {
+class qtype_vdsmultiplechoice extends question_type {
     public function has_html_answers() {
         return true;
     }
@@ -53,7 +53,7 @@ class qtype_oumultiresponse extends question_type {
 
     public function get_question_options($question) {
         global $DB;
-        $question->options = $DB->get_record('question_oumultiresponse',
+        $question->options = $DB->get_record('question_vdsmultiplechoice',
                 array('questionid' => $question->id), '*', MUST_EXIST);
         parent::get_question_options($question);
     }
@@ -121,7 +121,7 @@ class qtype_oumultiresponse extends question_type {
             $DB->delete_records('question_answers', array('id' => $oldanswer->id));
         }
 
-        $options = $DB->get_record('question_oumultiresponse',
+        $options = $DB->get_record('question_vdsmultiplechoice',
                 array('questionid' => $question->id));
         if (!$options) {
             $options = new stdClass();
@@ -130,14 +130,14 @@ class qtype_oumultiresponse extends question_type {
             $options->partiallycorrectfeedback = '';
             $options->incorrectfeedback = '';
             $options->showstandardinstruction = 0;
-            $options->id = $DB->insert_record('question_oumultiresponse', $options);
+            $options->id = $DB->insert_record('question_vdsmultiplechoice', $options);
         }
 
         $options->answernumbering = $question->answernumbering;
         $options->shuffleanswers = $question->shuffleanswers;
         $options->showstandardinstruction = !empty($question->showstandardinstruction);
         $options = $this->save_combined_feedback_helper($options, $question, $context, true);
-        $DB->update_record('question_oumultiresponse', $options);
+        $DB->update_record('question_vdsmultiplechoice', $options);
 
         $this->save_hints($question, true);
     }
@@ -222,7 +222,7 @@ class qtype_oumultiresponse extends question_type {
     }
 
     protected function make_hint($hint) {
-        return qtype_oumultiresponse_hint::load_from_record($hint);
+        return qtype_vdsmultiplechoice_hint::load_from_record($hint);
     }
 
     // phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
@@ -242,7 +242,7 @@ class qtype_oumultiresponse extends question_type {
 
     public function delete_question($questionid, $contextid) {
         global $DB;
-        $DB->delete_records('question_oumultiresponse', array('questionid' => $questionid));
+        $DB->delete_records('question_vdsmultiplechoice', array('questionid' => $questionid));
         return parent::delete_question($questionid, $contextid);
     }
 
@@ -279,12 +279,12 @@ class qtype_oumultiresponse extends question_type {
     }
 
     public function import_from_xml($data, $question, qformat_xml $format, $extra=null) {
-        if (!isset($data['@']['type']) || $data['@']['type'] != 'oumultiresponse') {
+        if (!isset($data['@']['type']) || $data['@']['type'] != 'vdsmultiplechoice') {
             return false;
         }
 
         $question = $format->import_headers($data);
-        $question->qtype = 'oumultiresponse';
+        $question->qtype = 'vdsmultiplechoice';
 
         $question->shuffleanswers = $format->trans_single(
                 $format->getpath($data, array('#', 'shuffleanswers', 0, '#'), 1));
@@ -376,7 +376,7 @@ class qtype_oumultiresponse extends question_type {
  * @copyright  2010 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_oumultiresponse_hint extends question_hint_with_parts {
+class qtype_vdsmultiplechoice_hint extends question_hint_with_parts {
     /** @var boolean whether to show the feedback for each choice. */
     public $showchoicefeedback;
 
@@ -399,7 +399,7 @@ class qtype_oumultiresponse_hint extends question_hint_with_parts {
      * @return question_hint_with_parts
      */
     public static function load_from_record($row) {
-        return new qtype_oumultiresponse_hint($row->id, $row->hint, $row->hintformat,
+        return new qtype_vdsmultiplechoice_hint($row->id, $row->hint, $row->hintformat,
                 $row->shownumcorrect, $row->clearwrong, !empty($row->options));
     }
 

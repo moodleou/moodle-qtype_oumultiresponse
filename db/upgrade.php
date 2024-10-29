@@ -17,9 +17,9 @@
 /**
  * OU multi-response question type upgrade code.
  *
- * @package   qtype_oumultiresponse
- * @copyright 2020 The Open University
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
@@ -28,7 +28,7 @@
  * @param int $oldversion the version we are upgrading from.
  * @return bool true
  */
-function xmldb_qtype_oumultiresponse_upgrade($oldversion) {
+function xmldb_qtype_vdsmultiplechoice_upgrade($oldversion) {
     global $DB;
 
     $dbman = $DB->get_manager();
@@ -43,9 +43,9 @@ function xmldb_qtype_oumultiresponse_upgrade($oldversion) {
 
         // The config check is because we have already manually applied this fix to some OU server,
         // so we needed a way to stop it running again.
-        if (!get_config('qtype_oumultiresponse', 'combined2020031600upgradealreadyrun')) {
+        if (!get_config('qtype_vdsmultiplechoice', 'combined2020031600upgradealreadyrun')) {
             $DB->execute("
-                    UPDATE {question_oumultiresponse}
+                    UPDATE {question_vdsmultiplechoice}
 
                        SET answernumbering = 'none'
 
@@ -56,12 +56,12 @@ function xmldb_qtype_oumultiresponse_upgrade($oldversion) {
                               JOIN {question} child ON child.parent = combined.id
 
                              WHERE combined.qtype = 'combined'
-                               AND child.qtype = 'oumultiresponse'
+                               AND child.qtype = 'vdsmultiplechoice'
                            )
                 ");
         }
 
-        upgrade_plugin_savepoint(true, 2020031600, 'qtype', 'oumultiresponse');
+        upgrade_plugin_savepoint(true, 2020031600, 'qtype', 'vdsmultiplechoice');
     }
 
     // Add a new checkbox for the question author to decide
@@ -69,8 +69,8 @@ function xmldb_qtype_oumultiresponse_upgrade($oldversion) {
     $newversion = 2020041600;
     if ($oldversion < $newversion) {
 
-        // Define field id to be added to question_oumultiresponse.
-        $table = new xmldb_table('question_oumultiresponse');
+        // Define field id to be added to question_vdsmultiplechoice.
+        $table = new xmldb_table('question_vdsmultiplechoice');
         $field = new xmldb_field('showstandardinstruction', XMLDB_TYPE_INTEGER, '2',
             null, XMLDB_NOTNULL, null, '1', 'shownumcorrect');
 
@@ -79,8 +79,8 @@ function xmldb_qtype_oumultiresponse_upgrade($oldversion) {
             $dbman->add_field($table, $field);
         }
 
-        // Oumultiresponse savepoint reached.
-        upgrade_plugin_savepoint(true, $newversion, 'qtype', 'oumultiresponse');
+        // vdsmultiplechoice savepoint reached.
+        upgrade_plugin_savepoint(true, $newversion, 'qtype', 'vdsmultiplechoice');
     }
     return true;
 }

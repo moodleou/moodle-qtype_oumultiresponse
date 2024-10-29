@@ -17,14 +17,14 @@
 /**
  * Unit tests for the OU multiple response question type class.
  *
- * @package    qtype_oumultiresponse
- * @copyright  2008 The Open University
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace qtype_oumultiresponse;
+namespace qtype_vdsmultiplechoice;
 
-use qtype_oumultiresponse;
+use qtype_vdsmultiplechoice;
 use test_question_maker;
 use question_possible_response;
 use question_answer;
@@ -34,23 +34,23 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
-require_once($CFG->dirroot . '/question/type/oumultiresponse/questiontype.php');
+require_once($CFG->dirroot . '/question/type/vdsmultiplechoice/questiontype.php');
 
 
 /**
- * Unit tests for (some of) question/type/oumultiresponse/questiontype.php.
+ * Unit tests for (some of) question/type/vdsmultiplechoice/questiontype.php.
  *
  * @copyright  2008 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class questiontype_test extends \question_testcase {
     /**
-     * @var qtype_oumultiresponse
+     * @var qtype_vdsmultiplechoice
      */
     private $qtype;
 
     public function setUp(): void {
-        $this->qtype = new qtype_oumultiresponse();
+        $this->qtype = new qtype_vdsmultiplechoice();
     }
 
     public function assert_same_xml($expectedxml, $xml) {
@@ -59,12 +59,12 @@ class questiontype_test extends \question_testcase {
     }
 
     public function test_name() {
-        $this->assertEquals($this->qtype->name(), 'oumultiresponse');
+        $this->assertEquals($this->qtype->name(), 'vdsmultiplechoice');
     }
 
     public function test_initialise_question_instance() {
-        $qdata = test_question_maker::get_question_data('oumultiresponse', 'two_of_four');
-        $expectedq = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $qdata = test_question_maker::get_question_data('vdsmultiplechoice', 'two_of_four');
+        $expectedq = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $qdata->stamp = $expectedq->stamp;
         $qdata->version = $expectedq->version;
         $qdata->timecreated = $expectedq->timecreated;
@@ -118,7 +118,7 @@ class questiontype_test extends \question_testcase {
     }
 
     public function test_xml_import() {
-        $xml = '  <question type="oumultiresponse">
+        $xml = '  <question type="vdsmultiplechoice">
     <name>
       <text>OU multiple response question</text>
     </name>
@@ -182,10 +182,10 @@ class questiontype_test extends \question_testcase {
 
         $importer = new \qformat_xml();
         $q = $importer->try_importing_using_qtypes(
-                $xmldata['question'], null, null, 'oumultiresponse');
+                $xmldata['question'], null, null, 'vdsmultiplechoice');
 
         $expectedq = new \stdClass();
-        $expectedq->qtype = 'oumultiresponse';
+        $expectedq->qtype = 'vdsmultiplechoice';
         $expectedq->name = 'OU multiple response question';
         $expectedq->questiontext = 'Which are the odd numbers?';
         $expectedq->questiontextformat = FORMAT_HTML;
@@ -234,7 +234,7 @@ class questiontype_test extends \question_testcase {
     }
 
     public function test_xml_import_legacy() {
-        $xml = '  <question type="oumultiresponse">
+        $xml = '  <question type="vdsmultiplechoice">
     <name>
       <text>008 OUMR feedback test</text>
     </name>
@@ -312,10 +312,10 @@ class questiontype_test extends \question_testcase {
 
         $importer = new \qformat_xml();
         $q = $importer->try_importing_using_qtypes(
-                $xmldata['question'], null, null, 'oumultiresponse');
+                $xmldata['question'], null, null, 'vdsmultiplechoice');
 
         $expectedq = new \stdClass();
-        $expectedq->qtype = 'oumultiresponse';
+        $expectedq->qtype = 'vdsmultiplechoice';
         $expectedq->name = '008 OUMR feedback test';
         $expectedq->questiontext = '<p>OUMR question.</p><p>Right answers are ' .
                 'eighta and eightb.</p>';
@@ -366,14 +366,14 @@ class questiontype_test extends \question_testcase {
     }
 
     public function test_xml_export() {
-        $qdata = test_question_maker::get_question_data('oumultiresponse', 'two_of_four');
+        $qdata = test_question_maker::get_question_data('vdsmultiplechoice', 'two_of_four');
         $qdata->defaultmark = 6;
 
         $exporter = new \qformat_xml();
         $xml = $exporter->writequestion($qdata);
 
         $expectedxml = '<!-- question: 0  -->
-  <question type="oumultiresponse">
+  <question type="vdsmultiplechoice">
     <name>
       <text>OU multiple response question</text>
     </name>

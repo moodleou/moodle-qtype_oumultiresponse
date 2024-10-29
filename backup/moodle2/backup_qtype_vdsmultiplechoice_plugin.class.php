@@ -15,18 +15,18 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    qtype_oumultiresponse
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
- * Provides the information to backup oumultiresponse questions.
+ * Provides the information to backup vdsmultiplechoice questions.
  *
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class backup_qtype_oumultiresponse_plugin extends backup_qtype_plugin {
+class backup_qtype_vdsmultiplechoice_plugin extends backup_qtype_plugin {
 
     /**
      * Returns the qtype information to attach to question element.
@@ -34,7 +34,7 @@ class backup_qtype_oumultiresponse_plugin extends backup_qtype_plugin {
     protected function define_question_plugin_structure() {
 
         // Define the virtual plugin element with the condition to fulfill.
-        $plugin = $this->get_plugin_element(null, '../../qtype', 'oumultiresponse');
+        $plugin = $this->get_plugin_element(null, '../../qtype', 'vdsmultiplechoice');
 
         // Create one standard named plugin element (the visible container).
         $pluginwrapper = new backup_nested_element($this->get_recommended_name());
@@ -47,17 +47,17 @@ class backup_qtype_oumultiresponse_plugin extends backup_qtype_plugin {
         $this->add_question_question_answers($pluginwrapper);
 
         // Now create the qtype own structures.
-        $oumultiresponse = new backup_nested_element('oumultiresponse', array('id'), array(
+        $vdsmultiplechoice = new backup_nested_element('vdsmultiplechoice', array('id'), array(
             'shuffleanswers', 'correctfeedback', 'correctfeedbackformat',
             'partiallycorrectfeedback', 'partiallycorrectfeedbackformat',
             'incorrectfeedback', 'incorrectfeedbackformat', 'answernumbering',
             'shownumcorrect', 'showstandardinstruction'));
 
         // Now the own qtype tree.
-        $pluginwrapper->add_child($oumultiresponse);
+        $pluginwrapper->add_child($vdsmultiplechoice);
 
         // Set source to populate the data.
-        $oumultiresponse->set_source_table('question_oumultiresponse',
+        $vdsmultiplechoice->set_source_table('question_vdsmultiplechoice',
                 array('questionid' => backup::VAR_PARENTID));
 
         // Don't need to annotate ids nor files.

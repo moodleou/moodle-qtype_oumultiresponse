@@ -15,19 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    qtype_oumultiresponse
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
  * restore plugin class that provides the necessary information
- * needed to restore one oumultiresponse qtype plugin.
+ * needed to restore one vdsmultiplechoice qtype plugin.
  *
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class restore_qtype_oumultiresponse_plugin extends restore_qtype_plugin {
+class restore_qtype_vdsmultiplechoice_plugin extends restore_qtype_plugin {
 
     /**
      * Returns the paths to be handled by the plugin at question level.
@@ -40,18 +40,18 @@ class restore_qtype_oumultiresponse_plugin extends restore_qtype_plugin {
         $this->add_question_question_answers($paths);
 
         // Add own qtype stuff.
-        $elename = 'oumultiresponse';
+        $elename = 'vdsmultiplechoice';
         // We used get_recommended_name() so this works.
-        $elepath = $this->get_pathfor('/oumultiresponse');
+        $elepath = $this->get_pathfor('/vdsmultiplechoice');
         $paths[] = new restore_path_element($elename, $elepath);
 
         return $paths; // And we return the interesting paths.
     }
 
     /**
-     * Process the qtype/oumultiresponse element.
+     * Process the qtype/vdsmultiplechoice element.
      */
-    public function process_oumultiresponse($data) {
+    public function process_vdsmultiplechoice($data) {
         global $DB;
 
         $data = (object)$data;
@@ -63,14 +63,14 @@ class restore_qtype_oumultiresponse_plugin extends restore_qtype_plugin {
         $questioncreated = (bool) $this->get_mappingid('question_created', $oldquestionid);
 
         // If the question has been created by restore, we need to create its
-        // question_oumultiresponse too.
+        // question_vdsmultiplechoice too.
         if ($questioncreated) {
             // Adjust some columns.
             $data->questionid = $newquestionid;
             // Insert record.
-            $newitemid = $DB->insert_record('question_oumultiresponse', $data);
+            $newitemid = $DB->insert_record('question_vdsmultiplechoice', $data);
             // Create mapping (needed for decoding links).
-            $this->set_mapping('question_oumultiresponse', $oldid, $newitemid);
+            $this->set_mapping('question_vdsmultiplechoice', $oldid, $newitemid);
         }
     }
 
@@ -104,8 +104,8 @@ class restore_qtype_oumultiresponse_plugin extends restore_qtype_plugin {
         $contents = array();
 
         $fields = array('correctfeedback', 'partiallycorrectfeedback', 'incorrectfeedback');
-        $contents[] = new restore_decode_content('question_oumultiresponse',
-                $fields, 'question_oumultiresponse');
+        $contents[] = new restore_decode_content('question_vdsmultiplechoice',
+                $fields, 'question_vdsmultiplechoice');
 
         return $contents;
     }

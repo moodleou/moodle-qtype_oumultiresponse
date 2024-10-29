@@ -1,4 +1,4 @@
-@ou @ou_vle @qtype @qtype_oumultiresponse
+@ou @ou_vle @qtype @qtype_vdsmultiplechoice
 Feature: Test creating an OU multiple response question
   As a teacher
   In order to test my students
@@ -18,7 +18,7 @@ Feature: Test creating an OU multiple response question
   @javascript
   Scenario: Create an OU multiple response question
     When I am on the "Course 1" "core_question > course question bank" page logged in as teacher
-    And I add a "item_qtype_oumultiresponse" question filling the form with:
+    And I add a "item_qtype_vdsmultiplechoice" question filling the form with:
       | Question name             | OU multiple response 001           |
       | Question text             | Find the capital cities in Europe. |
       | General feedback          | Berlin, Paris and London           |
@@ -40,7 +40,7 @@ Feature: Test creating an OU multiple response question
     Then I should see "OU multiple response 001"
     # Checking that the next new question form displays user preferences settings.
     And I press "Create a new question ..."
-    And I set the field "item_qtype_oumultiresponse" to "1"
+    And I set the field "item_qtype_vdsmultiplechoice" to "1"
     And I click on "Add" "button" in the "Choose a question type to add" "dialogue"
     And the following fields match these values:
       | Default mark              | 5               |

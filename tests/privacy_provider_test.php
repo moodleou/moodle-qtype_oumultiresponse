@@ -17,27 +17,27 @@
 /**
  * Privacy provider tests.
  *
- * @package    qtype_oumultiresponse
- * @copyright  2021 The Open university
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-namespace qtype_oumultiresponse;
+namespace qtype_vdsmultiplechoice;
 
 use core_privacy\local\metadata\collection;
 use \core_privacy\local\request\user_preference_provider;
-use qtype_oumultiresponse\privacy\provider;
+use qtype_vdsmultiplechoice\privacy\provider;
 use core_privacy\local\request\writer;
 use core_privacy\local\request\transform;
 
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
-require_once($CFG->dirroot . '/question/type/oumultiresponse/classes/privacy/provider.php');
+require_once($CFG->dirroot . '/question/type/vdsmultiplechoice/classes/privacy/provider.php');
 
 /**
  * Privacy provider tests class.
  *
- * @package    qtype_oumultiresponse
+ * @package    qtype_vdsmultiplechoice
  * @copyright  2021 The Open university
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -45,8 +45,8 @@ class privacy_provider_test extends \core_privacy\tests\provider_testcase {
     // Include the privacy helper which has assertions on it.
 
     public function test_get_metadata() {
-        $collection = new \core_privacy\local\metadata\collection('qtype_oumultiresponse');
-        $actual = \qtype_oumultiresponse\privacy\provider::get_metadata($collection);
+        $collection = new \core_privacy\local\metadata\collection('qtype_vdsmultiplechoice');
+        $actual = \qtype_vdsmultiplechoice\privacy\provider::get_metadata($collection);
         $this->assertEquals($collection, $actual);
     }
 
@@ -70,17 +70,17 @@ class privacy_provider_test extends \core_privacy\tests\provider_testcase {
     public function test_export_user_preferences($name, $value, $expected) {
         $this->resetAfterTest();
         $user = $this->getDataGenerator()->create_user();
-        set_user_preference("qtype_oumultiresponse_$name", $value, $user);
+        set_user_preference("qtype_vdsmultiplechoice_$name", $value, $user);
         provider::export_user_preferences($user->id);
         $writer = writer::with_context(\context_system::instance());
         $this->assertTrue($writer->has_any_data());
-        $preferences = $writer->get_user_preferences('qtype_oumultiresponse');
+        $preferences = $writer->get_user_preferences('qtype_vdsmultiplechoice');
         foreach ($preferences as $key => $pref) {
-            $preference = get_user_preferences("qtype_oumultiresponse_{$key}", null, $user->id);
+            $preference = get_user_preferences("qtype_vdsmultiplechoice_{$key}", null, $user->id);
             if ($preference === null) {
                 continue;
             }
-            $desc = get_string("privacy:preference:{$key}", 'qtype_oumultiresponse');
+            $desc = get_string("privacy:preference:{$key}", 'qtype_vdsmultiplechoice');
             $this->assertEquals($expected, $pref->value);
             $this->assertEquals($desc, $pref->description);
         }

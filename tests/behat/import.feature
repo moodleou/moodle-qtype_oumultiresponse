@@ -1,4 +1,4 @@
-@ou @ou_vle @qtype @qtype_oumultiresponse
+@ou @ou_vle @qtype @qtype_vdsmultiplechoice
 Feature: Test importing OU multiple response questions
   As a teacher
   In order to reuse OU multiple response questions
@@ -19,7 +19,7 @@ Feature: Test importing OU multiple response questions
   Scenario: import OU multiple response question.
     When I am on the "Course 1" "core_question > course question import" page logged in as teacher
     And I set the field "id_format_xml" to "1"
-    And I upload "question/type/oumultiresponse/tests/fixtures/testquestion.moodle.xml" file to "Import" filemanager
+    And I upload "question/type/vdsmultiplechoice/tests/fixtures/testquestion.moodle.xml" file to "Import" filemanager
     And I press "id_submitbutton"
     Then I should see "Parsing questions from import file."
     And I should see "Importing 1 questions from file"

@@ -9,7 +9,7 @@
   </question>
 
 <!-- question: 234000  -->
-  <question type="oumultiresponse">
+  <question type="vdsmultiplechoice">
     <name>
       <text>OU multiple response 001</text>
     </name>

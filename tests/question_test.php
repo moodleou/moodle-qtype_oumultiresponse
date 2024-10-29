@@ -17,14 +17,14 @@
 /**
  * Unit tests for the OU multiple response question class.
  *
- * @package   qtype_oumultiresponse
- * @copyright 2008 The Open University
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace qtype_oumultiresponse;
+namespace qtype_vdsmultiplechoice;
 
-use qtype_oumultiresponse_question;
+use qtype_vdsmultiplechoice_question;
 use test_question_maker;
 use question_attempt_step;
 use question_state;
@@ -33,11 +33,11 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
-require_once($CFG->dirroot . '/question/type/oumultiresponse/question.php');
+require_once($CFG->dirroot . '/question/type/vdsmultiplechoice/question.php');
 
 
 /**
- * Unit tests for (some of) question/type/oumultiresponse/questiontype.php.
+ * Unit tests for (some of) question/type/vdsmultiplechoice/questiontype.php.
  *
  * @copyright  2008 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -47,11 +47,11 @@ class question_test extends \basic_testcase {
     private $tolerance = 0.000001;
 
     public function test_replace_char_at() {
-        $this->assertEquals(qtype_oumultiresponse_question::replace_char_at('220', 0, '0'), '020');
+        $this->assertEquals(qtype_vdsmultiplechoice_question::replace_char_at('220', 0, '0'), '020');
     }
 
     public function test_grade_responses_right_right() {
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->shuffleanswers = false;
         $mc->start_attempt(new question_attempt_step(), 1);
 
@@ -61,7 +61,7 @@ class question_test extends \basic_testcase {
     }
 
     public function test_grade_responses_right() {
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->shuffleanswers = false;
         $mc->start_attempt(new question_attempt_step(), 1);
 
@@ -71,7 +71,7 @@ class question_test extends \basic_testcase {
     }
 
     public function test_grade_responses_wrong_wrong() {
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->shuffleanswers = false;
         $mc->start_attempt(new question_attempt_step(), 1);
 
@@ -81,7 +81,7 @@ class question_test extends \basic_testcase {
     }
 
     public function test_grade_responses_right_wrong_wrong() {
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->shuffleanswers = false;
         $mc->start_attempt(new question_attempt_step(), 1);
 
@@ -92,7 +92,7 @@ class question_test extends \basic_testcase {
     }
 
     public function test_grade_responses_right_wrong() {
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->shuffleanswers = false;
         $mc->start_attempt(new question_attempt_step(), 1);
 
@@ -102,7 +102,7 @@ class question_test extends \basic_testcase {
     }
 
     public function test_grade_responses_right_right_wrong() {
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->shuffleanswers = false;
         $mc->start_attempt(new question_attempt_step(), 1);
 
@@ -113,7 +113,7 @@ class question_test extends \basic_testcase {
     }
 
     public function test_grade_responses_right_right_wrong_wrong() {
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->shuffleanswers = false;
         $mc->start_attempt(new question_attempt_step(), 1);
 
@@ -133,116 +133,116 @@ class question_test extends \basic_testcase {
         $answers = array($right, $right, $right, $wrong, $wrong, $wrong);
 
         $responsehistory = array('111', '000', '000', '000', '000', '000');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.3333333, $this->tolerance, '');
 
         $responsehistory = array('111', '111', '000', '000', '000', '000');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.6666667, $this->tolerance, '');
 
         $responsehistory = array('1', '1', '1', '0', '0', '0');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 1.0, $this->tolerance, '');
 
         $responsehistory = array('111', '111', '111', '111', '000', '000');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.6666667, $this->tolerance, '');
 
         $responsehistory = array('111', '111', '111', '111', '111', '000');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.3333333, $this->tolerance, '');
 
         $responsehistory = array('111', '111', '111', '111', '111', '111');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.0, $this->tolerance, '');
 
         $responsehistory = array('011', '000', '000', '100', '111', '111');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.2222222, $this->tolerance, '');
 
         $responsehistory = array('001', '000', '000', '110', '111', '111');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.1111111, $this->tolerance, '');
 
         $responsehistory = array('111', '111', '001', '100', '010', '000');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.7777778, $this->tolerance, '');
 
         $responsehistory = array('100', '100', '001', '100', '011', '001');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.1111111, $this->tolerance, '');
 
         $responsehistory = array('101', '101', '001', '110', '011', '111');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.1111111, $this->tolerance, '');
 
         $responsehistory = array('011', '001', '001', '100', '110', '111');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.3333333, $this->tolerance, '');
 
         $responsehistory = array('111', '111', '111', '110', '110', '100');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.4444444, $this->tolerance, '');
 
         $responsehistory = array('111', '111', '111', '110', '100', '100');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.5555556, $this->tolerance, '');
 
         $responsehistory = array('110', '101', '101', '111', '110', '100');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.2222222, $this->tolerance, '');
 
         $responsehistory = array('111', '110', '110', '111', '111', '100');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.2222222, $this->tolerance, '');
 
         $responsehistory = array('011', '111', '110', '111', '111', '100');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.2222222, $this->tolerance, '');
 
         $responsehistory = array('110', '111', '110', '111', '111', '100');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.2222222, $this->tolerance, '');
 
         $responsehistory = array('111', '111', '111', '110', '110', '100');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.4444444, $this->tolerance, '');
 
         $responsehistory = array('110', '111', '110', '111', '111', '100');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.2222222, $this->tolerance, '');
 
         $responsehistory = array('011', '111', '110', '111', '111', '100');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.2222222, $this->tolerance, '');
 
         $responsehistory = array('011', '111', '110', '110', '111', '001');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.3333333, $this->tolerance, '');
 
         $responsehistory = array('11', '01', '01', '10', '10', '00');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 3), 0.7777778, $this->tolerance, '');
 
         $penalty = 0.2;
         $answers = array($right, $right, $right, $right, $wrong, $wrong, $wrong, $wrong);
         $responsehistory = array(
                 '11111', '10111', '11100', '11011', '10011', '01010', '01000', '00100');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 5), 0.45, $this->tolerance, '');
 
         $penalty = 0.33334;
         $answers = array($right, $right, $wrong, $wrong, $wrong);
         $responsehistory = array('0', '0', '1', '1', '0');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 1), 0.0, $this->tolerance, '');
 
         $responsehistory = array('0', '1', '1', '0', '0');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 1), 0.5, $this->tolerance, '');
 
         $responsehistory = array('1', '1', '0', '0', '0');
-        $this->assertEqualsWithDelta(qtype_oumultiresponse_question::grade_computation(
+        $this->assertEqualsWithDelta(qtype_vdsmultiplechoice_question::grade_computation(
                 $responsehistory, $answers, $penalty, 1), 1.0, $this->tolerance, '');
     }
 }

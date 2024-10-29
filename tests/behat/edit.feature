@@ -1,4 +1,4 @@
-@ou @ou_vle @qtype @qtype_oumultiresponse
+@ou @ou_vle @qtype @qtype_vdsmultiplechoice
 Feature: Test editing  an OU multiple response question
   As a teacher
   In order to be able to update my OU multiple response question
@@ -19,7 +19,7 @@ Feature: Test editing  an OU multiple response question
       | Course       | C1        | Test questions |
     And the following "questions" exist:
       | questioncategory | qtype           | name                             | template    |
-      | Test questions   | oumultiresponse | OU multiple response for editing | two_of_four |
+      | Test questions   | vdsmultiplechoice | OU multiple response for editing | two_of_four |
 
   @javascript
   Scenario: Edit an OU multiple response question

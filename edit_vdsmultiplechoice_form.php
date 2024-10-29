@@ -15,20 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Editing form for the OU multiple response question type class.
+ * VdS multiple choice question definition class.
  *
- * @package    qtype_oumultiresponse
- * @copyright  2008 The Open University
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
- * Editing form for the oumultiresponse question type.
+ * VdS multiple choice question definition class.
  *
- * @copyright  2008 The Open University
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_oumultiresponse_edit_form extends question_edit_form {
+class qtype_vdsmultiplechoice_edit_form extends question_edit_form {
 
     protected function definition_inner($mform) {
         $mform->addElement('advcheckbox', 'shuffleanswers',
@@ -44,8 +44,8 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
                 get_config('qtype_multichoice', 'answernumbering')));
 
         $mform->addElement('selectyesno', 'showstandardinstruction',
-            get_string('showstandardinstruction', 'qtype_oumultiresponse'), null, null, [0, 1]);
-        $mform->addHelpButton('showstandardinstruction', 'showstandardinstruction', 'qtype_oumultiresponse');
+            get_string('showstandardinstruction', 'qtype_vdsmultiplechoice'), null, null, [0, 1]);
+        $mform->addHelpButton('showstandardinstruction', 'showstandardinstruction', 'qtype_vdsmultiplechoice');
         $mform->setDefault('showstandardinstruction', $this->get_default_value('showstandardinstruction',
                 get_config('qtype_multichoice', 'showstandardinstruction')));
 
@@ -63,7 +63,7 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         $repeated[] = $mform->createElement('editor', 'answer',
                 $label, ['rows' => 2], $this->editoroptions);
         $repeated[] = $mform->createElement('checkbox', 'correctanswer',
-                get_string('correctanswer', 'qtype_oumultiresponse'));
+                get_string('correctanswer', 'qtype_vdsmultiplechoice'));
         $repeated[] = $mform->createElement('editor', 'feedback',
                 get_string('feedback', 'question'), ['rows' => 2], $this->editoroptions);
 
@@ -88,7 +88,7 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         }
 
         $showchoicefeedback = $this->_form->createElement('advcheckbox', 'hintshowchoicefeedback', '',
-                get_string('showeachanswerfeedback', 'qtype_oumultiresponse'));
+                get_string('showeachanswerfeedback', 'qtype_vdsmultiplechoice'));
         if ($lastgroup) {
             $lastgroup->_elements[] = $showchoicefeedback;
         } else {
@@ -149,7 +149,7 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
 
         // Perform sanity checks on number of correct answers.
         if ($numberofcorrectanswers == 0) {
-            $errors['answer[0]'] = get_string('notenoughcorrectanswers', 'qtype_oumultiresponse');
+            $errors['answer[0]'] = get_string('notenoughcorrectanswers', 'qtype_vdsmultiplechoice');
         }
 
         // Perform sanity checks on number of answers.
@@ -164,6 +164,6 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
     }
 
     public function qtype() {
-        return 'oumultiresponse';
+        return 'vdsmultiplechoice';
     }
 }

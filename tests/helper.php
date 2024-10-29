@@ -17,36 +17,36 @@
 /**
  * Test helper code for the OU multiple response question type.
  *
- * @package    qtype_oumultiresponse
- * @copyright  2010 The Open University
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
  * Test helper class for the OU multiple response question type.
  *
- * @copyright  2010 The Open University
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_oumultiresponse_test_helper {
+class qtype_vdsmultiplechoice_test_helper {
     public function get_test_questions() {
         return array('two_of_four', 'two_of_five');
     }
 
     /**
-     * @return qtype_oumultiresponse_question
+     * @return qtype_vdsmultiplechoice_question
      */
-    public static function make_oumultiresponse_question_two_of_four() {
+    public static function make_vdsmultiplechoice_question_two_of_four() {
 
-        question_bank::load_question_definition_classes('oumultiresponse');
-        $mc = new qtype_oumultiresponse_question();
+        question_bank::load_question_definition_classes('vdsmultiplechoice');
+        $mc = new qtype_vdsmultiplechoice_question();
 
         test_question_maker::initialise_a_question($mc);
 
         $mc->name = 'OU multiple response question';
         $mc->questiontext = 'Which are the odd numbers?';
         $mc->generalfeedback = 'The odd numbers are One and Three.';
-        $mc->qtype = question_bank::get_qtype('oumultiresponse');
+        $mc->qtype = question_bank::get_qtype('vdsmultiplechoice');
 
         $mc->shuffleanswers = 1;
         $mc->answernumbering = '123';
@@ -62,8 +62,8 @@ class qtype_oumultiresponse_test_helper {
         );
 
         $mc->hints = array(
-            new qtype_oumultiresponse_hint(1, 'Hint 1.', FORMAT_HTML, true, false, false),
-            new qtype_oumultiresponse_hint(2, 'Hint 2.', FORMAT_HTML, true, true, true),
+            new qtype_vdsmultiplechoice_hint(1, 'Hint 1.', FORMAT_HTML, true, false, false),
+            new qtype_vdsmultiplechoice_hint(2, 'Hint 2.', FORMAT_HTML, true, true, true),
         );
 
         return $mc;
@@ -71,10 +71,10 @@ class qtype_oumultiresponse_test_helper {
 
     /**
      * Get the question data, as it would be loaded by get_question_options, for
-     * the question returned by {@link make_an_oumultiresponse_two_of_four()}.
+     * the question returned by {@link make_an_vdsmultiplechoice_two_of_four()}.
      * @return object
      */
-    public static function get_oumultiresponse_question_data_two_of_four() {
+    public static function get_vdsmultiplechoice_question_data_two_of_four() {
         global $USER;
 
         $qdata = new stdClass();
@@ -88,7 +88,7 @@ class qtype_oumultiresponse_test_helper {
         $qdata->timemodified = time();
         $qdata->createdby = $USER->id;
         $qdata->modifiedby = $USER->id;
-        $qdata->qtype = 'oumultiresponse';
+        $qdata->qtype = 'vdsmultiplechoice';
         $qdata->name = 'OU multiple response question';
         $qdata->questiontext = 'Which are the odd numbers?';
         $qdata->questiontextformat = FORMAT_HTML;
@@ -173,18 +173,18 @@ class qtype_oumultiresponse_test_helper {
     }
 
     /**
-     * @return qtype_oumultiresponse_question
+     * @return qtype_vdsmultiplechoice_question
      */
-    public static function make_oumultiresponse_question_two_of_five() {
-        question_bank::load_question_definition_classes('oumultiresponse');
-        $mc = new qtype_oumultiresponse_question();
+    public static function make_vdsmultiplechoice_question_two_of_five() {
+        question_bank::load_question_definition_classes('vdsmultiplechoice');
+        $mc = new qtype_vdsmultiplechoice_question();
 
         test_question_maker::initialise_a_question($mc);
 
         $mc->name = 'OU multiple response three of five';
         $mc->questiontext = 'The answer is A, B and C';
         $mc->generalfeedback = '';
-        $mc->qtype = question_bank::get_qtype('oumultiresponse');
+        $mc->qtype = question_bank::get_qtype('vdsmultiplechoice');
 
         $mc->shuffleanswers = false;
         $mc->answernumbering = 'none';
@@ -201,17 +201,17 @@ class qtype_oumultiresponse_test_helper {
         );
 
         $mc->hints = array(
-            1 => new qtype_oumultiresponse_hint(1, 'Hint 1.', FORMAT_HTML, true, false, false),
-            2 => new qtype_oumultiresponse_hint(2, 'Hint 2.', FORMAT_HTML, true, true, true),
+            1 => new qtype_vdsmultiplechoice_hint(1, 'Hint 1.', FORMAT_HTML, true, false, false),
+            2 => new qtype_vdsmultiplechoice_hint(2, 'Hint 2.', FORMAT_HTML, true, true, true),
         );
 
         return $mc;
     }
 
     /**
-     * @return stdClass date to create an oumultiresponse question.
+     * @return stdClass date to create an vdsmultiplechoice question.
      */
-    public function get_oumultiresponse_question_form_data_two_of_four() {
+    public function get_vdsmultiplechoice_question_form_data_two_of_four() {
         $fromform = new stdClass();
 
         $fromform->name = 'OU multiple response question';

@@ -17,17 +17,17 @@
 /**
  * Mobile plugin.
  *
- * @package qtype_oumultiresponse
- * @copyright 2018 The Open University
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $addons = [
-    'qtype_oumultiresponse' => [
+    'qtype_vdsmultiplechoice' => [
         'handlers' => [
-            'oumultiresponse' => [
+            'vdsmultiplechoice' => [
                 'delegate' => 'CoreQuestionDelegate',
                 'method' => 'oumr_view'
             ]

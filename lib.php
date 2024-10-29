@@ -15,18 +15,18 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Serve question type files.
+ * VdS multiple choice question definition class.
  *
- * @package   qtype_oumultiresponse
- * @copyright 2012 The Open University
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
- * Checks file access for oumultiresponse questions.
+ * Checks file access for vdsmultiplechoice questions.
  */
-function qtype_oumultiresponse_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+function qtype_vdsmultiplechoice_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
     global $CFG;
     require_once($CFG->libdir . '/questionlib.php');
-    question_pluginfile($course, $context, 'qtype_oumultiresponse', $filearea, $args, $forcedownload, $options);
+    question_pluginfile($course, $context, 'qtype_vdsmultiplechoice', $filearea, $args, $forcedownload, $options);
 }

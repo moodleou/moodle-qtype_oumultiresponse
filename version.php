@@ -15,21 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * OU multiple response question type version file.
+ * VdS multiple choice question type version file.
  *
- * @package   qtype_oumultiresponse
- * @copyright 2008 The Open University
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 
-$plugin->version   = 2022040100;
+$plugin->version   = 2024050300;
 $plugin->requires  = 2021051700;
-$plugin->component = 'qtype_oumultiresponse';
+$plugin->component = 'qtype_vdsmultiplechoice';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '2.4 for Moodle 3.11+';
+$plugin->release   = '1.0 for Moodle 3.11+';
 
 $plugin->dependencies = array(
     'qtype_multichoice' => 2020061500,

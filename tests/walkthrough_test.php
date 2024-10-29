@@ -18,16 +18,16 @@
  * This file contains tests that walks a OU multiple response question through
  * various interaction models.
  *
- * @package    qtype_oumultiresponse
- * @copyright  2010 The Open University
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace qtype_oumultiresponse;
+namespace qtype_vdsmultiplechoice;
 
 use test_question_maker;
 use question_state;
-use qtype_oumultiresponse_hint;
+use qtype_vdsmultiplechoice_hint;
 use question_pattern_expectation;
 use question_no_pattern_expectation;
 
@@ -36,7 +36,7 @@ defined('MOODLE_INTERNAL') || die();
 global $CFG;
 require_once($CFG->libdir . '/questionlib.php');
 require_once($CFG->dirroot . '/question/engine/tests/helpers.php');
-require_once($CFG->dirroot . '/question/type/oumultiresponse/questiontype.php');
+require_once($CFG->dirroot . '/question/type/vdsmultiplechoice/questiontype.php');
 
 
 /**
@@ -50,7 +50,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_shows_standrd_instruction_yes() {
 
         // Create a multichoice single question.
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->shuffleanswers = false;
         $mc->showstandardinstruction = true;
         $this->start_attempt_at_question($mc, 'interactive', 3);
@@ -64,7 +64,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_shows_standrd_instruction_no() {
 
         // Create a multichoice single question.
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->shuffleanswers = false;
         $mc->showstandardinstruction = false;
         $this->start_attempt_at_question($mc, 'interactive', 3);
@@ -80,7 +80,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_interactive_behaviour() {
 
         // Create a multichoice single question.
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->shuffleanswers = false;
         $mc->showstandardinstruction = true;
         $this->start_attempt_at_question($mc, 'interactive', 3);
@@ -223,11 +223,11 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_interactive_behaviour2() {
 
         // Create a multichoice single question.
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->showstandardinstruction = 1;
         $mc->hints = array(
-            new qtype_oumultiresponse_hint(1, 'Hint 1', FORMAT_HTML, true, true, true),
-            new qtype_oumultiresponse_hint(2, 'Hint 2', FORMAT_HTML, true, true, true),
+            new qtype_vdsmultiplechoice_hint(1, 'Hint 1', FORMAT_HTML, true, true, true),
+            new qtype_vdsmultiplechoice_hint(2, 'Hint 2', FORMAT_HTML, true, true, true),
         );
         $mc->shuffleanswers = false;
         $mc->showstandardinstruction = true;
@@ -284,10 +284,10 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_interactive_clear_wrong() {
 
         // Create a multichoice single question.
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_four');
         $mc->hints = array(
-            new qtype_oumultiresponse_hint(1, 'Hint 1', FORMAT_HTML, true, true, true),
-            new qtype_oumultiresponse_hint(2, 'Hint 2', FORMAT_HTML, true, true, true),
+            new qtype_vdsmultiplechoice_hint(1, 'Hint 1', FORMAT_HTML, true, true, true),
+            new qtype_vdsmultiplechoice_hint(2, 'Hint 2', FORMAT_HTML, true, true, true),
         );
         $mc->shuffleanswers = false;
         $mc->showstandardinstruction = true;
@@ -395,7 +395,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
     public function test_interactive_bug_11263() {
 
         // Create a multichoice single question.
-        $mc = test_question_maker::make_question('oumultiresponse', 'two_of_five');
+        $mc = test_question_maker::make_question('vdsmultiplechoice', 'two_of_five');
         $mc->penalty = 1;
         $this->start_attempt_at_question($mc, 'interactive', 3);
 
@@ -482,7 +482,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
 
     public function test_interactive_regrade_changing_num_tries_leaving_open() {
         // Create a multichoice multiple question.
-        $q = test_question_maker::make_question('oumultiresponse', 'two_of_five');
+        $q = test_question_maker::make_question('vdsmultiplechoice', 'two_of_five');
         $this->start_attempt_at_question($q, 'interactive', 3);
 
         // Check the initial state.
@@ -517,7 +517,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
 
     public function test_interactive_regrade_changing_num_tries_finished() {
         // Create a multichoice multiple question.
-        $q = test_question_maker::make_question('oumultiresponse', 'two_of_five');
+        $q = test_question_maker::make_question('vdsmultiplechoice', 'two_of_five');
         $this->start_attempt_at_question($q, 'interactive', 3);
 
         // Check the initial state.
@@ -554,12 +554,12 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $a = new \stdClass();
         if ($num == 1) {
             return new question_pattern_expectation('/<div class="numpartscorrect">' .
-                preg_quote(get_string('yougot1right', 'qtype_oumultiresponse', $a), '/') . '/');
+                preg_quote(get_string('yougot1right', 'qtype_vdsmultiplechoice', $a), '/') . '/');
         } else {
             $f = new \NumberFormatter(current_language(), \NumberFormatter::SPELLOUT);
             $a->num = $f->format($num);
             return new question_pattern_expectation('/<div class="numpartscorrect">' .
-                preg_quote(get_string('yougotnright', 'qtype_oumultiresponse', $a), '/') . '/');
+                preg_quote(get_string('yougotnright', 'qtype_vdsmultiplechoice', $a), '/') . '/');
         }
     }
 }

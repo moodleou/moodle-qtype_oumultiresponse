@@ -17,13 +17,12 @@
 /**
  * Combined question embedded sub question renderer class.
  *
- * @package   qtype_oumultiresponse
- * @copyright  2013 The Open University
- * @author     Jamie Pratt <me@jamiep.org>
+ * @package    qtype_vdsmultiplechoice
+ * @copyright  2024 CENEOS GmbH
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
+class qtype_vdsmultiplechoice_embedded_renderer extends qtype_renderer
     implements qtype_combined_subquestion_renderer_interface {
 
     public function subquestion(question_attempt $qa,
