@@ -80,7 +80,7 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
                 get_string('choiceno', 'qtype_multichoice', '{no}'), ['rows' => 2]);
         $mform->setType($this->form_field_name('answer'), PARAM_RAW);
         $answerels[] = $mform->createElement('advcheckbox', $this->form_field_name('correctanswer'),
-                get_string('correct', 'question'), get_string('correct', 'question'));
+                '', get_string('correct', 'question'));
 
         $answergroupel = $mform->createElement('group',
                 $this->form_field_name('answergroup'),
