@@ -34,9 +34,10 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
         $fullresponse = new qtype_combined_response_array_param($qa->get_last_qt_data());
         $response = $fullresponse->for_subq($subq);
 
-        $commonattributes = array(
-            'type' => 'checkbox'
-        );
+        $commonattributes = [
+            'type' => 'checkbox',
+            'class' => empty($response) ? 'required' : '',
+        ];
 
         if ($options->readonly) {
             $commonattributes['disabled'] = 'disabled';
