@@ -70,9 +70,13 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->start_attempt_at_question($mc, 'interactive', 3);
         $this->render();
 
+        $standardinstructionclass = 'prompt h6 fw-normal visually-hidden';
+        if (utils::moodle_version_is("<=" , "45")) {
+            $standardinstructionclass = 'prompt h6 font-weight-normal sr-only';
+        }
         // Check for 'Show standard instruction'.
         $standardinstruction = \html_writer::tag('legend', get_string('answer'), [
-            'class' => 'prompt h6 font-weight-normal sr-only'
+            'class' => $standardinstructionclass,
         ]);
         $this->assertStringContainsString($standardinstruction, $this->currentoutput);
     }
