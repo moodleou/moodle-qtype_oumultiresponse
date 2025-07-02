@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Privacy Subsystem implementation for qtype_oumultiresponse.
  *
@@ -22,10 +23,10 @@
  */
 namespace qtype_oumultiresponse\privacy;
 
-use \core_privacy\local\metadata\collection;
-use \core_privacy\local\request\transform;
-use \core_privacy\local\request\user_preference_provider;
-use \core_privacy\local\request\writer;
+use core_privacy\local\metadata\collection;
+use core_privacy\local\request\transform;
+use core_privacy\local\request\user_preference_provider;
+use core_privacy\local\request\writer;
 
 /**
  * Privacy Subsystem for qtype_oumultiresponse implementing user_preference_provider.

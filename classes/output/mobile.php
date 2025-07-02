@@ -25,6 +25,9 @@ namespace qtype_oumultiresponse\output;
  */
 class mobile {
 
+    /**
+     * Returns the mobile output for the oumultiresponse question type.
+     */
     public static function oumr_view() {
         global $CFG;
         // General notes:
@@ -35,9 +38,9 @@ class mobile {
         return [
             'templates' => [[
                 'id' => 'main',
-                'html' => file_get_contents($CFG->dirroot . '/question/type/oumultiresponse/mobile/oumr.html')
+                'html' => file_get_contents($CFG->dirroot . '/question/type/oumultiresponse/mobile/oumr.html'),
             ]],
-            'javascript' => file_get_contents($CFG->dirroot . '/question/type/oumultiresponse/mobile/oumr.js')
+            'javascript' => file_get_contents($CFG->dirroot . '/question/type/oumultiresponse/mobile/oumr.js'),
         ];
     }
 }

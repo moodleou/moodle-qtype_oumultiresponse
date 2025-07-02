@@ -44,10 +44,11 @@ require_once($CFG->dirroot . '/question/type/oumultiresponse/questiontype.php');
  *
  * @copyright  2010 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @covers \qtype_oumultiresponse_question
  */
-class walkthrough_test extends \qbehaviour_walkthrough_test_base {
+final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
 
-    public function test_shows_standrd_instruction_yes() {
+    public function test_shows_standrd_instruction_yes(): void {
 
         // Create a multichoice single question.
         $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
@@ -61,7 +62,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->assertStringContainsString($standardinstruction, $this->currentoutput);
     }
 
-    public function test_shows_standrd_instruction_no() {
+    public function test_shows_standrd_instruction_no(): void {
 
         // Create a multichoice single question.
         $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
@@ -81,7 +82,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->assertStringContainsString($standardinstruction, $this->currentoutput);
     }
 
-    public function test_interactive_behaviour() {
+    public function test_interactive_behaviour(): void {
 
         // Create a multichoice single question.
         $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
@@ -105,7 +106,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_no_hint_visible_expectation());
 
         // Save the wrong answer.
-        $this->process_submission(array('choice1' => '1', 'choice3' => '1'));
+        $this->process_submission(['choice1' => '1', 'choice3' => '1']);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
@@ -123,7 +124,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_no_hint_visible_expectation());
 
         // Submit the wrong answer.
-        $this->process_submission(array('choice1' => '1', 'choice3' => '1', '-submit' => '1'));
+        $this->process_submission(['choice1' => '1', 'choice3' => '1', '-submit' => '1']);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
@@ -148,7 +149,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                         $this->quba->get_field_prefix($this->slot) . 'choice3'));
 
         // Do try again.
-        $this->process_submission(array('-tryagain' => 1));
+        $this->process_submission(['-tryagain' => 1]);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
@@ -166,7 +167,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_no_hint_visible_expectation());
 
         // Submit a partially right answer.
-        $this->process_submission(array('choice0' => '1', 'choice3' => '1', '-submit' => '1'));
+        $this->process_submission(['choice0' => '1', 'choice3' => '1', '-submit' => '1']);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
@@ -191,7 +192,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                         $this->quba->get_field_prefix($this->slot) . 'choice3', '0'));
 
         // Do try again.
-        $this->process_submission(array('choice0' => '1', '-tryagain' => 1));
+        $this->process_submission(['choice0' => '1', '-tryagain' => 1]);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
@@ -209,7 +210,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_no_hint_visible_expectation());
 
         // Submit the right answer.
-        $this->process_submission(array('choice0' => '1', 'choice2' => '1', '-submit' => '1'));
+        $this->process_submission(['choice0' => '1', 'choice2' => '1', '-submit' => '1']);
 
         // Verify.
         $this->check_current_state(question_state::$gradedright);
@@ -224,15 +225,15 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_contains_standard_correct_combined_feedback_expectation());
     }
 
-    public function test_interactive_behaviour2() {
+    public function test_interactive_behaviour2(): void {
 
         // Create a multichoice single question.
         $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
         $mc->showstandardinstruction = 1;
-        $mc->hints = array(
+        $mc->hints = [
             new qtype_oumultiresponse_hint(1, 'Hint 1', FORMAT_HTML, true, true, true),
             new qtype_oumultiresponse_hint(2, 'Hint 2', FORMAT_HTML, true, true, true),
-        );
+        ];
         $mc->shuffleanswers = false;
         $mc->showstandardinstruction = true;
         $this->start_attempt_at_question($mc, 'interactive', 3);
@@ -255,8 +256,8 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                         preg_quote(get_string('selectmulti', 'qtype_multichoice'), '/') . '/'));
 
         // Submit the wrong answer with too manu options selected.
-        $this->process_submission(array(
-                'choice1' => '1', 'choice2' => '1', 'choice3' => '1', '-submit' => '1'));
+        $this->process_submission([
+            'choice1' => '1', 'choice2' => '1', 'choice3' => '1', '-submit' => '1']);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
@@ -285,14 +286,14 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                         preg_quote(get_string('selectmulti', 'qtype_multichoice'), '/') . '/'));
     }
 
-    public function test_interactive_clear_wrong() {
+    public function test_interactive_clear_wrong(): void {
 
         // Create a multichoice single question.
         $mc = test_question_maker::make_question('oumultiresponse', 'two_of_four');
-        $mc->hints = array(
+        $mc->hints = [
             new qtype_oumultiresponse_hint(1, 'Hint 1', FORMAT_HTML, true, true, true),
             new qtype_oumultiresponse_hint(2, 'Hint 2', FORMAT_HTML, true, true, true),
-        );
+        ];
         $mc->shuffleanswers = false;
         $mc->showstandardinstruction = true;
         $this->start_attempt_at_question($mc, 'interactive', 3);
@@ -314,7 +315,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_no_hint_visible_expectation());
 
         // Submit a wrong answer.
-        $this->process_submission(array('choice1' => '1', 'choice3' => '1', '-submit' => '1'));
+        $this->process_submission(['choice1' => '1', 'choice3' => '1', '-submit' => '1']);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
@@ -336,7 +337,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                         $this->quba->get_field_prefix($this->slot) . 'choice3', '0'));
 
         // Try again.
-        $this->process_submission(array('choice1' => '0', 'choice3' => '0', '-tryagain' => '1'));
+        $this->process_submission(['choice1' => '0', 'choice3' => '0', '-tryagain' => '1']);
 
         // Vreify.
         $this->check_current_state(question_state::$todo);
@@ -355,7 +356,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_no_hint_visible_expectation());
 
         // Submit a partially right answer.
-        $this->process_submission(array('choice0' => '1', 'choice3' => '1', '-submit' => '1'));
+        $this->process_submission(['choice0' => '1', 'choice3' => '1', '-submit' => '1']);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
@@ -377,7 +378,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                         $this->quba->get_field_prefix($this->slot) . 'choice3', '0'));
 
         // Try again.
-        $this->process_submission(array('choice0' => '1', 'choice3' => '0', '-tryagain' => '1'));
+        $this->process_submission(['choice0' => '1', 'choice3' => '0', '-tryagain' => '1']);
 
         // Check the initial state.
         $this->check_current_state(question_state::$todo);
@@ -396,7 +397,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_no_hint_visible_expectation());
     }
 
-    public function test_interactive_bug_11263() {
+    public function test_interactive_bug_11263(): void {
 
         // Create a multichoice single question.
         $mc = test_question_maker::make_question('oumultiresponse', 'two_of_five');
@@ -410,28 +411,28 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_tries_remaining_expectation(3));
 
         // Submit a wrong answer.
-        $this->process_submission(array(
+        $this->process_submission([
             'choice0' => '0',
             'choice1' => '0',
             'choice2' => '0',
             'choice3' => '1',
             'choice4' => '1',
-            '-submit' => '1'
-        ));
+            '-submit' => '1',
+        ]);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
 
         // Try again.
-        $this->process_submission(array(
+        $this->process_submission([
             'choice0' => '0',
             'choice1' => '0',
             'choice2' => '0',
             'choice3' => '1',
             'choice4' => '1',
-            '-tryagain' => '1'
-        ));
+            '-tryagain' => '1',
+        ]);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
@@ -440,28 +441,28 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_tries_remaining_expectation(2));
 
         // Submit a wrong answer again.
-        $this->process_submission(array(
+        $this->process_submission([
             'choice0' => '0',
             'choice1' => '0',
             'choice2' => '0',
             'choice3' => '1',
             'choice4' => '1',
-            '-submit' => '1'
-        ));
+            '-submit' => '1',
+        ]);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
 
         // Try again - clears wrong.
-        $this->process_submission(array(
+        $this->process_submission([
             'choice0' => '0',
             'choice1' => '0',
             'choice2' => '0',
             'choice3' => '0',
             'choice4' => '0',
-            '-tryagain' => '1'
-        ));
+            '-tryagain' => '1',
+        ]);
 
         // Verify.
         $this->check_current_state(question_state::$todo);
@@ -470,21 +471,21 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_tries_remaining_expectation(1));
 
         // Submit one right choice.
-        $this->process_submission(array(
+        $this->process_submission([
             'choice0' => '1',
             'choice1' => '0',
             'choice2' => '0',
             'choice3' => '0',
             'choice4' => '0',
-            '-submit' => '1'
-        ));
+            '-submit' => '1',
+        ]);
 
         // Verify.
         $this->check_current_state(question_state::$gradedpartial);
         $this->check_current_mark(0);
     }
 
-    public function test_interactive_regrade_changing_num_tries_leaving_open() {
+    public function test_interactive_regrade_changing_num_tries_leaving_open(): void {
         // Create a multichoice multiple question.
         $q = test_question_maker::make_question('oumultiresponse', 'two_of_five');
         $this->start_attempt_at_question($q, 'interactive', 3);
@@ -496,14 +497,14 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_tries_remaining_expectation(3));
 
         // Submit the right answer.
-        $this->process_submission(array(
+        $this->process_submission([
             'choice0' => '1',
             'choice1' => '1',
             'choice2' => '0',
             'choice3' => '0',
             'choice4' => '0',
-            '-submit' => '1'
-        ));
+            '-submit' => '1',
+        ]);
 
         // Verify.
         $this->check_current_state(question_state::$gradedright);
@@ -519,7 +520,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_mark(null);
     }
 
-    public function test_interactive_regrade_changing_num_tries_finished() {
+    public function test_interactive_regrade_changing_num_tries_finished(): void {
         // Create a multichoice multiple question.
         $q = test_question_maker::make_question('oumultiresponse', 'two_of_five');
         $this->start_attempt_at_question($q, 'interactive', 3);
@@ -531,14 +532,14 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
                 $this->get_tries_remaining_expectation(3));
 
         // Submit the right answer.
-        $this->process_submission(array(
+        $this->process_submission([
             'choice0' => '1',
             'choice1' => '1',
             'choice2' => '0',
             'choice3' => '0',
             'choice4' => '0',
-            '-submit' => '1'
-        ));
+            '-submit' => '1',
+        ]);
 
         // Verify.
         $this->check_current_state(question_state::$gradedright);
@@ -554,6 +555,7 @@ class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_mark(2);
     }
 
+    #[\Override]
     protected function get_contains_num_parts_correct($num) {
         $a = new \stdClass();
         if ($num == 1) {

@@ -24,7 +24,7 @@
 namespace qtype_oumultiresponse;
 
 use core_privacy\local\metadata\collection;
-use \core_privacy\local\request\user_preference_provider;
+use core_privacy\local\request\user_preference_provider;
 use qtype_oumultiresponse\privacy\provider;
 use core_privacy\local\request\writer;
 use core_privacy\local\request\transform;
@@ -40,17 +40,18 @@ require_once($CFG->dirroot . '/question/type/oumultiresponse/classes/privacy/pro
  * @package    qtype_oumultiresponse
  * @copyright  2021 The Open university
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @covers \qtype_oumultiresponse\privacy\provider
  */
-class privacy_provider_test extends \core_privacy\tests\provider_testcase {
+final class privacy_provider_test extends \core_privacy\tests\provider_testcase {
     // Include the privacy helper which has assertions on it.
 
-    public function test_get_metadata() {
+    public function test_get_metadata(): void {
         $collection = new \core_privacy\local\metadata\collection('qtype_oumultiresponse');
         $actual = \qtype_oumultiresponse\privacy\provider::get_metadata($collection);
         $this->assertEquals($collection, $actual);
     }
 
-    public function test_export_user_preferences_no_pref() {
+    public function test_export_user_preferences_no_pref(): void {
         $this->resetAfterTest();
 
         $user = $this->getDataGenerator()->create_user();
@@ -67,7 +68,7 @@ class privacy_provider_test extends \core_privacy\tests\provider_testcase {
      * @param string $value The value stored in the database
      * @param string $expected The expected transformed value
      */
-    public function test_export_user_preferences($name, $value, $expected) {
+    public function test_export_user_preferences($name, $value, $expected): void {
         $this->resetAfterTest();
         $user = $this->getDataGenerator()->create_user();
         set_user_preference("qtype_oumultiresponse_$name", $value, $user);
@@ -91,7 +92,7 @@ class privacy_provider_test extends \core_privacy\tests\provider_testcase {
      *
      * @return array Array of valid user preferences.
      */
-    public static function user_preference_provider() {
+    public static function user_preference_provider(): array {
         return [
                 'default mark 2' => ['defaultmark', 2, 2],
                 'penalty 33.33333%' => ['penalty', 0.3333333, '33.33333%'],
@@ -103,7 +104,7 @@ class privacy_provider_test extends \core_privacy\tests\provider_testcase {
                 'answernumbering iii' => ['answernumbering', 'iii', 'i., ii., iii., ...'],
                 'answernumbering III' => ['answernumbering', 'IIII', 'I., II., III., ...'],
                 'show standard instruction yes' => ['showstandardinstruction', 1, 'Yes'],
-                'show standard instruction no' => ['showstandardinstruction', 0, 'No']
+                'show standard instruction no' => ['showstandardinstruction', 0, 'No'],
         ];
     }
 }

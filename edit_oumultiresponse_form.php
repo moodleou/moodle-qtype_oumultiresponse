@@ -30,6 +30,7 @@
  */
 class qtype_oumultiresponse_edit_form extends question_edit_form {
 
+    #[\Override]
     protected function definition_inner($mform) {
         $mform->addElement('advcheckbox', 'shuffleanswers',
                 get_string('shuffleanswers', 'qtype_multichoice'), null, null, [0, 1]);
@@ -57,9 +58,10 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         $this->add_interactive_settings(true, true);
     }
 
+    #[\Override]
     protected function get_per_answer_fields($mform, $label, $gradeoptions,
             &$repeatedoptions, &$answersoption) {
-        $repeated = array();
+        $repeated = [];
         $repeated[] = $mform->createElement('editor', 'answer',
                 $label, ['rows' => 2], $this->editoroptions);
         $repeated[] = $mform->createElement('checkbox', 'correctanswer',
@@ -74,6 +76,7 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         return $repeated;
     }
 
+    #[\Override]
     protected function get_hint_fields($withclearwrong = false, $withshownumpartscorrect = false) {
         list($repeated, $repeatedoptions) = parent::get_hint_fields(
                 $withclearwrong, $withshownumpartscorrect);
@@ -95,9 +98,10 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
             $repeated[] = $showchoicefeedback;
         }
 
-        return array($repeated, $repeatedoptions);
+        return [$repeated, $repeatedoptions];
     }
 
+    #[\Override]
     protected function data_preprocessing($question) {
         $question = parent::data_preprocessing($question);
         $question = $this->data_preprocessing_answers($question, true);
@@ -129,6 +133,7 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         return $question;
     }
 
+    #[\Override]
     public function validation($data, $files) {
         $errors = parent::validation($data, $files);
 
@@ -163,6 +168,11 @@ class qtype_oumultiresponse_edit_form extends question_edit_form {
         return $errors;
     }
 
+    /**
+     * Returns the question type.
+     *
+     * @return string The question type.
+     */
     public function qtype() {
         return 'oumultiresponse';
     }
