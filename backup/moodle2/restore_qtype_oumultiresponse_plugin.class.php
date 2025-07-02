@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Restore plugin class for the OU multiple response question type.
+ *
  * @package    qtype_oumultiresponse
  * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -34,7 +36,7 @@ class restore_qtype_oumultiresponse_plugin extends restore_qtype_plugin {
      */
     protected function define_question_plugin_structure() {
 
-        $paths = array();
+        $paths = [];
 
         // This qtype uses question_answers, add them.
         $this->add_question_question_answers($paths);
@@ -74,6 +76,7 @@ class restore_qtype_oumultiresponse_plugin extends restore_qtype_plugin {
         }
     }
 
+    #[\Override]
     public function recode_response($questionid, $sequencenumber, array $response) {
         if (array_key_exists('_order', $response)) {
             $response['_order'] = $this->recode_choice_order($response['_order']);
@@ -87,7 +90,7 @@ class restore_qtype_oumultiresponse_plugin extends restore_qtype_plugin {
      * @return string the recoded order.
      */
     protected function recode_choice_order($order) {
-        $neworder = array();
+        $neworder = [];
         foreach (explode(',', $order) as $id) {
             if ($newid = $this->get_mappingid('question_answer', $id)) {
                 $neworder[] = $newid;
@@ -101,9 +104,9 @@ class restore_qtype_oumultiresponse_plugin extends restore_qtype_plugin {
      */
     public static function define_decode_contents() {
 
-        $contents = array();
+        $contents = [];
 
-        $fields = array('correctfeedback', 'partiallycorrectfeedback', 'incorrectfeedback');
+        $fields = ['correctfeedback', 'partiallycorrectfeedback', 'incorrectfeedback'];
         $contents[] = new restore_decode_content('question_oumultiresponse',
                 $fields, 'question_oumultiresponse');
 
