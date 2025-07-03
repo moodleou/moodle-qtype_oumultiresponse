@@ -1,5 +1,15 @@
 # Change log for the OU Multi-response question type
 
+## Changes in 2.5
+* This version works with Moodle 5.0.
+* Automation test failures are fixed.
+* Cherry-picked commits since february 2024 till now:
+  * Update btn to "Save preview options and start again"
+  * Fix backup and restore tests to run synchronously M4.4
+  * Choice Tiny Editor disrupts the theme column layout on edit question page
+  * Add required for answer field when user not submit an answer
+* Upgrade the CI to support Moodle 5.0 (PHP 8.3), and update the branch to support branch MOODLE_405_STABLE, and MOODLE_500_STABLE.
+
 ## Changes in 2.4
 
 * This version works with Moodle 4.0.
