@@ -1,5 +1,12 @@
 # Change log for the OU Multi-response question type
 
+## Changes in 2.6
+
+* This version is compatible with Moodle 5.3.
+* Fixed automated tests that used the xmlize() function, which is deprecated since Moodle 5.1.
+* Use the Bootstrap 5 margin class for the choice text and feedback icon of Multiresponse
+  sub-questions in Combined questions on Moodle 5.0 and later.
+
 ## Changes in 2.5
 
 * This version is compatible with Moodle 5.0.

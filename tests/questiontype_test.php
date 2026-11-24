@@ -55,6 +55,23 @@ final class questiontype_test extends \question_testcase {
         $this->qtype = new qtype_oumultiresponse();
     }
 
+    /**
+     * Parse XML into the array structure used by the question importer.
+     *
+     * xmlize() is deprecated since Moodle 5.1 in favour of \core\xml_parser.
+     *
+     * @param string $xml the XML to parse
+     * @return array the parsed XML
+     */
+    private function parse_xml(string $xml): array {
+        if (class_exists(\core\xml_parser::class)) {
+            return (new \core\xml_parser())->parse($xml);
+        }
+        global $CFG;
+        require_once($CFG->libdir . '/xmlize.php');
+        return \xmlize($xml);
+    }
+
     #[\Override]
     public function assert_same_xml($expectedxml, $xml): void {
         $this->assertEquals(str_replace("\r\n", "\n", $expectedxml),
@@ -181,7 +198,7 @@ final class questiontype_test extends \question_testcase {
       <options>1</options>
     </hint>
   </question>';
-        $xmldata = xmlize($xml);
+        $xmldata = $this->parse_xml($xml);
 
         $importer = new \qformat_xml();
         $q = $importer->try_importing_using_qtypes(
@@ -318,7 +335,7 @@ final class questiontype_test extends \question_testcase {
       </hintcontent>
     </hint>
   </question>';
-        $xmldata = xmlize($xml);
+        $xmldata = $this->parse_xml($xml);
 
         $importer = new \qformat_xml();
         $q = $importer->try_importing_using_qtypes(
