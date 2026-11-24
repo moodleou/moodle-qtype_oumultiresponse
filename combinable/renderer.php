@@ -43,6 +43,9 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
             $commonattributes['disabled'] = 'disabled';
         }
 
+        // Bootstrap 4 (Moodle 4.5 and earlier) uses ml-*, Bootstrap 5 (Moodle 5.0+) uses ms-*.
+        $startmargin = \qtype_oumultiresponse\utils::moodle_version_is('<=', '45') ? 'ml-1' : 'ms-1';
+
         $checkboxes = [];
         $feedbackimg = [];
         $classes = [];
@@ -68,7 +71,7 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
             }
 
             $choice = html_writer::div($question->format_text($ans->answer, $ans->answerformat, $qa,
-                'question', 'answer', $ansid), 'flex-fill ml-1');
+                'question', 'answer', $ansid), 'flex-fill ' . $startmargin);
             $checkboxes[] = html_writer::empty_tag('input', $inputattributes + $commonattributes) .
                 html_writer::div(html_writer::span(\qtype_combined\utils::number_in_style($value, $question->answernumbering),
                 'answernumber') . $choice, 'd-flex w-auto',
@@ -76,7 +79,7 @@ class qtype_oumultiresponse_embedded_renderer extends qtype_renderer
             $class = 'r' . ($value % 2);
             if ($options->correctness && $isselected) {
                 $iscbcorrect = ($ans->fraction > 0) ? 1 : 0;
-                $feedbackimg[] = html_writer::span($this->feedback_image($iscbcorrect), 'ml-1');
+                $feedbackimg[] = html_writer::span($this->feedback_image($iscbcorrect), $startmargin);
                 $class .= ' ' . $this->feedback_class($iscbcorrect);
             } else {
                 $feedbackimg[] = '';
