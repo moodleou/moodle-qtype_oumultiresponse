@@ -22,7 +22,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/question/type/multichoice/renderer.php');
@@ -32,7 +31,6 @@ require_once($CFG->dirroot . '/question/type/oumultiresponse/lib.php');
  * Class renderer for the OU multiple response question type.
  */
 class qtype_oumultiresponse_renderer extends qtype_multichoice_multi_renderer {
-
     /**
      * Generate a brief statement of how many sub-parts of this question the
      * student got right.
@@ -40,12 +38,14 @@ class qtype_oumultiresponse_renderer extends qtype_multichoice_multi_renderer {
      * @return string HTML fragment.
      */
     public function num_parts_correct(question_attempt $qa) {
-        if ($qa->get_question()->get_num_selected_choices($qa->get_last_qt_data()) >
-            $qa->get_question()->get_num_correct_choices()) {
+        if (
+            $qa->get_question()->get_num_selected_choices($qa->get_last_qt_data()) >
+            $qa->get_question()->get_num_correct_choices()
+        ) {
             return get_string('toomanyselected', 'qtype_multichoice');
         }
         $a = new stdClass();
-        list($a->num, $a->outof) = $qa->get_question()->get_num_parts_right($qa->get_last_qt_data());
+        [$a->num, $a->outof] = $qa->get_question()->get_num_parts_right($qa->get_last_qt_data());
         if (is_null($a->outof)) {
             return '';
         }

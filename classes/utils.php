@@ -32,7 +32,6 @@ namespace qtype_oumultiresponse;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class utils {
-
     /** @var string - Less than operator */
     const OP_LT = "<";
     /** @var string - equal operator */
@@ -65,12 +64,12 @@ class utils {
         global $CFG;
 
         if (strlen($version) == 2) {
-            $version = $version[0]."0".$version[1];
+            $version = $version[0] . "0" . $version[1];
         }
 
         $current = $CFG->branch;
         if (strlen($current) == 2) {
-            $current = $current[0]."0".$current[1];
+            $current = $current[0] . "0" . $current[1];
         }
 
         $from = intval($current);
@@ -95,7 +94,7 @@ class utils {
                     }
                     break;
                 default:
-                    throw new \coding_exception('invalid operator '.$op);
+                    throw new \coding_exception('invalid operator ' . $op);
             }
         }
 

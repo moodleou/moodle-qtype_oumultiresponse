@@ -22,7 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/question/type/multichoice/question.php');
@@ -34,9 +33,8 @@ require_once($CFG->dirroot . '/question/type/multichoice/question.php');
  * @copyright  2010 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_oumultiresponse_question extends qtype_multichoice_multi_question
-        implements question_automatically_gradable_with_countback {
-
+class qtype_oumultiresponse_question extends qtype_multichoice_multi_question implements
+    question_automatically_gradable_with_countback {
     /**
      * @var int standard instruction to be displayed if enabled.
      */
@@ -56,7 +54,10 @@ class qtype_oumultiresponse_question extends qtype_multichoice_multi_question
     public function make_behaviour(question_attempt $qa, $preferredbehaviour) {
         if ($preferredbehaviour == 'interactive') {
             return question_engine::make_behaviour(
-                    'interactivecountback', $qa, $preferredbehaviour);
+                'interactivecountback',
+                $qa,
+                $preferredbehaviour
+            );
         }
         return question_engine::make_archetypal_behaviour($preferredbehaviour, $qa);
     }
@@ -73,7 +74,7 @@ class qtype_oumultiresponse_question extends qtype_multichoice_multi_question
 
     #[\Override]
     public function grade_response(array $response) {
-        list($numright, $total) = $this->get_num_parts_right($response);
+        [$numright, $total] = $this->get_num_parts_right($response);
         $numwrong = $this->get_num_selected_choices($response) - $numright;
         $numcorrect = $this->get_num_correct_choices();
 
@@ -89,7 +90,8 @@ class qtype_oumultiresponse_question extends qtype_multichoice_multi_question
 
     #[\Override]
     protected function disable_hint_settings_when_too_many_selected(
-            question_hint_with_parts $hint) {
+        question_hint_with_parts $hint
+    ) {
         parent::disable_hint_settings_when_too_many_selected($hint);
         $hint->showchoicefeedback = false;
     }
@@ -109,8 +111,12 @@ class qtype_oumultiresponse_question extends qtype_multichoice_multi_question
             }
         }
 
-        return self::grade_computation($responsehistories, $this->answers,
-                $this->penalty, $totaltries);
+        return self::grade_computation(
+            $responsehistories,
+            $this->answers,
+            $this->penalty,
+            $totaltries
+        );
     }
 
     /**
@@ -124,16 +130,23 @@ class qtype_oumultiresponse_question extends qtype_multichoice_multi_question
      *      $answerid => $answer, where $answer->fraction is 0 or 1. The key fields are
      * @return float the score.
      */
-    public static function grade_computation($responsehistory, $answers,
-            $penalty, $questionnumtries) {
+    public static function grade_computation(
+        $responsehistory,
+        $answers,
+        $penalty,
+        $questionnumtries
+    ) {
         // First we reverse the strings to get the most recent responses to the start, then
         // distinguish right and wrong by replacing 1 with 2 for right answers.
         $workspace = [];
         $numright = 0;
         foreach ($responsehistory as $id => $string) {
             $workspace[$id] = strrev($string);
-            if (!question_state::graded_state_for_fraction(
-                    $answers[$id]->fraction)->is_incorrect()) {
+            if (
+                !question_state::graded_state_for_fraction(
+                    $answers[$id]->fraction
+                )->is_incorrect()
+            ) {
                 $workspace[$id] = str_replace('1', '2', $workspace[$id]);
                 $numright++;
             }

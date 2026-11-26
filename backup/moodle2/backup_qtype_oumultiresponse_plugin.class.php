@@ -29,7 +29,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class backup_qtype_oumultiresponse_plugin extends backup_qtype_plugin {
-
     /**
      * Returns the qtype information to attach to question element.
      */
@@ -60,8 +59,10 @@ class backup_qtype_oumultiresponse_plugin extends backup_qtype_plugin {
         $pluginwrapper->add_child($oumultiresponse);
 
         // Set source to populate the data.
-        $oumultiresponse->set_source_table('question_oumultiresponse',
-            ['questionid' => backup::VAR_PARENTID]);
+        $oumultiresponse->set_source_table(
+            'question_oumultiresponse',
+            ['questionid' => backup::VAR_PARENTID]
+        );
 
         // Don't need to annotate ids nor files.
 
