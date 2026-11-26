@@ -29,7 +29,6 @@ defined('MOODLE_INTERNAL') || die();
  * Combined question type for oumultiresponse.
  */
 class qtype_combined_combinable_type_oumultiresponse extends qtype_combined_combinable_type_base {
-
     /**
      * The question type identifier.
      *
@@ -70,34 +69,57 @@ class qtype_combined_combinable_type_oumultiresponse extends qtype_combined_comb
     }
 }
 
+// phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
 /**
  * Class question type for combined combinable oumultiresponse.
  */
 class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinable_accepts_vertical_or_horizontal_layout_param {
-
     #[\Override]
     public function add_form_fragment(moodleform $combinedform, MoodleQuickForm $mform, $repeatenabled) {
-        $mform->addElement('advcheckbox', $this->form_field_name('shuffleanswers'),
-            get_string('shuffle', 'qtype_combined'));
-            $mform->setDefault($this->form_field_name('shuffleanswers'),
-                get_config('qtype_combined', 'shuffleanswers_multiresponse'));
+        $mform->addElement(
+            'advcheckbox',
+            $this->form_field_name('shuffleanswers'),
+            get_string('shuffle', 'qtype_combined')
+        );
+        $mform->setDefault(
+            $this->form_field_name('shuffleanswers'),
+            get_config('qtype_combined', 'shuffleanswers_multiresponse')
+        );
 
-        $mform->addElement('select', $this->form_field_name('answernumbering'),
-                get_string('answernumbering', 'qtype_multichoice'), qtype_multichoice::get_numbering_styles());
-        $mform->setDefault($this->form_field_name('answernumbering'),
-                get_config('qtype_combined', 'answernumbering_multiresponse'));
+        $mform->addElement(
+            'select',
+            $this->form_field_name('answernumbering'),
+            get_string('answernumbering', 'qtype_multichoice'),
+            qtype_multichoice::get_numbering_styles()
+        );
+        $mform->setDefault(
+            $this->form_field_name('answernumbering'),
+            get_config('qtype_combined', 'answernumbering_multiresponse')
+        );
 
         $answerels = [];
-        $answerels[] = $mform->createElement('editor', $this->form_field_name('answer'),
-                get_string('choiceno', 'qtype_multichoice', '{no}'), ['rows' => 2]);
+        $answerels[] = $mform->createElement(
+            'editor',
+            $this->form_field_name('answer'),
+            get_string('choiceno', 'qtype_multichoice', '{no}'),
+            ['rows' => 2]
+        );
         $mform->setType($this->form_field_name('answer'), PARAM_RAW);
-        $answerels[] = $mform->createElement('advcheckbox', $this->form_field_name('correctanswer'),
-                '', get_string('correct', 'question'));
+        $answerels[] = $mform->createElement(
+            'advcheckbox',
+            $this->form_field_name('correctanswer'),
+            '',
+            get_string('correct', 'question')
+        );
 
-        $answergroupel = $mform->createElement('group',
-                $this->form_field_name('answergroup'),
-                get_string('choiceno', 'qtype_multichoice', '{no}'),
-                $answerels, null, false);
+        $answergroupel = $mform->createElement(
+            'group',
+            $this->form_field_name('answergroup'),
+            get_string('choiceno', 'qtype_multichoice', '{no}'),
+            $answerels,
+            null,
+            false
+        );
 
         if (isset($this->questionrec->options)) {
             $repeatsatstart = count($this->questionrec->options->answers);
@@ -105,14 +127,16 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
             $repeatsatstart = max(5, QUESTION_NUMANS_START);
         }
 
-        $combinedform->repeat_elements([$answergroupel],
+        $combinedform->repeat_elements(
+            [$answergroupel],
             $repeatsatstart,
             [],
             $this->form_field_name('noofchoices'),
             $this->form_field_name('morechoices'),
             QUESTION_NUMANS_ADD,
             get_string('addmorechoiceblanks', 'qtype_gapselect'),
-            true);
+            true
+        );
     }
 
     #[\Override]
@@ -139,8 +163,10 @@ class qtype_combined_combinable_oumultiresponse extends qtype_combined_combinabl
             if ('' !== trim($answer)) {
                 $nonemptyanswerblanks[] = $anskey;
             } else if ($this->formdata->correctanswer[$anskey]) {
-                $errors[$this->form_field_name("answergroup[{$anskey}]")] = get_string('err_correctanswerblank',
-                                                                                       'qtype_oumultiresponse');
+                $errors[$this->form_field_name("answergroup[{$anskey}]")] = get_string(
+                    'err_correctanswerblank',
+                    'qtype_oumultiresponse'
+                );
             }
         }
         if (count($nonemptyanswerblanks) < 2) {

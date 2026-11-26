@@ -47,7 +47,6 @@ require_once($CFG->dirroot . '/question/type/oumultiresponse/questiontype.php');
  * @covers \qtype_oumultiresponse_question
  */
 final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
-
     public function test_shows_standrd_instruction_yes(): void {
 
         // Create a multichoice single question.
@@ -72,7 +71,7 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->render();
 
         $standardinstructionclass = 'prompt h6 fw-normal visually-hidden';
-        if (utils::moodle_version_is("<=" , "45")) {
+        if (utils::moodle_version_is("<=", "45")) {
             $standardinstructionclass = 'prompt h6 font-weight-normal sr-only';
         }
         // Check for 'Show standard instruction'.
@@ -94,16 +93,17 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_question_text_expectation($mc),
-                $this->get_contains_mc_checkbox_expectation('choice0', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice1', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice2', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', true, false),
-                $this->get_contains_submit_button_expectation(true),
-                $this->get_does_not_contain_feedback_expectation(),
-                $this->get_does_not_contain_num_parts_correct(),
-                $this->get_tries_remaining_expectation(3),
-                $this->get_no_hint_visible_expectation());
+            $this->get_contains_question_text_expectation($mc),
+            $this->get_contains_mc_checkbox_expectation('choice0', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice1', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice2', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', true, false),
+            $this->get_contains_submit_button_expectation(true),
+            $this->get_does_not_contain_feedback_expectation(),
+            $this->get_does_not_contain_num_parts_correct(),
+            $this->get_tries_remaining_expectation(3),
+            $this->get_no_hint_visible_expectation()
+        );
 
         // Save the wrong answer.
         $this->process_submission(['choice1' => '1', 'choice3' => '1']);
@@ -112,16 +112,17 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_question_text_expectation($mc),
-                $this->get_contains_mc_checkbox_expectation('choice0', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice1', true, true),
-                $this->get_contains_mc_checkbox_expectation('choice2', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', true, true),
-                $this->get_contains_submit_button_expectation(true),
-                $this->get_does_not_contain_feedback_expectation(),
-                $this->get_does_not_contain_num_parts_correct(),
-                $this->get_tries_remaining_expectation(3),
-                $this->get_no_hint_visible_expectation());
+            $this->get_contains_question_text_expectation($mc),
+            $this->get_contains_mc_checkbox_expectation('choice0', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice1', true, true),
+            $this->get_contains_mc_checkbox_expectation('choice2', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', true, true),
+            $this->get_contains_submit_button_expectation(true),
+            $this->get_does_not_contain_feedback_expectation(),
+            $this->get_does_not_contain_num_parts_correct(),
+            $this->get_tries_remaining_expectation(3),
+            $this->get_no_hint_visible_expectation()
+        );
 
         // Submit the wrong answer.
         $this->process_submission(['choice1' => '1', 'choice3' => '1', '-submit' => '1']);
@@ -130,23 +131,28 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_mc_checkbox_expectation('choice0', false, false),
-                $this->get_contains_mc_checkbox_expectation('choice1', false, true),
-                $this->get_contains_mc_checkbox_expectation('choice2', false, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', false, true),
-                $this->get_contains_try_again_button_expectation(true),
-                $this->get_does_not_contain_correctness_expectation(),
-                $this->get_contains_hint_expectation('Hint 1'),
-                $this->get_contains_num_parts_correct(0),
-                $this->get_contains_standard_incorrect_combined_feedback_expectation(),
-                $this->get_does_not_contain_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice0'),
-                $this->get_does_not_contain_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice1'),
-                $this->get_does_not_contain_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice2'),
-                $this->get_does_not_contain_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice3'));
+            $this->get_contains_mc_checkbox_expectation('choice0', false, false),
+            $this->get_contains_mc_checkbox_expectation('choice1', false, true),
+            $this->get_contains_mc_checkbox_expectation('choice2', false, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', false, true),
+            $this->get_contains_try_again_button_expectation(true),
+            $this->get_does_not_contain_correctness_expectation(),
+            $this->get_contains_hint_expectation('Hint 1'),
+            $this->get_contains_num_parts_correct(0),
+            $this->get_contains_standard_incorrect_combined_feedback_expectation(),
+            $this->get_does_not_contain_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice0'
+            ),
+            $this->get_does_not_contain_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice1'
+            ),
+            $this->get_does_not_contain_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice2'
+            ),
+            $this->get_does_not_contain_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice3'
+            )
+        );
 
         // Do try again.
         $this->process_submission(['-tryagain' => 1]);
@@ -155,16 +161,17 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_question_text_expectation($mc),
-                $this->get_contains_mc_checkbox_expectation('choice0', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice1', true, true),
-                $this->get_contains_mc_checkbox_expectation('choice2', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', true, true),
-                $this->get_contains_submit_button_expectation(true),
-                $this->get_does_not_contain_feedback_expectation(),
-                $this->get_does_not_contain_num_parts_correct(),
-                $this->get_tries_remaining_expectation(2),
-                $this->get_no_hint_visible_expectation());
+            $this->get_contains_question_text_expectation($mc),
+            $this->get_contains_mc_checkbox_expectation('choice0', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice1', true, true),
+            $this->get_contains_mc_checkbox_expectation('choice2', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', true, true),
+            $this->get_contains_submit_button_expectation(true),
+            $this->get_does_not_contain_feedback_expectation(),
+            $this->get_does_not_contain_num_parts_correct(),
+            $this->get_tries_remaining_expectation(2),
+            $this->get_no_hint_visible_expectation()
+        );
 
         // Submit a partially right answer.
         $this->process_submission(['choice0' => '1', 'choice3' => '1', '-submit' => '1']);
@@ -173,23 +180,30 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_mc_checkbox_expectation('choice0', false, true),
-                $this->get_contains_mc_checkbox_expectation('choice1', false, false),
-                $this->get_contains_mc_checkbox_expectation('choice2', false, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', false, true),
-                $this->get_contains_try_again_button_expectation(true),
-                $this->get_does_not_contain_correctness_expectation(),
-                $this->get_contains_hint_expectation('Hint 2'),
-                $this->get_contains_num_parts_correct(1),
-                $this->get_contains_standard_partiallycorrect_combined_feedback_expectation(),
-                $this->get_contains_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice0', '1'),
-                $this->get_does_not_contain_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice1'),
-                $this->get_does_not_contain_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice2'),
-                $this->get_contains_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice3', '0'));
+            $this->get_contains_mc_checkbox_expectation('choice0', false, true),
+            $this->get_contains_mc_checkbox_expectation('choice1', false, false),
+            $this->get_contains_mc_checkbox_expectation('choice2', false, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', false, true),
+            $this->get_contains_try_again_button_expectation(true),
+            $this->get_does_not_contain_correctness_expectation(),
+            $this->get_contains_hint_expectation('Hint 2'),
+            $this->get_contains_num_parts_correct(1),
+            $this->get_contains_standard_partiallycorrect_combined_feedback_expectation(),
+            $this->get_contains_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice0',
+                '1'
+            ),
+            $this->get_does_not_contain_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice1'
+            ),
+            $this->get_does_not_contain_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice2'
+            ),
+            $this->get_contains_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice3',
+                '0'
+            )
+        );
 
         // Do try again.
         $this->process_submission(['choice0' => '1', '-tryagain' => 1]);
@@ -198,16 +212,17 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_question_text_expectation($mc),
-                $this->get_contains_mc_checkbox_expectation('choice0', true, true),
-                $this->get_contains_mc_checkbox_expectation('choice1', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice2', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', true, false),
-                $this->get_contains_submit_button_expectation(true),
-                $this->get_does_not_contain_feedback_expectation(),
-                $this->get_does_not_contain_num_parts_correct(),
-                $this->get_tries_remaining_expectation(1),
-                $this->get_no_hint_visible_expectation());
+            $this->get_contains_question_text_expectation($mc),
+            $this->get_contains_mc_checkbox_expectation('choice0', true, true),
+            $this->get_contains_mc_checkbox_expectation('choice1', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice2', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', true, false),
+            $this->get_contains_submit_button_expectation(true),
+            $this->get_does_not_contain_feedback_expectation(),
+            $this->get_does_not_contain_num_parts_correct(),
+            $this->get_tries_remaining_expectation(1),
+            $this->get_no_hint_visible_expectation()
+        );
 
         // Submit the right answer.
         $this->process_submission(['choice0' => '1', 'choice2' => '1', '-submit' => '1']);
@@ -216,13 +231,14 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$gradedright);
         $this->check_current_mark(1.5);
         $this->check_current_output(
-                $this->get_contains_mc_checkbox_expectation('choice0', false, true),
-                $this->get_contains_mc_checkbox_expectation('choice1', false, false),
-                $this->get_contains_mc_checkbox_expectation('choice2', false, true),
-                $this->get_contains_mc_checkbox_expectation('choice3', false, false),
-                $this->get_does_not_contain_try_again_button_expectation(),
-                $this->get_contains_correct_expectation(),
-                $this->get_contains_standard_correct_combined_feedback_expectation());
+            $this->get_contains_mc_checkbox_expectation('choice0', false, true),
+            $this->get_contains_mc_checkbox_expectation('choice1', false, false),
+            $this->get_contains_mc_checkbox_expectation('choice2', false, true),
+            $this->get_contains_mc_checkbox_expectation('choice3', false, false),
+            $this->get_does_not_contain_try_again_button_expectation(),
+            $this->get_contains_correct_expectation(),
+            $this->get_contains_standard_correct_combined_feedback_expectation()
+        );
     }
 
     public function test_interactive_behaviour2(): void {
@@ -242,18 +258,19 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_question_text_expectation($mc),
-                $this->get_contains_mc_checkbox_expectation('choice0', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice1', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice2', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', true, false),
-                $this->get_contains_submit_button_expectation(true),
-                $this->get_does_not_contain_feedback_expectation(),
-                $this->get_does_not_contain_num_parts_correct(),
-                $this->get_tries_remaining_expectation(3),
-                $this->get_no_hint_visible_expectation(),
-                new question_pattern_expectation('/' .
-                        preg_quote(get_string('selectmulti', 'qtype_multichoice'), '/') . '/'));
+            $this->get_contains_question_text_expectation($mc),
+            $this->get_contains_mc_checkbox_expectation('choice0', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice1', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice2', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', true, false),
+            $this->get_contains_submit_button_expectation(true),
+            $this->get_does_not_contain_feedback_expectation(),
+            $this->get_does_not_contain_num_parts_correct(),
+            $this->get_tries_remaining_expectation(3),
+            $this->get_no_hint_visible_expectation(),
+            new question_pattern_expectation('/' .
+            preg_quote(get_string('selectmulti', 'qtype_multichoice'), '/') . '/')
+        );
 
         // Submit the wrong answer with too manu options selected.
         $this->process_submission([
@@ -263,27 +280,32 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_mc_checkbox_expectation('choice0', false, false),
-                $this->get_contains_mc_checkbox_expectation('choice1', false, true),
-                $this->get_contains_mc_checkbox_expectation('choice2', false, true),
-                $this->get_contains_mc_checkbox_expectation('choice3', false, true),
-                $this->get_contains_try_again_button_expectation(true),
-                $this->get_does_not_contain_correctness_expectation(),
-                $this->get_contains_hint_expectation('Hint 1'),
-                new question_pattern_expectation('/' .
+            $this->get_contains_mc_checkbox_expectation('choice0', false, false),
+            $this->get_contains_mc_checkbox_expectation('choice1', false, true),
+            $this->get_contains_mc_checkbox_expectation('choice2', false, true),
+            $this->get_contains_mc_checkbox_expectation('choice3', false, true),
+            $this->get_contains_try_again_button_expectation(true),
+            $this->get_does_not_contain_correctness_expectation(),
+            $this->get_contains_hint_expectation('Hint 1'),
+            new question_pattern_expectation('/' .
                         preg_quote(get_string('toomanyselected', 'qtype_multichoice'), '/') . '/'),
-                new question_no_pattern_expectation('/Three is odd/'),
-                $this->get_contains_standard_partiallycorrect_combined_feedback_expectation(),
-                $this->get_does_not_contain_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice0'),
-                $this->get_does_not_contain_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice1'),
-                $this->get_does_not_contain_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice2'),
-                $this->get_does_not_contain_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice3'),
-                new question_pattern_expectation('/' .
-                        preg_quote(get_string('selectmulti', 'qtype_multichoice'), '/') . '/'));
+            new question_no_pattern_expectation('/Three is odd/'),
+            $this->get_contains_standard_partiallycorrect_combined_feedback_expectation(),
+            $this->get_does_not_contain_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice0'
+            ),
+            $this->get_does_not_contain_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice1'
+            ),
+            $this->get_does_not_contain_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice2'
+            ),
+            $this->get_does_not_contain_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice3'
+            ),
+            new question_pattern_expectation('/' .
+            preg_quote(get_string('selectmulti', 'qtype_multichoice'), '/') . '/')
+        );
     }
 
     public function test_interactive_clear_wrong(): void {
@@ -302,17 +324,18 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_marked_out_of_summary(),
-                $this->get_contains_question_text_expectation($mc),
-                $this->get_contains_mc_checkbox_expectation('choice0', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice1', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice2', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', true, false),
-                $this->get_contains_submit_button_expectation(true),
-                $this->get_does_not_contain_feedback_expectation(),
-                $this->get_does_not_contain_num_parts_correct(),
-                $this->get_tries_remaining_expectation(3),
-                $this->get_no_hint_visible_expectation());
+            $this->get_contains_marked_out_of_summary(),
+            $this->get_contains_question_text_expectation($mc),
+            $this->get_contains_mc_checkbox_expectation('choice0', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice1', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice2', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', true, false),
+            $this->get_contains_submit_button_expectation(true),
+            $this->get_does_not_contain_feedback_expectation(),
+            $this->get_does_not_contain_num_parts_correct(),
+            $this->get_tries_remaining_expectation(3),
+            $this->get_no_hint_visible_expectation()
+        );
 
         // Submit a wrong answer.
         $this->process_submission(['choice1' => '1', 'choice3' => '1', '-submit' => '1']);
@@ -321,20 +344,25 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_marked_out_of_summary(),
-                $this->get_contains_mc_checkbox_expectation('choice0', false, false),
-                $this->get_contains_mc_checkbox_expectation('choice1', false, true),
-                $this->get_contains_mc_checkbox_expectation('choice2', false, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', false, true),
-                $this->get_contains_try_again_button_expectation(true),
-                $this->get_does_not_contain_correctness_expectation(),
-                $this->get_contains_num_parts_correct(0),
-                $this->get_contains_hint_expectation('Hint 1'),
-                $this->get_contains_standard_incorrect_combined_feedback_expectation(),
-                $this->get_contains_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice1', '0'),
-                $this->get_contains_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice3', '0'));
+            $this->get_contains_marked_out_of_summary(),
+            $this->get_contains_mc_checkbox_expectation('choice0', false, false),
+            $this->get_contains_mc_checkbox_expectation('choice1', false, true),
+            $this->get_contains_mc_checkbox_expectation('choice2', false, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', false, true),
+            $this->get_contains_try_again_button_expectation(true),
+            $this->get_does_not_contain_correctness_expectation(),
+            $this->get_contains_num_parts_correct(0),
+            $this->get_contains_hint_expectation('Hint 1'),
+            $this->get_contains_standard_incorrect_combined_feedback_expectation(),
+            $this->get_contains_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice1',
+                '0'
+            ),
+            $this->get_contains_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice3',
+                '0'
+            )
+        );
 
         // Try again.
         $this->process_submission(['choice1' => '0', 'choice3' => '0', '-tryagain' => '1']);
@@ -343,17 +371,18 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_marked_out_of_summary(),
-                $this->get_contains_question_text_expectation($mc),
-                $this->get_contains_mc_checkbox_expectation('choice0', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice1', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice2', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', true, false),
-                $this->get_contains_submit_button_expectation(true),
-                $this->get_does_not_contain_feedback_expectation(),
-                $this->get_does_not_contain_num_parts_correct(),
-                $this->get_tries_remaining_expectation(2),
-                $this->get_no_hint_visible_expectation());
+            $this->get_contains_marked_out_of_summary(),
+            $this->get_contains_question_text_expectation($mc),
+            $this->get_contains_mc_checkbox_expectation('choice0', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice1', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice2', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', true, false),
+            $this->get_contains_submit_button_expectation(true),
+            $this->get_does_not_contain_feedback_expectation(),
+            $this->get_does_not_contain_num_parts_correct(),
+            $this->get_tries_remaining_expectation(2),
+            $this->get_no_hint_visible_expectation()
+        );
 
         // Submit a partially right answer.
         $this->process_submission(['choice0' => '1', 'choice3' => '1', '-submit' => '1']);
@@ -362,20 +391,25 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_marked_out_of_summary(),
-                $this->get_contains_mc_checkbox_expectation('choice0', false, true),
-                $this->get_contains_mc_checkbox_expectation('choice1', false, false),
-                $this->get_contains_mc_checkbox_expectation('choice2', false, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', false, true),
-                $this->get_contains_try_again_button_expectation(true),
-                $this->get_does_not_contain_correctness_expectation(),
-                $this->get_contains_num_parts_correct(1),
-                $this->get_contains_hint_expectation('Hint 2'),
-                $this->get_contains_standard_partiallycorrect_combined_feedback_expectation(),
-                $this->get_contains_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice0', '1'),
-                $this->get_contains_hidden_expectation(
-                        $this->quba->get_field_prefix($this->slot) . 'choice3', '0'));
+            $this->get_contains_marked_out_of_summary(),
+            $this->get_contains_mc_checkbox_expectation('choice0', false, true),
+            $this->get_contains_mc_checkbox_expectation('choice1', false, false),
+            $this->get_contains_mc_checkbox_expectation('choice2', false, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', false, true),
+            $this->get_contains_try_again_button_expectation(true),
+            $this->get_does_not_contain_correctness_expectation(),
+            $this->get_contains_num_parts_correct(1),
+            $this->get_contains_hint_expectation('Hint 2'),
+            $this->get_contains_standard_partiallycorrect_combined_feedback_expectation(),
+            $this->get_contains_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice0',
+                '1'
+            ),
+            $this->get_contains_hidden_expectation(
+                $this->quba->get_field_prefix($this->slot) . 'choice3',
+                '0'
+            )
+        );
 
         // Try again.
         $this->process_submission(['choice0' => '1', 'choice3' => '0', '-tryagain' => '1']);
@@ -384,17 +418,18 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_contains_marked_out_of_summary(),
-                $this->get_contains_question_text_expectation($mc),
-                $this->get_contains_mc_checkbox_expectation('choice0', true, true),
-                $this->get_contains_mc_checkbox_expectation('choice1', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice2', true, false),
-                $this->get_contains_mc_checkbox_expectation('choice3', true, false),
-                $this->get_contains_submit_button_expectation(true),
-                $this->get_does_not_contain_feedback_expectation(),
-                $this->get_does_not_contain_num_parts_correct(),
-                $this->get_tries_remaining_expectation(1),
-                $this->get_no_hint_visible_expectation());
+            $this->get_contains_marked_out_of_summary(),
+            $this->get_contains_question_text_expectation($mc),
+            $this->get_contains_mc_checkbox_expectation('choice0', true, true),
+            $this->get_contains_mc_checkbox_expectation('choice1', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice2', true, false),
+            $this->get_contains_mc_checkbox_expectation('choice3', true, false),
+            $this->get_contains_submit_button_expectation(true),
+            $this->get_does_not_contain_feedback_expectation(),
+            $this->get_does_not_contain_num_parts_correct(),
+            $this->get_tries_remaining_expectation(1),
+            $this->get_no_hint_visible_expectation()
+        );
     }
 
     public function test_interactive_bug_11263(): void {
@@ -408,7 +443,8 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_tries_remaining_expectation(3));
+            $this->get_tries_remaining_expectation(3)
+        );
 
         // Submit a wrong answer.
         $this->process_submission([
@@ -438,7 +474,8 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_tries_remaining_expectation(2));
+            $this->get_tries_remaining_expectation(2)
+        );
 
         // Submit a wrong answer again.
         $this->process_submission([
@@ -468,7 +505,8 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_tries_remaining_expectation(1));
+            $this->get_tries_remaining_expectation(1)
+        );
 
         // Submit one right choice.
         $this->process_submission([
@@ -494,7 +532,8 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_tries_remaining_expectation(3));
+            $this->get_tries_remaining_expectation(3)
+        );
 
         // Submit the right answer.
         $this->process_submission([
@@ -529,7 +568,8 @@ final class walkthrough_test extends \qbehaviour_walkthrough_test_base {
         $this->check_current_state(question_state::$todo);
         $this->check_current_mark(null);
         $this->check_current_output(
-                $this->get_tries_remaining_expectation(3));
+            $this->get_tries_remaining_expectation(3)
+        );
 
         // Submit the right answer.
         $this->process_submission([

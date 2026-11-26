@@ -34,7 +34,6 @@ function xmldb_qtype_oumultiresponse_upgrade($oldversion) {
     $dbman = $DB->get_manager();
 
     if ($oldversion < 2020031600) {
-
         // For OUMR sub-questions of combined questions, ensure that the setting in the database
         // matches what the behaviour was (no added answer numbers) before the recent change.
         // This upgrade step really belongs with the commit of 2020-01-02
@@ -68,11 +67,18 @@ function xmldb_qtype_oumultiresponse_upgrade($oldversion) {
     // whether the Standard instruction ('Select one or more:') is displayed.
     $newversion = 2020041600;
     if ($oldversion < $newversion) {
-
         // Define field id to be added to question_oumultiresponse.
         $table = new xmldb_table('question_oumultiresponse');
-        $field = new xmldb_field('showstandardinstruction', XMLDB_TYPE_INTEGER, '2',
-            null, XMLDB_NOTNULL, null, '1', 'shownumcorrect');
+        $field = new xmldb_field(
+            'showstandardinstruction',
+            XMLDB_TYPE_INTEGER,
+            '2',
+            null,
+            XMLDB_NOTNULL,
+            null,
+            '1',
+            'shownumcorrect'
+        );
 
         // Conditionally launch add field id.
         if (!$dbman->field_exists($table, $field)) {
